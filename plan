@@ -1,0 +1,24 @@
+Marche a suivre:
+
+- Separer les commades sur les ';'.
+- Traiter ces commandes une a une dans une boucle while (i < nb-commandes).
+
+Comment traiter une commande?
+
+-Spliter sur les pipes.
+
+ -traiter a la suite si plusieurs pipe jsp pas encore comment mais 1 pipe pas de soucis.
+
+-une fois les pipe isoles, aue faire?
+
+Spliter em argument grace aux whites space, mais en conservant en un arg les " et '.
+
+-une fois aue c'est fait:
+	strcmp(args[0]...), et on lance la commande en utilisant le reste du tableau args.
+
+
+
+
+Points difficiles:
+	Comment gerer plusieurs pipes?
+	Comment spliter en prenant en compte les guillemets?

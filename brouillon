@@ -1,6 +1,0 @@
-
-objectif:
-lire une ligne et la séparer en commandes
-spliter en white space sauf pour les ""
-solution:
-d'abord spliter sur les whitespace, puis rassembler les mots entre "" ou ''.
