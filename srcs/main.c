@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/02 11:28:44 by tanguy            #+#    #+#             */
-/*   Updated: 2020/06/05 14:38:22 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/06/12 18:12:23 by tlecoeuv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,13 @@ int		main()
 
 void	big_loop(void)
 {
-	int		status;
 	char	**args;
 
-	status = 1;
-	while (status)
+	while (1)
 	{
 		write(1, "> ", 2);
-		read_command(args);
-//		status = execute_command(args);
-		status = 1;
+		parse_command(&args);
+		execute_command(args);
 		free(args);
 	}
 }

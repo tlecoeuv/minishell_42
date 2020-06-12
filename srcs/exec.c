@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tlecoeuv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/04 16:07:35 by tanguy            #+#    #+#             */
-/*   Updated: 2020/06/12 18:52:18 by tlecoeuv         ###   ########.fr       */
+/*   Created: 2020/06/12 17:55:45 by tlecoeuv          #+#    #+#             */
+/*   Updated: 2020/06/12 19:22:22 by tlecoeuv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void parse_command(char ***args)
+void	execute_command(char **args)
 {
-	char *line;
+	int		i;
 
-	get_next_line(0, &line);
-	*args = ft_split(line, ' ');
-	free(line);
+	
 }

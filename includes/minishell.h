@@ -6,7 +6,7 @@
 /*   By: tlecoeuv <tlecoeuv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/02 13:51:10 by tlecoeuv          #+#    #+#             */
-/*   Updated: 2020/06/11 12:22:02 by tlecoeuv         ###   ########.fr       */
+/*   Updated: 2020/06/12 18:12:18 by tlecoeuv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include "stdio.h"
 
 void	big_loop(void);
-void 	read_command(char **line);
+void 	parse_command(char ***args);
+void	execute_command(char **args);
+char	**ft_split(char const *s, char c);
 
 #endif

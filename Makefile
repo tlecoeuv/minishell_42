@@ -4,7 +4,9 @@ SRCS_PATH			=	./srcs
 INC_PATH			=	./includes
 
 SRCS_NAME			=	main.c \
-						reading.c \
+						parsing.c \
+						ft_split.c \
+						exec.c \
 						get_next_line_utils.c \
 						get_next_line.c \
 
