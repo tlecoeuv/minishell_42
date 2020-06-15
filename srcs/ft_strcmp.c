@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tlecoeuv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/04 16:07:35 by tanguy            #+#    #+#             */
-/*   Updated: 2020/06/15 21:45:25 by tlecoeuv         ###   ########.fr       */
+/*   Created: 2020/06/15 22:18:33 by tlecoeuv          #+#    #+#             */
+/*   Updated: 2020/06/15 22:20:23 by tlecoeuv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
-
-void parse_command(char ***args)
+int		ft_strcmp(char *s1, const char *s2)
 {
-	char *line;
+	int		i;
 
-	get_next_line(0, &line);
-	*args = ft_split(line, ' ');
-	free(line);
+	i = 0;
+	while ((s1[i] == s2[i]) && (s1[i] && s2[i]))
+		i++;
+	return (s1[i] - s2[i]);
 }

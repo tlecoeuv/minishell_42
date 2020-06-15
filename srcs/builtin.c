@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tlecoeuv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/02 11:28:44 by tanguy            #+#    #+#             */
-/*   Updated: 2020/06/15 21:45:18 by tlecoeuv         ###   ########.fr       */
+/*   Created: 2020/06/15 21:40:54 by tlecoeuv          #+#    #+#             */
+/*   Updated: 2020/06/15 23:14:09 by tlecoeuv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int		main()
+int		ft_cd(char **args)
 {
-	big_loop();
-	return (EXIT_SUCCESS);
+	if (args[1] == NULL)
+		printf("pas encore implementer le path home\n");
+	else
+		if (chdir(args[1]) != 0)
+			printf("gerer error\n");
+	return (1);
 }
 
-void	big_loop(void)
+int		ft_exit(char **args)
 {
-	char	**args;
-	int		status;
-
-	status = 1;
-	while (status)
-	{
-		write(1, "> ", 2);
-		parse_command(&args);
-		status = execute_command(args);
-		free(args);
-	}
+	(void) args;
+	return (0);
 }
+

@@ -6,9 +6,12 @@ INC_PATH			=	./includes
 SRCS_NAME			=	main.c \
 						parsing.c \
 						ft_split.c \
+						ft_strcmp.c \
 						exec.c \
+						builtin.c \
 						get_next_line_utils.c \
 						get_next_line.c \
+
 
 INC_NAME			=	minishell.h
 
