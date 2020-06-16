@@ -6,13 +6,13 @@
 /*   By: tlecoeuv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/12 17:55:45 by tlecoeuv          #+#    #+#             */
-/*   Updated: 2020/06/15 23:14:06 by tlecoeuv         ###   ########.fr       */
+/*   Updated: 2020/06/16 11:41:52 by tlecoeuv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int		execute_command(char **args)
+int		exec_args(char **args)
 {
 	int			i;
 	const char	*builtin_str[] = {"cd", "exit"};
@@ -47,5 +47,60 @@ int		launch_process(char **args)
 		perror("lsh");
 	else
 		wait(NULL);
+	return (1);
+}
+
+int		exec_argspiped(char **args, char **argspiped)
+{
+	int		pipefd[2];
+	pid_t	pid1, pid2;
+	printf("enter exec_argspiped\n");
+
+	if (pipe(pipefd) < 0)
+	{
+		printf("Pipe could not be initialized\n");
+		return (1);
+	}
+	pid1 = fork();
+	if (pid1 < 0)
+	{
+		printf("\nCould not fork"); 
+        return (1);
+	} 
+	if (pid1 == 0)
+	{
+		close(pipefd[0]);
+		dup2(pipefd[1], STDOUT_FILENO);
+		close(pipefd[1]);
+		if (execvp(args[0], args) < 0)
+		{
+			printf("\nCould not execute command 1..");
+            exit(0);
+        }
+	}
+	else
+	{
+		pid2 = fork();
+		if (pid2 < 0)
+		{
+			printf("\nCould not fork");
+            return (1);
+        }
+		if (pid2 == 0)
+		{
+			close(pipefd[1]);
+			dup2(pipefd[0], STDIN_FILENO);
+			close(pipefd[0]);
+			if (execvp(argspiped[0], argspiped) < 0)
+			{
+				printf("\nCould not execute command 2..");
+                exit(0);
+            }
+		}
+		else
+		{
+			wait(NULL);
+		}
+	}
 	return (1);
 }

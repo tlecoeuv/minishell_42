@@ -6,7 +6,7 @@
 /*   By: tlecoeuv <tlecoeuv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/02 13:51:10 by tlecoeuv          #+#    #+#             */
-/*   Updated: 2020/06/15 23:14:16 by tlecoeuv         ###   ########.fr       */
+/*   Updated: 2020/06/16 11:25:53 by tlecoeuv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,12 @@ void	big_loop(void);
 
 // parsing
 //
-void 	parse_command(char ***args);
+void 	parse_command(char ***args, char ***argspiped);
 
 //exec
 //
-int		execute_command(char **args);
+int		exec_args(char **args);
+int		exec_argspiped(char **args, char **argspiped);
 int		ft_cd(char **args);
 int		ft_exit(char **args);
 int		launch_process(char **argd);
