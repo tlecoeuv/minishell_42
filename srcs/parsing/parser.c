@@ -6,7 +6,7 @@
 /*   By: austin <avieira@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/02 11:40:39 by austin            #+#    #+#             */
-/*   Updated: 2020/10/02 22:02:51 by austin           ###   ########.fr       */
+/*   Updated: 2020/10/02 22:15:03 by austin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int				main(void)
 	char		*input;
 
 
-	printf("Format : =token1==token2==...\n");
+	printf("Format : =token1[type]==token2[type]==...\n");
 	while (get_next_line(0, &input) == 1)
 	{
 		tokens = tok_lstnew(ft_strdup("Pointer on list"));
@@ -102,7 +102,7 @@ int				main(void)
 			temp = temp->next;
 		while (temp)
 		{
-			printf("=%s[type->%d]=", temp->str, temp->type);
+			printf("=%s[%d]=", temp->str, temp->type);
 			temp = temp->next;
 		}
 		printf("\n");
