@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 15:54:43 by avieira           #+#    #+#             */
-/*   Updated: 2020/10/02 12:31:25 by austin           ###   ########.fr       */
+/*   Updated: 2020/10/02 13:04:09 by austin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 
 typedef enum		e_token_type
 {
-					cmd,
-					cmd_arg,
+					cmd,		// word == cmd
+					cmd_arg,	// word =/= cmd
 					pipe,		// |
 					inf,		// <
 					d_sup,		// >>
