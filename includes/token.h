@@ -6,12 +6,22 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 15:54:43 by avieira           #+#    #+#             */
-/*   Updated: 2020/10/01 16:16:11 by avieira          ###   ########.fr       */
+/*   Updated: 2020/10/02 12:31:25 by austin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TOKEN_H
 # define TOKEN_H
+
+# define PIPE "|"
+# define INF "<"
+# define D_SUP ">>"
+# define SUP ">"
+# define SM_CL ";"
+# define DOLL "$"
+# define BS "\\"
+# define QUOTE "'"
+# define D_QUOTE "\""
 
 typedef enum		e_token_type
 {
@@ -19,9 +29,11 @@ typedef enum		e_token_type
 					cmd_arg,
 					pipe,		// |
 					inf,		// <
-					d_inf,		// <<
+					d_sup,		// >>
 					sup,		// >
 					sm_cl,		// ;
+					v_env,		// $
+					bs			// '\'
 }					t_token_type;
 
 typedef struct		s_token
