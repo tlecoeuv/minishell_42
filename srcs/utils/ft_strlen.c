@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/01 16:20:59 by avieira           #+#    #+#             */
-/*   Updated: 2020/10/02 15:05:09 by austin           ###   ########.fr       */
+/*   Created: 2019/10/08 20:36:32 by avieira           #+#    #+#             */
+/*   Updated: 2020/10/02 14:08:58 by austin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "../../includes/minishell.h"
 
-//LIBRAIRES
-# include <stdlib.h>
-# include <unistd.h>
+int			ft_strlen(const char *s)
+{
+	int len;
 
-//LIBRAIRIES A SUPPRIMER
-# include <stdio.h>
-
-//HEADERS PERSONELS
-# include "token.h"
-
-#endif
+	len = 0;
+	while (s[len])
+		len++;
+	return (len);
+}

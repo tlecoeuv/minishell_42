@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/01 16:20:59 by avieira           #+#    #+#             */
-/*   Updated: 2020/10/02 15:05:09 by austin           ###   ########.fr       */
+/*   Created: 2019/10/10 15:47:05 by avieira           #+#    #+#             */
+/*   Updated: 2020/10/02 13:41:18 by austin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "../../includes/minishell.h"
 
-//LIBRAIRES
-# include <stdlib.h>
-# include <unistd.h>
+char			*ft_strdup(const char *s1)
+{
+	char	*cpy;
+	char	*temp;
+	int		len;
 
-//LIBRAIRIES A SUPPRIMER
-# include <stdio.h>
-
-//HEADERS PERSONELS
-# include "token.h"
-
-#endif
+	len = 0;
+	while (s1[len])
+		len++;
+	if (!(cpy = malloc(sizeof(char) * (len + 1))))
+		return (NULL);
+	temp = cpy;
+	while (len--)
+		*temp++ = *s1++;
+	*temp = 0;
+	return (cpy);
+}

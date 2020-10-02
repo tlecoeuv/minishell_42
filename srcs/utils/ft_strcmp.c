@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tok_lstadd_back.c                                  :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
+/*   By: avieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/13 13:36:23 by avieira           #+#    #+#             */
-/*   Updated: 2020/10/02 14:05:42 by austin           ###   ########.fr       */
+/*   Created: 2019/07/07 18:22:47 by avieira           #+#    #+#             */
+/*   Updated: 2020/10/02 14:28:24 by austin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/token.h"
+#include "../../includes/minishell.h"
 
-void	tok_lstadd_back(t_token **alst, t_token *new)
+int		ft_strcmp(const char *s1, const char *s2)
 {
-	t_token	*tmp;
+	int i;
 
-	tmp = *alst;
-	if (tmp)
+	i = 0;
+	while (s1[i] != '\0' && s2[i] != '\0')
 	{
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = new;
+		if (s1[i] != s2[i])
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		i++;
 	}
-	else
-		*alst = new;
+	return (0);
 }

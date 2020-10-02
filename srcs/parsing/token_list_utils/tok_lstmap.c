@@ -6,11 +6,11 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/13 14:25:33 by avieira           #+#    #+#             */
-/*   Updated: 2020/10/01 16:28:25 by avieira          ###   ########.fr       */
+/*   Updated: 2020/10/02 14:06:56 by austin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../../includes/minishell.h"
 
 static void	*lstclear(t_token **lst, void (*del)(void *))
 {
