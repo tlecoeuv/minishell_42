@@ -6,7 +6,7 @@
 /*   By: austin <avieira@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/02 11:40:39 by austin            #+#    #+#             */
-/*   Updated: 2020/10/02 15:28:12 by austin           ###   ########.fr       */
+/*   Updated: 2020/10/02 15:38:43 by austin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void			parser(char *input, t_token *tokens)
 	}
 }
 
-int				main(int ac, char **av)
+/*int				main(int ac, char **av)
 {
 	t_token		*tokens;
 
@@ -96,4 +96,4 @@ int				main(int ac, char **av)
 		printf("%s\n", tokens->str);
 		tokens = tokens->next;
 	}
-}
+}*/
