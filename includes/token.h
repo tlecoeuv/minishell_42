@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 15:54:43 by avieira           #+#    #+#             */
-/*   Updated: 2020/10/02 15:06:02 by austin           ###   ########.fr       */
+/*   Updated: 2020/10/02 16:38:22 by austin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef enum		e_token_type
 {
 					cmd,		// word == cmd
 					cmd_arg,	// word =/= cmd
+					space,		// word == " " || "\t"
 					pip,		// |
 					inf,		// <
 					d_sup,		// >>
@@ -46,8 +47,6 @@ typedef struct		s_token
 int					ft_isalnum(int c);
 int					ft_strcmp(const char *s1, const char *s2);
 int					ft_strlen(const char *s1);
-char				*ft_strdup(const char *s1);
-char				*ft_substr(char const *s, int start, int len);
 
 void				tok_lstadd_back(t_token **alst, t_token *nw);
 void				tok_lstadd_front(t_token **alst, t_token *nw);

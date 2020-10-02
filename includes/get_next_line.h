@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/01 16:20:59 by avieira           #+#    #+#             */
-/*   Updated: 2020/10/02 16:31:06 by austin           ###   ########.fr       */
+/*   Created: 2019/10/15 14:31:18 by avieira           #+#    #+#             */
+/*   Updated: 2020/10/02 16:41:07 by austin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-//LIBRAIRES
 # include <stdlib.h>
 # include <unistd.h>
+# define MAX_FD 250
+# define BUFFER_SIZE 1024
 
-//LIBRAIRIES A SUPPRIMER
-# include <stdio.h>
-
-//HEADERS PERSONELS
-# include "token.h"
-# include "get_next_line.h"
+char			*ft_strjoin(char *s1, char *s2);
+char			*ft_strdup(char *s1);
+char			*ft_substr(char const *s, unsigned int start, size_t len);
+size_t			ft_strl_spec(const char *str, char spec);
+void			*ft_memcpy(void *dst, const void *src, size_t n);
+int				get_next_line(int fd, char **line);
 
 #endif
