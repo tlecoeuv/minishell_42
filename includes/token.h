@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 15:54:43 by avieira           #+#    #+#             */
-/*   Updated: 2020/10/02 16:38:22 by austin           ###   ########.fr       */
+/*   Updated: 2020/10/02 22:03:26 by austin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ typedef enum		e_token_type
 					space,		// word == " " || "\t"
 					pip,		// |
 					inf,		// <
-					d_sup,		// >>
 					sup,		// >
 					sm_cl,		// ;
 					v_env,		// $
-					bs			// '\'
+					bs,			// '\'
+					d_sup		// >>
 }					t_token_type;
 
 typedef struct		s_token
@@ -43,6 +43,8 @@ typedef struct		s_token
 	t_token_type	type;
 	struct s_token	*next;
 }					t_token;
+
+int					filter_tokens(t_token *tokens);
 
 int					ft_isalnum(int c);
 int					ft_strcmp(const char *s1, const char *s2);
@@ -53,7 +55,7 @@ void				tok_lstadd_front(t_token **alst, t_token *nw);
 //void				tok_lstclear(t_token **lst, void (*del)(void *));
 void				tok_lstdelone(t_token *lst, void (*del)(void *));
 void				tok_lstiter(t_token *lst, void (*f)(void *));
-//static void			*lstclear(t_token **lst, void (*del)(void *));
+void				tok_lstclear(t_token **lst, void (*del)(void *));
 t_token				*tok_lstnew(void *content);
 t_token				*tok_lstmap(t_token *lst, void *(*f)(void *),
 														void (*del)(void *));
