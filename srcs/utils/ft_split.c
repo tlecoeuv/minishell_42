@@ -6,11 +6,11 @@
 /*   By: tlecoeuv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 11:58:33 by tlecoeuv          #+#    #+#             */
-/*   Updated: 2019/10/15 12:01:23 by tlecoeuv         ###   ########.fr       */
+/*   Updated: 2020/10/05 16:30:50 by tlecoeuv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/minishell.h"
 
 static int	nb_word(char const *s, char c)
 {
