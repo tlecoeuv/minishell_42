@@ -6,7 +6,7 @@
 /*   By: tlecoeuv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 16:09:23 by tlecoeuv          #+#    #+#             */
-/*   Updated: 2020/10/05 16:35:51 by tlecoeuv         ###   ########.fr       */
+/*   Updated: 2020/10/05 21:31:07 by tlecoeuv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@ char				*ft_strcat(char *dest, char *src);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
 void				free_array(char	**array);
 char				*ft_strdup(char *src);
+void				*ft_calloc(size_t count, size_t size);
 
 #endif
