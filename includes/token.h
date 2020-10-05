@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 15:54:43 by avieira           #+#    #+#             */
-/*   Updated: 2020/10/02 22:03:26 by austin           ###   ########.fr       */
+/*   Updated: 2020/10/05 09:26:57 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int					filter_tokens(t_token *tokens);
 int					ft_isalnum(int c);
 int					ft_strcmp(const char *s1, const char *s2);
 int					ft_strlen(const char *s1);
+char				**ft_split(char const *s, char c);
 
 void				tok_lstadd_back(t_token **alst, t_token *nw);
 void				tok_lstadd_front(t_token **alst, t_token *nw);
