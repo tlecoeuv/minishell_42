@@ -6,7 +6,7 @@
 /*   By: tlecoeuv <tlecoeuv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 16:09:23 by tlecoeuv          #+#    #+#             */
-/*   Updated: 2020/10/08 19:00:38 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/10/09 01:06:19 by austin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ char				*ft_strdup(char *src);
 void				*ft_calloc(size_t count, size_t size);
 int					get_array_size(char **array);
 char				*ft_strjoin_sep(char *s1, char *s2, char sep);
+char				*ft_strjoin(char *s1, char *s2);
+char				*ft_substr(const char *str, unsigned int start, size_t n);
+void				*ft_memcpy(void *dst, const void *src, size_t n);
 
 //temporaire
 int					ft_atoi(const char *str);

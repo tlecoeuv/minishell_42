@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 14:15:30 by avieira           #+#    #+#             */
-/*   Updated: 2020/10/09 00:47:57 by austin           ###   ########.fr       */
+/*   Updated: 2020/10/09 01:01:17 by austin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ size_t					ft_strl_spec(const char *s, char spec)
 		l++;
 	return (l);
 }
-
+/*
 char					*ft_strjoin(char *s1, char *s2)
 {
 	char				*s;
@@ -43,6 +43,7 @@ char					*ft_strjoin(char *s1, char *s2)
 	s[j] = 0;
 	return (s);
 }
+*/
 
 void					*ft_memcpy(void *dst, const void *src, size_t n)
 {
@@ -57,7 +58,7 @@ void					*ft_memcpy(void *dst, const void *src, size_t n)
 		*t_dst++ = *t_src++;
 	return (dst);
 }
-
+/*
 char					*ft_substr(char const *s, unsigned int start, size_t l)
 {
 	int					i;
@@ -81,4 +82,4 @@ char					*ft_substr(char const *s, unsigned int start, size_t l)
 	}
 	substr[i] = 0;
 	return (substr);
-}
+}*/
