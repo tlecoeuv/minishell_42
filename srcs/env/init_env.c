@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_array.c                                       :+:      :+:    :+:   */
+/*   init_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlecoeuv <tlecoeuv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/05 16:06:24 by tlecoeuv          #+#    #+#             */
-/*   Updated: 2020/10/07 17:22:05 by tanguy           ###   ########.fr       */
+/*   Created: 2020/10/07 16:42:56 by tanguy            #+#    #+#             */
+/*   Updated: 2020/10/07 22:10:25 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	free_array(char	**array)
+void	init_env(char **envp)
 {
+	int		size;
 	int		i;
 
 	i = 0;
-	while (array[i])
+	size = get_array_size(envp);
+	if (!(g_env = malloc(sizeof(char *) * (size + 1))))
+		return ;
+	while(i < size)
 	{
-		free(array[i]);
-		array[i] = NULL;
+		g_env[i] = ft_strdup(envp[i]);
 		i++;
 	}
-	free(array);
-	array = NULL;
+	g_env[i] = NULL;
 }

@@ -3,64 +3,59 @@
 /*                                                        :::      ::::::::   */
 /*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlecoeuv <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tlecoeuv <tlecoeuv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 15:46:08 by tlecoeuv          #+#    #+#             */
-/*   Updated: 2020/10/05 23:20:03 by tlecoeuv         ###   ########.fr       */
+/*   Updated: 2020/10/08 17:50:54 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../../includes/minishell.h"
 
-int		main(int argc, char **argv, char **envp)
+char	*ft_getenv(char *var)
 {
-	char	*cmd;
+	int		var_size;
 	int		i;
 
 	i = 0;
-	while (envp[i])
+	var_size = ft_strlen(var);
+	while (g_env[i])
 	{
-		printf("%s\n", envp[i]);
+		if (ft_strlen(g_env[i]) > var_size
+							&& ft_strncmp(var, g_env[i], var_size) == 0
+							&& g_env[i][var_size] == '=')
+			return (g_env[i]);
 		i++;
 	}
-	(void)argc;
-	cmd = ft_strdup(argv[1]);
-	get_absolute_path(&cmd);
-	printf("RESULT:%s\n", cmd);
-	return (0);
+	return (NULL);
 }
 
 void	get_absolute_path(char **cmd)
 {
-	char    *path;
-	char    *bin;
-	char    **path_split;
-	int     i;
+	char	*path;
+	char	**path_split;
+	char	*bin;
+	int		i;
 
 	i = 0;
-	path = ft_strdup(getenv("PATH"));
-	if (**cmd != '/' && ft_strncmp(*cmd, "./", 2) != 0)
+	if (**cmd == '/' || ft_strncmp(*cmd, "./", 2) == 0)
+		return ;
+	path = ft_strdup(ft_getenv("PATH"));
+	path_split = ft_split(path, ':');
+	free(path);
+	while (path_split[i] && !test_file(bin))
 	{
-		path_split = ft_split(path, ':');
-		while (path_split[i])
+		bin = ft_strjoin_sep(path_split[i], *cmd, '/');
+		if (!test_file(bin))
 		{
-			if(!(bin = ft_calloc(sizeof(char), (ft_strlen(path_split[i]) + ft_strlen(*cmd) + 2))))
-				break ;
-			ft_strcat(bin, path_split[i]);
-			ft_strcat(bin, "/");
-			ft_strcat(bin, *cmd);
-			if (test_file(bin))
-				break ;
 			free(bin);
 			bin = NULL;
-			i++;
 		}
-		free_array(path_split);
-		free(*cmd);
-		*cmd = bin;
+		i++;
 	}
-	free(path);
+	free_array(path_split);
+	free(*cmd);
+	*cmd = bin;
 }
 
 int		test_file(char *file_name)

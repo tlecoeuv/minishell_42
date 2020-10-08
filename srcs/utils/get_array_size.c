@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec.h                                             :+:      :+:    :+:   */
+/*   get_array_size.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlecoeuv <tlecoeuv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/05 16:04:09 by tlecoeuv          #+#    #+#             */
-/*   Updated: 2020/10/07 23:15:26 by tanguy           ###   ########.fr       */
+/*   Created: 2020/10/07 21:57:34 by tanguy            #+#    #+#             */
+/*   Updated: 2020/10/07 22:10:46 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXEC_H
-# define EXEC_H
+#include "../../includes/minishell.h"
 
-//path.c
-int		test_file(char *file_name);
-void	get_absolute_path(char **cmd);
-char	*ft_getenv(char *var);
+int		get_array_size(char **array)
+{
+	int		i;
 
-
-#endif
+	i = 0;
+	while(array[i])
+		i++;
+	return(i);
+}

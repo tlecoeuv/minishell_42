@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec.h                                             :+:      :+:    :+:   */
+/*   env.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlecoeuv <tlecoeuv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/05 16:04:09 by tlecoeuv          #+#    #+#             */
-/*   Updated: 2020/10/07 23:15:26 by tanguy           ###   ########.fr       */
+/*   Created: 2020/10/07 16:42:29 by tanguy            #+#    #+#             */
+/*   Updated: 2020/10/07 22:14:41 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXEC_H
-# define EXEC_H
+#ifndef ENV_H
+# define ENV_H
 
-//path.c
-int		test_file(char *file_name);
-void	get_absolute_path(char **cmd);
-char	*ft_getenv(char *var);
-
+void			init_env(char **envp);
 
 #endif
