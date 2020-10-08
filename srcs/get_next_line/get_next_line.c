@@ -6,11 +6,11 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 18:24:13 by avieira           #+#    #+#             */
-/*   Updated: 2020/10/02 16:40:19 by austin           ###   ########.fr       */
+/*   Updated: 2020/10/09 00:47:08 by austin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/get_next_line.h"
+#include "../../includes/minishell.h"
 
 static char			*append_line(char *buff, char *line, int *nl)
 {

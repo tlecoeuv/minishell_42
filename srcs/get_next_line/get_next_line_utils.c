@@ -6,11 +6,11 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 14:15:30 by avieira           #+#    #+#             */
-/*   Updated: 2020/10/02 16:40:29 by austin           ###   ########.fr       */
+/*   Updated: 2020/10/09 00:47:57 by austin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/get_next_line.h"
+#include "../../includes/minishell.h"
 
 size_t					ft_strl_spec(const char *s, char spec)
 {
@@ -42,24 +42,6 @@ char					*ft_strjoin(char *s1, char *s2)
 		s[j++] = s2[i++];
 	s[j] = 0;
 	return (s);
-}
-
-char					*ft_strdup(char *s1)
-{
-	char				*cpy;
-	char				*temp;
-	int					len;
-
-	len = 0;
-	while (s1[len])
-		len++;
-	if (!(cpy = malloc(sizeof(char) * (len + 1))))
-		return (NULL);
-	temp = cpy;
-	while (len--)
-		*temp++ = *s1++;
-	*temp = 0;
-	return (cpy);
 }
 
 void					*ft_memcpy(void *dst, const void *src, size_t n)
