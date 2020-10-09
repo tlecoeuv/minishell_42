@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 16:20:59 by avieira           #+#    #+#             */
-/*   Updated: 2020/10/07 22:15:30 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/10/09 02:43:46 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <string.h>
+# include <errno.h>
 
 //LIBRAIRIES A SUPPRIMER
 # include <stdio.h>
