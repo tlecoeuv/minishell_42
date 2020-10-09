@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.h                                              :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tlecoeuv <tlecoeuv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/07 16:42:29 by tanguy            #+#    #+#             */
-/*   Updated: 2020/10/09 15:56:02 by tlecoeuv         ###   ########.fr       */
+/*   Created: 2020/10/09 16:05:40 by tlecoeuv          #+#    #+#             */
+/*   Updated: 2020/10/09 16:05:58 by tlecoeuv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ENV_H
-# define ENV_H
+int		ft_strchr(char *str, int c)
+{
+	int		i;
 
-void			init_env(char **envp);
-char			*ft_getenv(char *var);
-
-#endif
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == c)
+			return (i);
+		i++;
+	}
+	if (c == '\0')
+		return (i);
+	return (-1);
+}
