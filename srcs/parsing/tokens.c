@@ -6,7 +6,7 @@
 /*   By: austin <avieira@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/02 11:40:39 by austin            #+#    #+#             */
-/*   Updated: 2020/10/10 13:15:56 by austin           ###   ########.fr       */
+/*   Updated: 2020/10/10 13:57:56 by austin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int				main(void)
 	t_token *tokens;
 	t_token	*temp;
 	char	*input;
-	char	*types[12] = {"space", "pip", "in", "out", "append_out", "end", "v_env", "word"};
+	char	*types[12] = {"pip", "in", "out", "append_out", "word", "space", "v_env", "end"};
 
 	while (get_next_line(0, &input) == 1)
 	{
