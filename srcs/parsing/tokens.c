@@ -6,52 +6,48 @@
 /*   By: austin <avieira@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/02 11:40:39 by austin            #+#    #+#             */
-/*   Updated: 2020/10/09 00:26:38 by austin           ###   ########.fr       */
+/*   Updated: 2020/10/10 13:15:56 by austin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char		*get_token(char *input, t_token *tokens, const char **signs,
-															t_token_type type)
+void			ini_get_tok(f_get_tok *get_tok)
 {
-	char	*str;
-	t_token	*new;
+	get_tok[cln] = &get_tok_str_null;
+	get_tok[inf] = &get_tok_str_null;
+	get_tok[d_sup] = &get_tok_str_null;
+	get_tok[sup] = &get_tok_str_null;
+	get_tok[d_quote] = &get_tok_d_quote;
+	get_tok[quote] = &get_tok_quote;
+	get_tok[spc] = &get_tok_str_null;
+	get_tok[tab] = &get_tok_str_null;
+	get_tok[bs] = &get_tok_word;
+	get_tok[sm_cl] = &get_tok_str_null;
+	get_tok[doll] = &get_tok_doll;
+	get_tok[none] = &get_tok_word;
 
-	/*if (type == bs)
-		new = get_bs_token();
-	else if (type == quote || type == d_quote)
-		new = get_quote_token();
-	else if (type == v_env)
-		new = get_v_env_token();*/
-	//else
-	{
-		str = get_str_simple_token(input, type, signs);
-		if ((type == word && !str))
-			return (NULL);
-		if (!(new = tok_lstnew(str)))
-		{
-			free(str);
-			return (NULL);
-		}
-	}
-	if (!new)
-		return (NULL);
-	new->type = type;
-	tok_lstadd_back(&tokens, new);
-	return (input + get_l_token(input, type, signs));
 }
 
-void			create_tokens_list(char *input, t_token *tokens)
+int				create_tokens_list(char *input, t_token *tokens)
 {
-	const char		*signs[] = {OPE, SM_CL, DOLL, BS, QUOTE, D_QUOTE, SPACE, 0};
-	t_token_type	type;
+	t_elem		elem;
+	const char	*str_elem[] = {CLN, INF, D_SUP, SUP, D_QUOTE, QUOTE, SPC,
+									TAB, BS, SM_CL, DOLL, ""};
+	t_type		elem_to_type[] = {pip, in, append_out, out, word,
+									word, space, space, word, end, v_env, word};
 
+	f_get_tok	get_tok[12];
+	ini_get_tok(get_tok);
+	elem.str = str_elem;
 	while (*input)
 	{
-		type = wich_type(input, signs);
-		input = get_token(input, tokens, signs, type);
+		elem.name = get_elem_name(input, &elem);
+		elem.size = get_elem_size(input, &elem);
+		get_tok[elem.name](input, &elem, elem_to_type, tokens);
+		input += elem.size;
 	}
+	return (SUCCESS);
 }
 
 
@@ -60,7 +56,7 @@ int				main(void)
 	t_token *tokens;
 	t_token	*temp;
 	char	*input;
-	char	*types[12] = {"ope", "sm_cl", "v_env", "bs", "quote", "d_quote", "space", "word", "pip", "inf", "sup", "d_sup"};
+	char	*types[12] = {"space", "pip", "in", "out", "append_out", "end", "v_env", "word"};
 
 	while (get_next_line(0, &input) == 1)
 	{
