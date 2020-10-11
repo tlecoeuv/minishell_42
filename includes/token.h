@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 15:54:43 by avieira           #+#    #+#             */
-/*   Updated: 2020/10/10 13:55:15 by austin           ###   ########.fr       */
+/*   Updated: 2020/10/11 16:59:23 by austin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,9 @@ void				get_tok_quote(char *, t_elem *, t_type *, t_token *);
 void				get_tok_d_quote(char *, t_elem *, t_type *, t_token *);
 void				get_tok_doll(char *, t_elem *, t_type *, t_token *);
 void				get_tok_word(char *, t_elem *, t_type *, t_token *);
+void				get_tok_bs(char *, t_elem *, t_type *, t_token *);
+
+char				*get_str_bs(char *, t_elem *, int);
 
 int					get_len_input_doll(char *, t_elem *);
 int					get_len_input_quotes(char *, t_elem *);

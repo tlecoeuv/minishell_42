@@ -6,7 +6,7 @@
 /*   By: austin <avieira@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/02 11:40:39 by austin            #+#    #+#             */
-/*   Updated: 2020/10/10 13:57:56 by austin           ###   ########.fr       */
+/*   Updated: 2020/10/11 17:07:06 by austin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void			ini_get_tok(f_get_tok *get_tok)
 	get_tok[quote] = &get_tok_quote;
 	get_tok[spc] = &get_tok_str_null;
 	get_tok[tab] = &get_tok_str_null;
-	get_tok[bs] = &get_tok_word;
+	get_tok[bs] = &get_tok_bs;
 	get_tok[sm_cl] = &get_tok_str_null;
 	get_tok[doll] = &get_tok_doll;
 	get_tok[none] = &get_tok_word;
@@ -36,8 +36,8 @@ int				create_tokens_list(char *input, t_token *tokens)
 									TAB, BS, SM_CL, DOLL, ""};
 	t_type		elem_to_type[] = {pip, in, append_out, out, word,
 									word, space, space, word, end, v_env, word};
-
 	f_get_tok	get_tok[12];
+
 	ini_get_tok(get_tok);
 	elem.str = str_elem;
 	while (*input)
@@ -71,6 +71,6 @@ int				main(void)
 			printf("str : \"%s\"      type : %s\n", temp->str, types[temp->type]);
 			temp = temp->next;
 		}
-		printf("\nDone\n");
+		printf("Done\n\n");
 	}
 }
