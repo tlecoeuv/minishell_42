@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 00:18:26 by tanguy            #+#    #+#             */
-/*   Updated: 2020/10/09 19:00:08 by tlecoeuv         ###   ########.fr       */
+/*   Updated: 2020/10/11 15:59:41 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,17 @@
 void		handle_tokens(t_token *lst_token)
 {
 	char	**cmd;
-	printf("handle command start!\n");
-	while(lst_token)
+
+	while (lst_token)
 	{
 		cmd = get_cmd_fro_tok(&lst_token);
+		get_absolute_path(cmd);
+		if (cmd[0] == NULL)
+			printf("Command not found\n");
+		else
+			exec_cmd(cmd);
+		free_array(cmd);
 	}
-	exec_cmd(cmd);
-	free_array(cmd);
 }
 
 char		**get_cmd_fro_tok(t_token **lst_token)
@@ -29,7 +33,6 @@ char		**get_cmd_fro_tok(t_token **lst_token)
 	int		size;
 	char	**cmd;
 
-	printf("get_cmd_fro_tok\n");
 	size = get_size_cmd(*lst_token);
 	cmd = create_cmd_tab(lst_token, size);
 	return (cmd);
@@ -40,49 +43,52 @@ int			get_size_cmd(t_token *lst_token)
 	int		size;
 
 	size = 0;
-	printf("get_size_cmd\n");
-	while (lst_token && lst_token->type != sm_cl)
+	while (lst_token && lst_token->type != end)
 	{
 		if (lst_token->type == word)
 			size++;
 		lst_token = lst_token->next;
 	}
-	return(size);
+	return (size);
 }
 
 char		**create_cmd_tab(t_token **lst_token, int size)
 {
-		char	**cmd;
-		int		i;
+	char	**cmd;
+	int		i;
 
-		i = 0;
-		if (!(cmd = malloc(sizeof(char *) * (size + 1))))
-			return (NULL);
-		while (i < size)
+	i = 0;
+	if (!(cmd = malloc(sizeof(char *) * (size + 1))))
+		return (NULL);
+	while (i < size)
+	{
+		if ((*lst_token)->type == word)
 		{
-			if ((*lst_token)->type == word)
-			{
-				cmd[i] = ft_strdup((*lst_token)->str);
-				i++;
-			}
-			*lst_token = (*lst_token)->next;
+			cmd[i] = ft_strdup((*lst_token)->str);
+			i++;
 		}
-		while(*lst_token && (*lst_token)->type != sm_cl)
-			*lst_token = (*lst_token)->next;
-		if((*lst_token)->type == sm_cl)
-			*lst_token = (*lst_token)->next;
-		return(cmd);
+		*lst_token = (*lst_token)->next;
+	}
+	while (*lst_token && (*lst_token)->type != end)
+		*lst_token = (*lst_token)->next;
+	if (*lst_token && (*lst_token)->type == end)
+		*lst_token = (*lst_token)->next;
+	return (cmd);
 }
 
 void		exec_cmd(char **cmd)
 {
-	int		i;
+	pid_t	pid;
 
-	i = 0;
-	while(cmd[i])
+	pid = fork();
+	if (pid < 0)
+		perror("fork");
+	else if (pid > 0)
+		while(wait(NULL) != -1 && errno != ECHILD);
+	else
 	{
-		printf("%s \n", cmd[i]);
+		if (execve(cmd[0], cmd, g_env) == -1)
+			perror("minishell");
+		exit(EXIT_FAILURE);
 	}
 }
-
-//while(wait(NULL) != -1 && errno != ECHILD);

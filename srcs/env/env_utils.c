@@ -6,7 +6,7 @@
 /*   By: tlecoeuv <tlecoeuv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 15:54:02 by tlecoeuv          #+#    #+#             */
-/*   Updated: 2020/10/09 16:08:14 by tlecoeuv         ###   ########.fr       */
+/*   Updated: 2020/10/11 16:00:18 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@ char	*ft_getenv(char *var)
 {
 	int		var_size;
 	int		i;
-	int		j;
 
-	j = 0;
 	i = 0;
 	var_size = ft_strlen(var);
 	while (g_env[i])

@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 17:50:24 by tanguy            #+#    #+#             */
-/*   Updated: 2020/10/09 18:55:14 by tlecoeuv         ###   ########.fr       */
+/*   Updated: 2020/10/11 16:02:06 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,15 @@ int		main(int argc, char **argv, char **envp)
 	int		i;
 
 	i = 3;
-	printf("beging! \n");
 	init_env(envp);
 	lst_token = tok_lstnew(argv[1]);
 	lst_token->type = ft_atoi(argv[2]);
-	while(i < argc)
+	while (i < argc)
 	{
 		tmp = tok_lstnew(argv[i]);
 		tmp->type = ft_atoi(argv[i + 1]);
+		if (lst_token->next)
+			printf("WTFF\n");
 		tok_lstadd_back(&lst_token, tmp);
 		i += 2;
 	}
