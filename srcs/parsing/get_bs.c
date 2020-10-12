@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_str_bs.c                                       :+:      :+:    :+:   */
+/*   get_bs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: austin <avieira@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/11 12:44:29 by austin            #+#    #+#             */
-/*   Updated: 2020/10/11 17:06:16 by austin           ###   ########.fr       */
+/*   Updated: 2020/10/12 19:07:45 by austin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char				*get_str_bs(char *input, t_elem *elem, int quotes)
 }
 
 void		get_tok_bs(char *input, t_elem *elem, t_type *elem_to_type,
-																t_token *tokens)
+															t_token **tokens)
 {
 	char *str;
 

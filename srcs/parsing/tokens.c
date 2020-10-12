@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokens.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: austin <austin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: austin <avieira@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/02 11:40:39 by austin            #+#    #+#             */
-/*   Updated: 2020/10/12 18:11:31 by tlecoeuv         ###   ########.fr       */
+/*   Updated: 2020/10/12 19:16:47 by austin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void			ini_get_tok(f_get_tok *get_tok)
 
 }
 
-int				create_tokens_list(char *input, t_token **tokens)
+void				create_tokens_list(char *input, t_token **tokens)
 {
 	t_elem		elem;
 	const char	*str_elem[] = {CLN, INF, D_SUP, SUP, D_QUOTE, QUOTE, SPC,
@@ -38,6 +38,7 @@ int				create_tokens_list(char *input, t_token **tokens)
 									word, space, space, word, end, v_env, word};
 	f_get_tok	get_tok[12];
 
+	*tokens = NULL;
 	ini_get_tok(get_tok);
 	elem.str = str_elem;
 	while (*input)
@@ -47,11 +48,10 @@ int				create_tokens_list(char *input, t_token **tokens)
 		get_tok[elem.name](input, &elem, elem_to_type, tokens);
 		input += elem.size;
 	}
-	return (SUCCESS);
 }
 
-
-/*int				main(void)
+/*
+int				main(void)
 {
 	t_token *tokens;
 	t_token	*temp;
@@ -60,12 +60,8 @@ int				create_tokens_list(char *input, t_token **tokens)
 
 	while (get_next_line(0, &input) == 1)
 	{
-		tokens = tok_lstnew("Pointer on list");
-		tokens->type = word;
-		create_tokens_list(input, tokens);
+		create_tokens_list(input, &tokens);
 		temp = tokens;
-		if (temp->next)
-			temp = temp->next;
 		while (temp)
 		{
 			printf("str : \"%s\"      type : %s\n", temp->str, types[temp->type]);
