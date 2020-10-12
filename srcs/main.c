@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_test.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 17:50:24 by tanguy            #+#    #+#             */
-/*   Updated: 2020/10/11 16:02:06 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/10/12 18:15:31 by tlecoeuv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,21 @@ char	**g_env;
 
 int		main(int argc, char **argv, char **envp)
 {
-	t_token	*lst_token;
-	t_token	*tmp;
-	int		i;
+	t_token	*tokens;
+	char	*input;
 
-	i = 3;
 	init_env(envp);
-	lst_token = tok_lstnew(argv[1]);
-	lst_token->type = ft_atoi(argv[2]);
-	while (i < argc)
+	while (1)
 	{
-		tmp = tok_lstnew(argv[i]);
-		tmp->type = ft_atoi(argv[i + 1]);
-		if (lst_token->next)
-			printf("WTFF\n");
-		tok_lstadd_back(&lst_token, tmp);
-		i += 2;
+			write(1, "minishell: >", 12);
+			get_next_line(0, &input);
+			create_tokens_list(input, tokens); //ici il faudrait que ça crée tokens.
+			handle_tokens(tokens);//				donc probablement envoyer &tokens plutot.
+			//faudra free tokens ici.
+			free(input);
 	}
-	printf("lst_token created!\n");
-	handle_tokens(lst_token);
 	return (0);
 }
+
+//Pour compiler:
+//gcc env/*.c exec/*.c get_next_line/*.c parsing/*.c parsing/token_list_utils/*.c utils/*.c main.

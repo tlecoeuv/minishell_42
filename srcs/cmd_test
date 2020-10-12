@@ -1,2 +1,0 @@
-gcc exec/* parsing/token_list_utils/* utils/* env/*
-./a.out ls 7 -l 7 ; 1 cat 7 -e 7

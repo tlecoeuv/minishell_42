@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokens.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: austin <avieira@student.42.fr>             +#+  +:+       +#+        */
+/*   By: austin <austin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/02 11:40:39 by austin            #+#    #+#             */
-/*   Updated: 2020/10/11 17:07:06 by austin           ###   ########.fr       */
+/*   Updated: 2020/10/12 18:11:31 by tlecoeuv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void			ini_get_tok(f_get_tok *get_tok)
 
 }
 
-int				create_tokens_list(char *input, t_token *tokens)
+int				create_tokens_list(char *input, t_token **tokens)
 {
 	t_elem		elem;
 	const char	*str_elem[] = {CLN, INF, D_SUP, SUP, D_QUOTE, QUOTE, SPC,
@@ -51,7 +51,7 @@ int				create_tokens_list(char *input, t_token *tokens)
 }
 
 
-int				main(void)
+/*int				main(void)
 {
 	t_token *tokens;
 	t_token	*temp;
@@ -73,4 +73,4 @@ int				main(void)
 		}
 		printf("Done\n\n");
 	}
-}
+}*/
