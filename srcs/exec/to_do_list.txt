@@ -1,4 +1,11 @@
 -redirection de fd <, >, >>.
+	--->arreter get_command from tok a pipe, ou >, ou >>, ou <.
+		---->faire fonction is_redir_or_pipe.
+	--->recuperer le type dans redir type. (iterer lst_token en meme temps)
+	--->recuperer le nom du fichier, le open et mettre de fd dans fd_file.("")
+	--->forker.
+	--->dup2(STDIN ou STDOUT, fd_file); dans le child.
+	--->fermer le fd dans le pere (apres le wait).
 
 -gerer les variables d'environements.
 
@@ -13,6 +20,3 @@
 -gerer $?.
 
 -bien free les lists.
-
-comment gérer les redirection de fd?:
-dup2(STDOUT, fd_file) avant de execve.
