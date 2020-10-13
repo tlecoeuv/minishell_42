@@ -6,7 +6,7 @@
 /*   By: austin <avieira@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/02 23:04:44 by austin            #+#    #+#             */
-/*   Updated: 2020/10/11 16:51:47 by austin           ###   ########.fr       */
+/*   Updated: 2020/10/13 14:23:12 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ int						get_len_input_quotes(char *input, t_elem *elem)
 		if (input[l])
 			l++;
 	}
-	printf("-------------%d\n", l);
 	return (l);
 }
 

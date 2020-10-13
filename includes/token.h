@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 15:54:43 by avieira           #+#    #+#             */
-/*   Updated: 2020/10/12 19:06:09 by austin           ###   ########.fr       */
+/*   Updated: 2020/10/13 14:27:56 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ typedef struct		s_token
 	t_type			type;
 	struct s_token	*next;
 }					t_token;
+
+void				create_tokens_list(char *, t_token **);
 
 typedef void		(*f_get_tok)(char *, t_elem *, t_type *, t_token **);
 void				get_tok_str_null(char *, t_elem *, t_type *, t_token **);

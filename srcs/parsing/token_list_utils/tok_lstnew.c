@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/13 12:45:16 by avieira           #+#    #+#             */
-/*   Updated: 2020/10/02 14:07:20 by austin           ###   ########.fr       */
+/*   Updated: 2020/10/13 14:21:56 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_token			*tok_lstnew(void *content)
 {
 	t_token		*new;
 
-	if (!(new = malloc(sizeof(new))))
+	if (!(new = malloc(sizeof(t_token))))
 		return (NULL);
 	new->str = content;
 	new->next = NULL;
