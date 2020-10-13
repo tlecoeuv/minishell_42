@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 17:50:24 by tanguy            #+#    #+#             */
-/*   Updated: 2020/10/13 14:28:20 by avieira          ###   ########.fr       */
+/*   Updated: 2020/10/13 15:01:09 by tlecoeuv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ int		main(int argc, char **argv, char **envp)
 	{
 			write(1, "minishell: >", 12);
 			get_next_line(0, &input);
-			create_tokens_list(input, &tokens); //ici il faudrait que ça crée tokens.
-			handle_tokens(tokens);//				donc probablement envoyer &tokens plutot.
+			create_tokens_list(input, &tokens);
+			handle_tokens(tokens);
 			//faudra free tokens ici.
 			free(input);
 	}

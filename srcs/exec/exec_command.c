@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 00:18:26 by tanguy            #+#    #+#             */
-/*   Updated: 2020/10/11 15:59:41 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/10/13 17:23:00 by tlecoeuv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,30 @@
 
 void		handle_tokens(t_token *lst_token)
 {
-	char	**cmd;
+	t_cmd	*cmd;
 
 	while (lst_token)
 	{
-		cmd = get_cmd_fro_tok(&lst_token);
-		get_absolute_path(cmd);
-		if (cmd[0] == NULL)
+		cmd = get_cmd_from_tok(&lst_token);
+		get_absolute_path(cmd->args);
+		if (cmd->args[0] == NULL)
 			printf("Command not found\n");
 		else
-			exec_cmd(cmd);
-		free_array(cmd);
+			exec_cmd(cmd->args);
+		free_array(cmd->args);
+		free(cmd);
 	}
 }
 
-char		**get_cmd_fro_tok(t_token **lst_token)
+t_cmd		*get_cmd_from_tok(t_token **lst_token)
 {
 	int		size;
-	char	**cmd;
+	t_cmd	*cmd;
 
+	if (!(cmd = malloc(sizeof(t_cmd))))
+		return(NULL);
 	size = get_size_cmd(*lst_token);
-	cmd = create_cmd_tab(lst_token, size);
+	cmd->args = create_cmd_args(lst_token, size);
 	return (cmd);
 }
 
@@ -52,7 +55,7 @@ int			get_size_cmd(t_token *lst_token)
 	return (size);
 }
 
-char		**create_cmd_tab(t_token **lst_token, int size)
+char		**create_cmd_args(t_token **lst_token, int size)
 {
 	char	**cmd;
 	int		i;
@@ -69,6 +72,7 @@ char		**create_cmd_tab(t_token **lst_token, int size)
 		}
 		*lst_token = (*lst_token)->next;
 	}
+	cmd[i] = NULL;
 	while (*lst_token && (*lst_token)->type != end)
 		*lst_token = (*lst_token)->next;
 	if (*lst_token && (*lst_token)->type == end)

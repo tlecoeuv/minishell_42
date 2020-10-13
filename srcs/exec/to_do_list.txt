@@ -1,0 +1,18 @@
+-redirection de fd <, >, >>.
+
+-gerer les variables d'environements.
+
+-builtins.
+
+-gerer les pipes.
+
+-gerer les guillemets au moment des commandes.
+
+-gerer les erreurs.
+
+-gerer $?.
+
+-bien free les lists.
+
+comment gérer les redirection de fd?:
+dup2(STDOUT, fd_file) avant de execve.
