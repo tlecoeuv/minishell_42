@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 00:18:26 by tanguy            #+#    #+#             */
-/*   Updated: 2020/10/13 17:23:00 by tlecoeuv         ###   ########.fr       */
+/*   Updated: 2020/10/14 19:21:34 by tlecoeuv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,9 @@ t_cmd		*get_cmd_from_tok(t_token **lst_token)
 		return(NULL);
 	size = get_size_cmd(*lst_token);
 	cmd->args = create_cmd_args(lst_token, size);
+	get_redir_and_fd(lst_token, cmd);
+	if ((*lst_token) && (*lst_token)->type == end)
+		*lst_token = (*lst_token)->next;
 	return (cmd);
 }
 
@@ -46,7 +49,7 @@ int			get_size_cmd(t_token *lst_token)
 	int		size;
 
 	size = 0;
-	while (lst_token && lst_token->type != end)
+	while (lst_token && lst_token->type != end && lst_token->type > 3)
 	{
 		if (lst_token->type == word)
 			size++;
@@ -72,11 +75,9 @@ char		**create_cmd_args(t_token **lst_token, int size)
 		}
 		*lst_token = (*lst_token)->next;
 	}
+	if((*lst_token) && (*lst_token)->type == space)
+		*lst_token = (*lst_token)->next;
 	cmd[i] = NULL;
-	while (*lst_token && (*lst_token)->type != end)
-		*lst_token = (*lst_token)->next;
-	if (*lst_token && (*lst_token)->type == end)
-		*lst_token = (*lst_token)->next;
 	return (cmd);
 }
 
