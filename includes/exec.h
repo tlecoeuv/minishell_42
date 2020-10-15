@@ -6,7 +6,7 @@
 /*   By: tlecoeuv <tlecoeuv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 16:04:09 by tlecoeuv          #+#    #+#             */
-/*   Updated: 2020/10/15 12:14:17 by tlecoeuv         ###   ########.fr       */
+/*   Updated: 2020/10/15 13:27:46 by tlecoeuv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void		exec_cmd(t_cmd *cmd);
 
 //redir
 void 		get_redir_and_fd(t_token **lst_token, t_cmd *cmd);
-int			get_redir_fd(char *file, t_type redir_type);
+void		get_redir_fd(char *file, t_cmd *cmd);
 void			do_redir(t_type redir_type, int fd);
 
 #endif
