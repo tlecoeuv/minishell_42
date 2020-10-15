@@ -6,7 +6,7 @@
 /*   By: austin <avieira@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/02 23:04:44 by austin            #+#    #+#             */
-/*   Updated: 2020/10/13 14:23:12 by avieira          ###   ########.fr       */
+/*   Updated: 2020/10/15 12:52:38 by austin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,11 @@ t_elem_name				get_elem_name(char *input, t_elem *elem)
 int						get_len_input_doll(char *input, t_elem *elem)
 {
 	int					len;
-	int					braces;
 	int					len_valid;
 	(void)elem;
 
-	braces = 0;
 	len = 1;
-	if (input[len] == BRACE_IN)
-	{
-		braces++;
-		len++;
-	}
-	len_valid = get_len_valid_identifier(&input[len], braces);
-	if (len_valid == -1)
-		return (1);//INVALIDE IDENTIFIER
+	len_valid = get_len_valid_identifier(&input[len]);
 	return(len + len_valid);
 }
 

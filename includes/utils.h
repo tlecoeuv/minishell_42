@@ -6,7 +6,7 @@
 /*   By: tlecoeuv <tlecoeuv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 16:09:23 by tlecoeuv          #+#    #+#             */
-/*   Updated: 2020/10/11 12:34:36 by austin           ###   ########.fr       */
+/*   Updated: 2020/10/15 12:51:52 by austin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char				*ft_strjoin(char *s1, char *s2);
 char				*ft_substr(const char *str, unsigned int start, size_t n);
 void				*ft_memcpy(void *dst, const void *src, size_t n);
 int					ft_strchr(char *str, int c);
-int					get_len_valid_identifier(char *str, int);
+int					get_len_valid_identifier(char *str);
 char				*ft_strtrim(char const *s1, char const *set);
 
 //temporaire

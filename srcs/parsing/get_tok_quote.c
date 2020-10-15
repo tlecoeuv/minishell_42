@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   len_valid_identifier.c                             :+:      :+:    :+:   */
+/*   get_tok_quote.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: austin <avieira@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/10 04:33:28 by austin            #+#    #+#             */
-/*   Updated: 2020/10/15 12:57:04 by austin           ###   ########.fr       */
+/*   Created: 2020/10/10 12:57:34 by austin            #+#    #+#             */
+/*   Updated: 2020/10/15 13:33:24 by austin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int			get_len_valid_identifier(char *str)
+void		get_tok_quote(char *input, t_elem *elem, t_type *elem_to_type,
+															t_token **tokens)
 {
-	int		len;
+	char	*str;
 
-	len = 0;
-	while ((str[len] >= '0' && str[len] <= '9') ||
-			(str[len] >= 'A' && str[len] <= 'Z') ||
-			(str[len] >= 'a' && str[len] <= 'z') || 
-			str[len] == '_')
-			len++;
-	if (*str > '0' && *str < '9')
-		return (0);
-	return (len);
+	if (!(str = ft_substr(input + 1, 0, elem->size - 1)))
+		return ;
+	append_token(tokens, str, elem_to_type[elem->name]);
 }

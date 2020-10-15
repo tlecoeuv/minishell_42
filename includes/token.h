@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 15:54:43 by avieira           #+#    #+#             */
-/*   Updated: 2020/10/14 18:02:03 by tlecoeuv         ###   ########.fr       */
+/*   Updated: 2020/10/15 13:24:27 by austin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,6 @@
 # define BS "\\"
 # define SM_CL ";"
 # define DOLL "$"
-
-# define BRACE_IN '{'
-# define BRACE_OUT '}'
 
 typedef enum		e_elem_name
 {
@@ -84,7 +81,7 @@ void				get_tok_doll(char *, t_elem *, t_type *, t_token **);
 void				get_tok_word(char *, t_elem *, t_type *, t_token **);
 void				get_tok_bs(char *, t_elem *, t_type *, t_token **);
 
-char				*get_str_bs(char *, t_elem *, int);
+char				*get_str_bs(char *, t_elem *);
 
 int					get_len_input_doll(char *, t_elem *);
 int					get_len_input_quotes(char *, t_elem *);

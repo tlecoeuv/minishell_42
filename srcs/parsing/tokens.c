@@ -6,7 +6,7 @@
 /*   By: austin <avieira@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/02 11:40:39 by austin            #+#    #+#             */
-/*   Updated: 2020/10/13 14:28:31 by avieira          ###   ########.fr       */
+/*   Updated: 2020/10/15 12:46:19 by austin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void				create_tokens_list(char *input, t_token **tokens)
 		input += elem.size;
 	}
 }
-/*
 int				main(void)
 {
 	t_token *tokens;
@@ -68,4 +67,4 @@ int				main(void)
 		}
 		printf("Done\n\n");
 	}
-}*/
+}
