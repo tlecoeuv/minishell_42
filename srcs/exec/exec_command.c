@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 00:18:26 by tanguy            #+#    #+#             */
-/*   Updated: 2020/10/14 19:21:34 by tlecoeuv         ###   ########.fr       */
+/*   Updated: 2020/10/15 12:35:41 by tlecoeuv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void		handle_tokens(t_token *lst_token)
 		if (cmd->args[0] == NULL)
 			printf("Command not found\n");
 		else
-			exec_cmd(cmd->args);
+			exec_cmd(cmd);
 		free_array(cmd->args);
 		free(cmd);
 	}
@@ -81,7 +81,7 @@ char		**create_cmd_args(t_token **lst_token, int size)
 	return (cmd);
 }
 
-void		exec_cmd(char **cmd)
+void		exec_cmd(t_cmd *cmd)
 {
 	pid_t	pid;
 
@@ -92,8 +92,11 @@ void		exec_cmd(char **cmd)
 		while(wait(NULL) != -1 && errno != ECHILD);
 	else
 	{
-		if (execve(cmd[0], cmd, g_env) == -1)
+		do_redir(cmd->redir_type, cmd->redir_fd);
+		if (execve(cmd->args[0], cmd->args, g_env) == -1)
 			perror("minishell");
 		exit(EXIT_FAILURE);
 	}
+	if (cmd->redir_type != nope)
+		close(cmd->redir_fd);
 }

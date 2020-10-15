@@ -6,6 +6,10 @@
 	--->forker.
 	--->dup2(STDIN ou STDOUT, fd_file); dans le child.
 	--->fermer le fd dans le pere (apres le wait).
+	
+	ps: cas plusieurs redirs:
+		--->il faut ouvrir les fichiers, puis tcheker si il y a d'autre redir, 
+			fermer le fichiers et faire l'autre redir normalement.
 
 -gerer les variables d'environements.
 
