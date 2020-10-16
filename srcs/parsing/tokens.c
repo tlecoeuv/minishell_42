@@ -6,7 +6,7 @@
 /*   By: austin <avieira@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/02 11:40:39 by austin            #+#    #+#             */
-/*   Updated: 2020/10/16 03:03:35 by austin           ###   ########.fr       */
+/*   Updated: 2020/10/16 03:12:50 by austin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void				create_tokens_list(char *input, t_token **tokens)
 		get_tk[elem.name](input, &elem, elem_to_type, tokens);
 		input += elem.size;
 	}
+	tok_join_words(tokens);
 }
 
 /*
@@ -62,7 +63,6 @@ int					main(void)
 	while (get_next_line(0, &input) == 1)
 	{
 		create_tokens_list(input, &tokens);
-		tok_join_words(&tokens);
 		temp = tokens;
 		while (temp)
 		{
