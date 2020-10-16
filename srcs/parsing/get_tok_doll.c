@@ -6,14 +6,14 @@
 /*   By: austin <avieira@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/10 12:57:34 by austin            #+#    #+#             */
-/*   Updated: 2020/10/15 13:33:13 by austin           ###   ########.fr       */
+/*   Updated: 2020/10/16 02:25:34 by austin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void		get_tok_doll(char *input, t_elem *elem, t_type *elem_to_type,
-															t_token **tokens)
+void		get_tok_doll(char *input, t_elem *elem,
+								const t_type *elem_to_type, t_token **tokens)
 {
 	char	*str;
 

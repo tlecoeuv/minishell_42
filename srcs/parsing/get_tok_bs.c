@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_bs.c                                           :+:      :+:    :+:   */
+/*   get_tok_bs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: austin <avieira@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/11 12:44:29 by austin            #+#    #+#             */
-/*   Updated: 2020/10/15 13:26:58 by austin           ###   ########.fr       */
+/*   Updated: 2020/10/16 02:27:03 by austin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,17 @@ char				*get_str_bs(char *input, t_elem *elem)
 		}
 	}
 	else
+	{
 		if (!(str = ft_substr(input + 1, 0, 1)))
 			return (NULL);
+	}
 	return (str);
 }
 
-void		get_tok_bs(char *input, t_elem *elem, t_type *elem_to_type,
-															t_token **tokens)
+void				get_tok_bs(char *input, t_elem *elem,
+								const t_type *elem_to_type, t_token **tokens)
 {
-	char *str;
+	char			*str;
 
 	if (!(str = get_str_bs(input, elem)))
 		return ;

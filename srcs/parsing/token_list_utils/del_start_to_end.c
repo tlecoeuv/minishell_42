@@ -1,23 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_tok_quote.c                                    :+:      :+:    :+:   */
+/*   del_start_to_end.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: austin <avieira@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/10 12:57:34 by austin            #+#    #+#             */
-/*   Updated: 2020/10/16 02:25:11 by austin           ###   ########.fr       */
+/*   Created: 2020/10/15 14:01:39 by austin            #+#    #+#             */
+/*   Updated: 2020/10/15 19:27:36 by austin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../../includes/minishell.h"
 
-void		get_tok_quote(char *input, t_elem *elem,
-								const t_type *elem_to_type, t_token **tokens)
+void		del_start_to_end(t_token **tokens, t_token *start, t_token *end)
 {
-	char	*str;
+	t_token	*temp;
 
-	if (!(str = ft_substr(input + 1, 0, elem->size - 1)))
-		return ;
-	append_token(tokens, str, elem_to_type[elem->name]);
+	temp = *tokens;
+	if (start == *tokens)
+		*tokens = end->next;
+	else
+	{
+		while (temp->next != start)
+			temp = temp->next;
+		temp->next = end->next;
+	}
+	while (start != end->next)
+	{
+		temp = start;
+		start = start->next;
+		tok_lstdelone(temp);
+	}
 }

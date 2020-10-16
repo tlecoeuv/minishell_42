@@ -6,13 +6,14 @@
 /*   By: austin <avieira@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/02 11:40:39 by austin            #+#    #+#             */
-/*   Updated: 2020/10/15 13:53:31 by tlecoeuv         ###   ########.fr       */
+/*   Updated: 2020/10/16 03:03:35 by austin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void			ini_get_tok(f_get_tok *get_tok)
+void				ini_get_tok(void (*get_tok[12])(char *, t_elem *,
+								const t_type *elem_to_type, t_token **tokens))
 {
 	get_tok[cln] = &get_tok_str_null;
 	get_tok[inf] = &get_tok_str_null;
@@ -26,47 +27,49 @@ void			ini_get_tok(f_get_tok *get_tok)
 	get_tok[sm_cl] = &get_tok_str_null;
 	get_tok[doll] = &get_tok_doll;
 	get_tok[none] = &get_tok_word;
-
 }
 
 void				create_tokens_list(char *input, t_token **tokens)
 {
-	t_elem		elem;
-	const char	*str_elem[] = {CLN, INF, D_SUP, SUP, D_QUOTE, QUOTE, SPC,
-									TAB, BS, SM_CL, DOLL, ""};
-	t_type		elem_to_type[] = {pip, in, append_out, out, word,
-									word, space, space, word, end, v_env, word};
-	f_get_tok	get_tok[12];
+	t_elem			elem;
+	const char		*str_elem[] = {CLN, INF, D_SUP, SUP, D_QUOTE, QUOTE, SPC,
+													TAB, BS, SM_CL, DOLL, ""};
+	const t_type	elem_to_type[] = {pip, in, append_out, out, word, word,
+										space, space, word, end, v_env, word};
+	void			(*get_tk[12])(char *, t_elem *, const t_type *, t_token **);
 
 	*tokens = NULL;
-	ini_get_tok(get_tok);
+	ini_get_tok(get_tk);
 	elem.str = str_elem;
 	while (*input)
 	{
 		elem.name = get_elem_name(input, &elem);
 		elem.size = get_elem_size(input, &elem);
-		get_tok[elem.name](input, &elem, elem_to_type, tokens);
+		get_tk[elem.name](input, &elem, elem_to_type, tokens);
 		input += elem.size;
 	}
 }
+
 /*
-int				main(void)
+int					main(void)
 {
-	t_token *tokens;
-	t_token	*temp;
-	char	*input;
-	char	*types[12] = {"pip", "in", "out", "append_out", "word", "space", "v_env", "end"};
+	t_token			*tokens;
+	t_token			*temp;
+	char			*input;
+	const char		*types[12] = {"pip", "in", "out", "append_out", "word",
+													"space", "v_env", "end"};
 
 	while (get_next_line(0, &input) == 1)
 	{
 		create_tokens_list(input, &tokens);
+		tok_join_words(&tokens);
 		temp = tokens;
 		while (temp)
 		{
-			printf("str : \"%s\"      type : %s\n", temp->str, types[temp->type]);
+			printf("str : \"%s\"    type : %s\n", temp->str, types[temp->type]);
 			temp = temp->next;
 		}
-		printf("Done\n\n");
+		printf("\nDone\n\n");
+		tok_lstclear(&tokens); //Il y a des leaks
 	}
-}
-*/
+}*/

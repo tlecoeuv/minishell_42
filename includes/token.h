@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 15:54:43 by avieira           #+#    #+#             */
-/*   Updated: 2020/10/15 13:24:27 by austin           ###   ########.fr       */
+/*   Updated: 2020/10/16 03:01:15 by austin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # define SUCCESS 1
 # define ERROR 0
-
 # define CLN "|"
 # define INF "<"
 # define D_SUP ">>"
@@ -30,18 +29,18 @@
 
 typedef enum		e_elem_name
 {
-					cln,		// |
-					inf,		// <
-					d_sup,		// >>
-					sup,		// >
-					d_quote,	// \"
-					quote,		// \'
-					spc,		// " "
-					tab,		// \t
-					bs,			// '\'
-					sm_cl,		// ;
-					doll,		// $
-					none
+	cln,
+	inf,
+	d_sup,
+	sup,
+	d_quote,
+	quote,
+	spc,
+	tab,
+	bs,
+	sm_cl,
+	doll,
+	none
 }					t_elem_name;
 
 typedef struct		s_elem
@@ -53,15 +52,15 @@ typedef struct		s_elem
 
 typedef enum		e_type
 {
-					pip,
-					in,
-					out,
-					append_out,
-					word,
-					space,
-					v_env,
-					end,
-					nope
+	pip,
+	in,
+	out,
+	append_out,
+	word,
+	space,
+	v_env,
+	end,
+	nope
 }					t_type;
 
 typedef struct		s_token
@@ -71,36 +70,33 @@ typedef struct		s_token
 	struct s_token	*next;
 }					t_token;
 
-void				create_tokens_list(char *, t_token **);
+void				create_tokens_list(char *input, t_token **tokens);
+int					get_elem_size(char *input, t_elem *elem);
+t_elem_name			get_elem_name(char *input, t_elem *elem);
+int					get_len_input_doll(char *input, t_elem *elem);
+int					get_len_input_quotes(char *input, t_elem *elem);
+int					get_len_input_word(char *input, t_elem *elem);
 
-typedef void		(*f_get_tok)(char *, t_elem *, t_type *, t_token **);
-void				get_tok_str_null(char *, t_elem *, t_type *, t_token **);
-void				get_tok_quote(char *, t_elem *, t_type *, t_token **);
-void				get_tok_d_quote(char *, t_elem *, t_type *, t_token **);
-void				get_tok_doll(char *, t_elem *, t_type *, t_token **);
-void				get_tok_word(char *, t_elem *, t_type *, t_token **);
-void				get_tok_bs(char *, t_elem *, t_type *, t_token **);
-
-char				*get_str_bs(char *, t_elem *);
-
-int					get_len_input_doll(char *, t_elem *);
-int					get_len_input_quotes(char *, t_elem *);
-int					get_len_input_word(char *, t_elem *);
-int					get_elem_size(char *, t_elem *);
-t_elem_name			get_elem_name(char *, t_elem *);
-
-
+void				get_tok_str_null(char *input, t_elem *elem,
+								const t_type *elem_to_type, t_token **tokens);
+void				get_tok_quote(char *input, t_elem *elem,
+								const t_type *elem_to_type, t_token **tokens);
+void				get_tok_d_quote(char *input, t_elem *elem,
+								const t_type *elem_to_type, t_token **tokens);
+void				get_tok_doll(char *input, t_elem *elem,
+								const t_type *elem_to_type, t_token **tokens);
+void				get_tok_word(char *input, t_elem *elem,
+								const t_type *elem_to_type, t_token **tokens);
+void				get_tok_bs(char *input, t_elem *elem,
+								const t_type *elem_to_type, t_token **tokens);
+char				*get_str_bs(char *input, t_elem *elem);
+void				tok_join_words(t_token **tokens);
+void				del_start_to_end(t_token **tokens, t_token *start,
+																t_token *end);
+void				append_token(t_token **tokens, char *str, t_type type);
 t_token				*tok_lstnew(void *content);
 void				tok_lstadd_back(t_token **alst, t_token *nw);
-void				append_token(t_token **, char *, t_type);
-/*
-void				tok_lstadd_back(t_token **alst, t_token *nw);
-//void				tok_lstclear(t_token **lst, void (*del)(void *));
-void				tok_lstdelone(t_token *lst, void (*del)(void *));
-void				tok_lstiter(t_token *lst, void (*f)(void *));
-void				tok_lstclear(t_token **lst, void (*del)(void *));
-t_token				*tok_lstmap(t_token *lst, void *(*f)(void *),
-														void (*del)(void *));
-*/
+void				tok_lstdelone(t_token *lst);
+void				tok_lstclear(t_token **lst);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: austin <avieira@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/02 23:04:44 by austin            #+#    #+#             */
-/*   Updated: 2020/10/15 12:52:38 by austin           ###   ########.fr       */
+/*   Updated: 2020/10/16 02:16:19 by austin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ int						get_len_input_doll(char *input, t_elem *elem)
 {
 	int					len;
 	int					len_valid;
-	(void)elem;
 
+	(void)elem;
 	len = 1;
 	len_valid = get_len_valid_identifier(&input[len]);
-	return(len + len_valid);
+	return (len + len_valid);
 }
 
 int						get_len_input_quotes(char *input, t_elem *elem)

@@ -6,25 +6,28 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/13 13:42:27 by avieira           #+#    #+#             */
-/*   Updated: 2020/10/02 14:06:23 by austin           ###   ########.fr       */
+/*   Updated: 2020/10/16 02:12:54 by austin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
-void	tok_lstclear(t_token **lst, void (*del)(void *))
+void	tok_lstclear(t_token **lst)
 {
 	t_token	*temp;
 
-	temp = (*lst);
-	(*del)((*lst)->str);
+	temp = *lst;
+	if (temp->str)
+		free(temp->str);
 	*lst = (*lst)->next;
-	temp = NULL;
+	free(temp);
 	while (*lst)
 	{
-		temp = (*lst);
-		(*del)((*lst)->str);
+		temp = *lst;
+		if (temp->str)
+			free(temp->str);
 		*lst = (*lst)->next;
 		free(temp);
 	}
+	*lst = NULL;
 }
