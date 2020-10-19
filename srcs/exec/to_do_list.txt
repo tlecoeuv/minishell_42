@@ -6,14 +6,19 @@
 	--->forker.
 	--->dup2(STDIN ou STDOUT, fd_file); dans le child.
 	--->fermer le fd dans le pere (apres le wait).
-	
+
 	ps: cas plusieurs redirs:
-		--->il faut ouvrir les fichiers, puis tcheker si il y a d'autre redir, 
+		--->il faut ouvrir les fichiers, puis tcheker si il y a d'autre redir,
 			fermer le fichiers et faire l'autre redir normalement.
+-------------->>DONE, reste erreurs a gerer.
 
 -gerer les variables d'environements.
 
 -builtins.
+	-->fonction is_builtin.
+	-->fonction exec_builtins.
+	-->les fonctions builtins.
+
 
 -gerer les pipes.
 
