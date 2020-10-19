@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/13 13:42:27 by avieira           #+#    #+#             */
-/*   Updated: 2020/10/16 02:12:54 by austin           ###   ########.fr       */
+/*   Updated: 2020/10/19 14:59:33 by austin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void	tok_lstclear(t_token **lst)
 {
 	t_token	*temp;
 
-	temp = *lst;
+	if (!(temp = *lst))
+		return ;
 	if (temp->str)
 		free(temp->str);
 	*lst = (*lst)->next;

@@ -6,7 +6,7 @@
 /*   By: austin <avieira@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/11 12:44:29 by austin            #+#    #+#             */
-/*   Updated: 2020/10/16 02:27:03 by austin           ###   ########.fr       */
+/*   Updated: 2020/10/19 14:53:55 by austin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ char				*get_str_bs(char *input, t_elem *elem)
 	char			*str;
 	t_elem_name		escaped;
 
-	if (!*(input + 1))
-		return (NULL);
 	escaped = get_elem_name(input + 1, elem);
 	if (elem->name == d_quote)
 	{
@@ -41,12 +39,16 @@ char				*get_str_bs(char *input, t_elem *elem)
 	return (str);
 }
 
-void				get_tok_bs(char *input, t_elem *elem,
+int				get_tok_bs(char *input, t_elem *elem,
 								const t_type *elem_to_type, t_token **tokens)
 {
 	char			*str;
 
 	if (!(str = get_str_bs(input, elem)))
-		return ;
-	append_token(tokens, str, elem_to_type[elem->name]);
+		return (ERROR);
+	if (!*str)
+		return (SUCCESS);
+	if (!(append_token(tokens, str, elem_to_type[elem->name])))
+		return (ERROR);
+	return (SUCCESS);
 }

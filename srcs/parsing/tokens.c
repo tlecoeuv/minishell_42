@@ -6,13 +6,13 @@
 /*   By: austin <avieira@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/02 11:40:39 by austin            #+#    #+#             */
-/*   Updated: 2020/10/16 03:12:50 by austin           ###   ########.fr       */
+/*   Updated: 2020/10/19 16:49:18 by austin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void				ini_get_tok(void (*get_tok[12])(char *, t_elem *,
+void				ini_get_tok(int (*get_tok[12])(char *, t_elem *,
 								const t_type *elem_to_type, t_token **tokens))
 {
 	get_tok[cln] = &get_tok_str_null;
@@ -29,14 +29,14 @@ void				ini_get_tok(void (*get_tok[12])(char *, t_elem *,
 	get_tok[none] = &get_tok_word;
 }
 
-void				create_tokens_list(char *input, t_token **tokens)
+int				create_tokens_list(char *input, t_token **tokens)
 {
 	t_elem			elem;
 	const char		*str_elem[] = {CLN, INF, D_SUP, SUP, D_QUOTE, QUOTE, SPC,
-													TAB, BS, SM_CL, DOLL, ""};
+												TAB, BS, SM_CL, DOLL, ""};
 	const t_type	elem_to_type[] = {pip, in, append_out, out, word, word,
 										space, space, word, end, v_env, word};
-	void			(*get_tk[12])(char *, t_elem *, const t_type *, t_token **);
+	int				(*get_tk[12])(char *, t_elem *, const t_type *, t_token **);
 
 	*tokens = NULL;
 	ini_get_tok(get_tk);
@@ -45,10 +45,13 @@ void				create_tokens_list(char *input, t_token **tokens)
 	{
 		elem.name = get_elem_name(input, &elem);
 		elem.size = get_elem_size(input, &elem);
-		get_tk[elem.name](input, &elem, elem_to_type, tokens);
+		if (!get_tk[elem.name](input, &elem, elem_to_type, tokens))
+			return (ERROR);
 		input += elem.size;
 	}
-	tok_join_words(tokens);
+	if (!tok_join_words(tokens))
+		return (ERROR);
+	return (SUCCESS);
 }
 
 /*
@@ -70,6 +73,8 @@ int					main(void)
 			temp = temp->next;
 		}
 		printf("\nDone\n\n");
-		tok_lstclear(&tokens); //Il y a des leaks
+		free(input);
+		tok_lstclear(&tokens);
+		exit(0);
 	}
 }*/
