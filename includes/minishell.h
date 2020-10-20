@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 16:20:59 by avieira           #+#    #+#             */
-/*   Updated: 2020/10/20 02:37:06 by austin           ###   ########.fr       */
+/*   Updated: 2020/10/20 19:03:28 by tlecoeuv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,14 @@
 # include "env.h"
 # include "bultins.h"
 
-extern char		**g_env;
+typedef struct	s_shell
+{
+	char	**env;
+	char	*cwd;
+	int		status;
+	int		running;
+}				t_shell;
+
+extern t_shell	g_sh;
 
 #endif

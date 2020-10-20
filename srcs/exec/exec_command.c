@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 00:18:26 by tanguy            #+#    #+#             */
-/*   Updated: 2020/10/19 14:26:27 by tlecoeuv         ###   ########.fr       */
+/*   Updated: 2020/10/20 18:46:12 by tlecoeuv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void		exec_cmd(t_cmd *cmd)
 	else
 	{
 		do_redir(cmd->redir_type, cmd->redir_fd);
-		if (execve(cmd->args[0], cmd->args, g_env) == -1)
+		if (execve(cmd->args[0], cmd->args, g_sh.env) == -1)
 			perror("minishell");
 		exit(EXIT_FAILURE);
 	}

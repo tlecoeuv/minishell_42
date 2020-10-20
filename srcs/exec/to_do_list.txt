@@ -15,8 +15,8 @@
 -gerer les variables d'environements.
 
 -builtins.
-	-->fonction is_builtin.
-	-->fonction exec_builtins.
+	-->fonction is_builtin. V!
+	-->fonction exec_builtins. redir a faire.
 	-->les fonctions builtins.
 
 
@@ -25,7 +25,13 @@
 -gerer les guillemets au moment des commandes.
 
 -gerer les erreurs.
-
 -gerer $?.
+		------>faire un g_sh, avec t_shell
+									{
+										char	**env;
+										char	*cwd;
+										int		status;
+										int		running;
+									}
 
 -bien free les lists.
