@@ -6,7 +6,7 @@
 /*   By: austin <avieira@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 02:29:39 by austin            #+#    #+#             */
-/*   Updated: 2020/10/20 03:24:48 by austin           ###   ########.fr       */
+/*   Updated: 2020/10/20 17:55:56 by austin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 
 int		check_syntax(t_token *tokens);
 int		syntax_error(char *str_token);
+t_token	*get_next_skip_space(t_token *go);
+t_token	*get_previous_skip_space(t_token *tokens, t_token *go);
 
 int		check_pip(t_token *tokens, t_token *go);
 int		check_in(t_token *tokens, t_token *go);

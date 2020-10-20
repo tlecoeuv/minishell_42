@@ -6,7 +6,7 @@
 /*   By: austin <avieira@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 02:10:06 by austin            #+#    #+#             */
-/*   Updated: 2020/10/20 03:21:41 by austin           ###   ########.fr       */
+/*   Updated: 2020/10/20 18:04:09 by austin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,12 @@
 
 int			check_end(t_token *tokens, t_token *go)
 {
+	t_token	*previous;
 
-	(void)tokens;
-	(void)go;
+	previous = get_previous_skip_space(tokens, go);
+
+	if (previous->type == pip || previous->type == end || previous->type == in
+		|| previous->type == out || previous->type == append_out)
+		return (syntax_error(go->str));
 	return (SUCCESS);
 }

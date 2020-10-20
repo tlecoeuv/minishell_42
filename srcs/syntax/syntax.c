@@ -6,13 +6,40 @@
 /*   By: austin <avieira@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 02:10:06 by austin            #+#    #+#             */
-/*   Updated: 2020/10/20 03:41:15 by austin           ###   ########.fr       */
+/*   Updated: 2020/10/20 17:55:21 by austin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int			syntax_error(char *str_token)
+t_token			*get_next_skip_space(t_token *go)
+{
+	go = go->next;
+	while (go && go->type == space)
+		go = go->next;
+	return (go);
+}
+
+t_token			*get_previous_skip_space(t_token *tokens, t_token *go)
+{
+	t_token		*temp;
+	t_token		*current;
+
+	temp = tokens;
+	current = go;
+	while (temp->next != current && current != tokens)
+	{
+		temp = temp->next;
+		if (temp->next == current && temp->type == space)
+		{
+			current = temp;
+			temp = tokens;
+		}
+	}
+	return (temp);
+}
+
+int				syntax_error(char *str_token)
 {
 	write(1, SYNTAX_ERROR_MSG, ft_strlen(SYNTAX_ERROR_MSG));
 	write(1, str_token, ft_strlen(str_token));
@@ -20,7 +47,7 @@ int			syntax_error(char *str_token)
 	return (ERROR);
 }
 
-int			check_syntax(t_token *tokens)
+int				check_syntax(t_token *tokens)
 {
 	t_token		*go;
 	int			(*check_type[9])(t_token *, t_token *);
