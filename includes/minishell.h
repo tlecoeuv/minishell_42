@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 16:20:59 by avieira           #+#    #+#             */
-/*   Updated: 2020/10/19 14:24:24 by tlecoeuv         ###   ########.fr       */
+/*   Updated: 2020/10/20 02:37:06 by austin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 
 //HEADERS PERSONELS
 # include "token.h"
+# include "syntax.h"
 # include "get_next_line.h"
 # include "exec.h"
 # include "utils.h"

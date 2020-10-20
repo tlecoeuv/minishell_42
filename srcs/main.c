@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 17:50:24 by tanguy            #+#    #+#             */
-/*   Updated: 2020/10/15 14:18:07 by tlecoeuv         ###   ########.fr       */
+/*   Updated: 2020/10/20 03:43:41 by austin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,9 @@ int		main(int argc, char **argv, char **envp)
 			write(1, "minishell: >", 12);
 			get_next_line(0, &input);
 			create_tokens_list(input, &tokens);
+			check_syntax(tokens);
 			handle_tokens(tokens);
-			//faudra free tokens ici.
+			tok_lstclear(&tokens);
 			free(input);
 	}
 	return (0);

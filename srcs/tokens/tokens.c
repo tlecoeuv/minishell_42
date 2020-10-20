@@ -6,7 +6,7 @@
 /*   By: austin <avieira@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/02 11:40:39 by austin            #+#    #+#             */
-/*   Updated: 2020/10/20 02:00:30 by austin           ###   ########.fr       */
+/*   Updated: 2020/10/20 03:39:56 by austin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,16 @@
 void				ini_get_tok(int (*get_tok[12])(char *, t_elem *,
 								const t_type *elem_to_type, t_token **tokens))
 {
-	get_tok[cln] = &get_tok_str_null;
-	get_tok[inf] = &get_tok_str_null;
-	get_tok[d_sup] = &get_tok_str_null;
-	get_tok[sup] = &get_tok_str_null;
+	get_tok[cln] = &get_tok_sign;
+	get_tok[inf] = &get_tok_sign;
+	get_tok[d_sup] = &get_tok_sign;
+	get_tok[sup] = &get_tok_sign;
 	get_tok[d_quote] = &get_tok_d_quote;
 	get_tok[quote] = &get_tok_quote;
-	get_tok[spc] = &get_tok_str_null;
-	get_tok[tab] = &get_tok_str_null;
+	get_tok[spc] = &get_tok_sign;
+	get_tok[tab] = &get_tok_sign;
 	get_tok[bs] = &get_tok_bs;
-	get_tok[sm_cl] = &get_tok_str_null;
+	get_tok[sm_cl] = &get_tok_sign;
 	get_tok[doll] = &get_tok_doll;
 	get_tok[none] = &get_tok_word;
 }
@@ -54,7 +54,6 @@ int					create_tokens_list(char *input, t_token **tokens)
 	return (SUCCESS);
 }
 
-/*
 int					main(void)
 {
 	t_token			*tokens;
@@ -74,7 +73,8 @@ int					main(void)
 		}
 		printf("\nDone\n\n");
 		free(input);
+		check_syntax(tokens);
 		tok_lstclear(&tokens);
 		exit(0);
 	}
-}*/
+}

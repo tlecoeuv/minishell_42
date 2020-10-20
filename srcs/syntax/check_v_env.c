@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_tok_str_null.c                                 :+:      :+:    :+:   */
+/*   check_v_env.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: austin <avieira@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/10 12:57:34 by austin            #+#    #+#             */
-/*   Updated: 2020/10/19 14:22:12 by austin           ###   ########.fr       */
+/*   Created: 2020/10/20 02:10:06 by austin            #+#    #+#             */
+/*   Updated: 2020/10/20 03:22:27 by austin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int		get_tok_str_null(char *input, t_elem *elem,
-								const t_type *elem_to_type, t_token **tokens)
+int			check_v_env(t_token *tokens, t_token *go)
 {
-	(void)input;
-	if (!(append_token(tokens, NULL, elem_to_type[elem->name])))
-		return (ERROR);
+	(void)tokens;
+	(void)go;
 	return (SUCCESS);
 }
