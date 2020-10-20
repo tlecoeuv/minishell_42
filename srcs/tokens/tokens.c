@@ -6,7 +6,7 @@
 /*   By: austin <avieira@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/02 11:40:39 by austin            #+#    #+#             */
-/*   Updated: 2020/10/20 03:39:56 by austin           ###   ########.fr       */
+/*   Updated: 2020/10/20 03:48:29 by austin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int					create_tokens_list(char *input, t_token **tokens)
 	return (SUCCESS);
 }
 
+/*
 int					main(void)
 {
 	t_token			*tokens;
@@ -77,4 +78,4 @@ int					main(void)
 		tok_lstclear(&tokens);
 		exit(0);
 	}
-}
+}*/
