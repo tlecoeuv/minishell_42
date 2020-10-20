@@ -6,7 +6,7 @@
 /*   By: austin <avieira@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/11 12:44:29 by austin            #+#    #+#             */
-/*   Updated: 2020/10/19 14:53:55 by austin           ###   ########.fr       */
+/*   Updated: 2020/10/20 01:58:43 by austin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char				*get_str_bs(char *input, t_elem *elem)
 	return (str);
 }
 
-int				get_tok_bs(char *input, t_elem *elem,
+int					get_tok_bs(char *input, t_elem *elem,
 								const t_type *elem_to_type, t_token **tokens)
 {
 	char			*str;

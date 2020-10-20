@@ -6,7 +6,7 @@
 /*   By: austin <avieira@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/02 11:40:39 by austin            #+#    #+#             */
-/*   Updated: 2020/10/19 16:49:18 by austin           ###   ########.fr       */
+/*   Updated: 2020/10/20 02:00:30 by austin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void				ini_get_tok(int (*get_tok[12])(char *, t_elem *,
 	get_tok[none] = &get_tok_word;
 }
 
-int				create_tokens_list(char *input, t_token **tokens)
+int					create_tokens_list(char *input, t_token **tokens)
 {
 	t_elem			elem;
 	const char		*str_elem[] = {CLN, INF, D_SUP, SUP, D_QUOTE, QUOTE, SPC,
