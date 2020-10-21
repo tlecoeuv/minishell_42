@@ -1,0 +1,35 @@
+-redirection de fd <, >, >>.
+	--->arreter get_command from tok a pipe, ou >, ou >>, ou <.
+		---->faire fonction is_redir_or_pipe.
+	--->recuperer le type dans redir type. (iterer lst_token en meme temps)
+	--->recuperer le nom du fichier, le open et mettre de fd dans fd_file.("")
+	--->forker.
+	--->dup2(STDIN ou STDOUT, fd_file); dans le child.
+	--->fermer le fd dans le pere (apres le wait).
+
+	ps: cas plusieurs redirs:
+		--->il faut ouvrir les fichiers, puis tcheker si il y a d'autre redir,
+			fermer le fichiers et faire l'autre redir normalement.
+-------------->>DONE, reste erreurs a gerer.
+
+-builtins.
+	-->fonction is_builtin. DONE!
+	-->fonction exec_builtins. redir a faire.
+	-->les fonctions builtins.
+
+-gerer les guillemets au moment des commandes.
+	----> get_env et remplacer le token env par word.
+	----> join les word grace a la fction d'austin.
+
+-gerer les erreurs.
+	*tout les cas où il y a erreur:
+		--->command not found. DONE!
+		--->./ ou / non executable.
+		--->redirection vers dir ou pas les droits.
+		--->erreur dans les builtins.
+
+-gerer $?
+	--->printf g_sh.status
+
+-gerer les pipes
+	--->faire une liste pour cmd.

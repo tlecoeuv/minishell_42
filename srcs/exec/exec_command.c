@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 00:18:26 by tanguy            #+#    #+#             */
-/*   Updated: 2020/10/21 15:07:12 by tlecoeuv         ###   ########.fr       */
+/*   Updated: 2020/10/21 17:20:39 by tlecoeuv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,9 +98,7 @@ void		exec_cmd(t_cmd *cmd)
 	{
 		do_redir(cmd->redir_type, cmd->redir_fd);
 		if (execve(cmd->args[0], cmd->args, g_sh.env) == -1)
-			printf("yo\n");
-			//perror("minishello");
-		exit(EXIT_FAILURE);
+			exit(EXIT_FAILURE);
 	}
 	if (cmd->redir_type != nope)
 		close(cmd->redir_fd);
