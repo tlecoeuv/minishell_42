@@ -12,24 +12,44 @@
 			fermer le fichiers et faire l'autre redir normalement.
 -------------->>DONE, reste erreurs a gerer. DONE!
 
+		  /
+ 	\    /
+  	 \  /
+   	  \/
+
+______________________________________________________________________________
+
 -builtins.
 	-->fonction is_builtin. DONE!
 	-->fonction exec_builtins. redir a faire.
 	-->les fonctions builtins.
 
+______________________________________________________________________________
+
 -gerer les guillemets au moment des commandes.
 	----> get_env et remplacer le token env par word.
 	----> join les word grace a la fction d'austin.
 
+______________________________________________________________________________
+
 -gerer les erreurs.
 	*tout les cas où il y a erreur:
 		--->command not found. DONE!
-		--->./ ou / non executable.
+		--->./ ou / non executable. (voir permission error julio).
 		--->redirection vers dir ou pas les droits. DONE!
-		--->erreur dans les builtins.
+		--->erreur dans les builtins. (faut y reflechir)
+
+______________________________________________________________________________
 
 -gerer $?
+	---> comment avoir le code de retour de execve?
+			--->en-as-t-on vraiment besoins en fait?
 	--->printf g_sh.status
+
+______________________________________________________________________________
 
 -gerer les pipes
 	--->faire une liste pour cmd.
+
+
+______________________________________________________________________________
