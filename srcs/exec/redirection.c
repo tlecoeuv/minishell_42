@@ -6,7 +6,7 @@
 /*   By: tlecoeuv <tlecoeuv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/13 23:31:02 by tlecoeuv          #+#    #+#             */
-/*   Updated: 2020/10/15 14:35:49 by tlecoeuv         ###   ########.fr       */
+/*   Updated: 2020/10/21 23:01:11 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void			get_redir_fd(char *file, t_cmd *cmd)
 	else if (cmd->redir_type == in)
 		fd = open(file, O_RDONLY);
 	if (fd == -1)
-		printf("can't open\n");
+		error(cmd->args[0], file);
 	cmd->redir_fd = fd;
 }
 

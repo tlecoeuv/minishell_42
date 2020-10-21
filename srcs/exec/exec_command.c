@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 00:18:26 by tanguy            #+#    #+#             */
-/*   Updated: 2020/10/21 17:20:39 by tlecoeuv         ###   ########.fr       */
+/*   Updated: 2020/10/21 23:09:46 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void		handle_tokens(t_token *lst_token)
 
 	while (lst_token)
 	{
+		printf("what: %s\n",lst_token->str);
 		cmd = get_cmd_from_tok(&lst_token);
 		if (is_builtin(cmd->args[0]))
 			exec_builtin(cmd);
