@@ -1,35 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_1.c                                        :+:      :+:    :+:   */
+/*   error.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlecoeuv <tlecoeuv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/19 14:12:41 by tlecoeuv          #+#    #+#             */
-/*   Updated: 2020/10/21 09:51:42 by tlecoeuv         ###   ########.fr       */
+/*   Created: 2020/10/21 11:03:36 by tlecoeuv          #+#    #+#             */
+/*   Updated: 2020/10/21 11:28:33 by tlecoeuv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#ifndef ERROR_H
+# define ERROR_H
 
-void		ft_cd(char **args)
-{
-	if (args[1] == NULL)
-		printf("pas encore implementer le path home\n");
-	else
-		if (chdir(args[1]) != 0)
-			printf("gerer error\n");
-}
+# define STATUS_SUCCESS				0
+# define STATUS_FAILURE 			1
+# define STATUS_FAILURE_BUILTIN 	2
+# define STATUS_NOT_EXECUTABLE		126
+# define STATUS_CMD_NOT_FOUND		127
+# define STATUS_EXIT_INVALID_ARGS	128
+# define STATUS_CTRL_C				130
+# define STATUS_CTRL_BACKSLASH		131
 
-void		ft_exit(char **args)
-{
-	(void) args;
-	exit(EXIT_SUCCESS);
-}
+void	error_cmd_not_found(char *cmd);
 
-void		ft_pwd(char **args)
-{
-	(void) args;
-	ft_putstr_fd(g_sh.cwd, 1);
-	write(1, "\n", 1);
-}
+#endif

@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_1.c                                        :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlecoeuv <tlecoeuv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/19 14:12:41 by tlecoeuv          #+#    #+#             */
-/*   Updated: 2020/10/21 09:51:42 by tlecoeuv         ###   ########.fr       */
+/*   Created: 2020/10/21 11:05:06 by tlecoeuv          #+#    #+#             */
+/*   Updated: 2020/10/21 15:04:55 by tlecoeuv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void		ft_cd(char **args)
+void	error_cmd_not_found(char *cmd)
 {
-	if (args[1] == NULL)
-		printf("pas encore implementer le path home\n");
-	else
-		if (chdir(args[1]) != 0)
-			printf("gerer error\n");
+	ft_putstr_fd("minishell: ", STDERR_FILENO);
+	ft_putstr_fd(cmd, STDERR_FILENO);
+	ft_putstr_fd(": command not found\n", STDERR_FILENO);
+	g_sh.status = STATUS_CMD_NOT_FOUND;
 }
 
-void		ft_exit(char **args)
+/*void	error(char **args)
 {
-	(void) args;
-	exit(EXIT_SUCCESS);
-}
-
-void		ft_pwd(char **args)
-{
-	(void) args;
-	ft_putstr_fd(g_sh.cwd, 1);
-	write(1, "\n", 1);
-}
+	ft_putstr_fd("minishell: ", STDERR_FILENO);
+	ft_putstr_fd(args[0], STDERR_FILENO);
+	write(STDERR_FILENO, ": ", 2);
+	ft_putstr_fd()
+}*/

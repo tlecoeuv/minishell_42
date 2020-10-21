@@ -1,0 +1,29 @@
+
+
+
+
+
+
+handle_tokens:
+	while(lst_tokens)
+	* get_cmd_from_tok    * récupérer un tableau args, et les redirections.
+
+			---->get_size_cmd	*recuperer le nb de word jusqu'a la premiere redir ou pipe.
+								*ça sera notre taille pour cmd_args.
+
+			---->create_cmd_args	*recuperer les words de la liste pour les mettre dans le tableau args.
+
+			---->get_redir_and_fd	*tchker le type de redir, open de la bonne maniere et recuperer le fd.
+
+	* tcheker si c'est un bultin, si oui lancer le builtin.
+	* sinon, recuperer le chemin absolu de l'args[0] grace a PATH.
+	* si il y en a pas on exec rien -->error a gerer.
+	*sinon exec_cmd.
+
+		exec_cmd:
+		* on fork.
+			le parent attend.
+		*le child:
+			on effectue la redir grace au redir_type et au fd.
+			on execve
+		*on ferme le fichier qu'on avait open avec get_redir_and_fd.

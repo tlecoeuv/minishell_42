@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 00:18:26 by tanguy            #+#    #+#             */
-/*   Updated: 2020/10/20 18:46:12 by tlecoeuv         ###   ########.fr       */
+/*   Updated: 2020/10/21 15:07:12 by tlecoeuv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,8 @@ void		handle_tokens(t_token *lst_token)
 			exec_builtin(cmd);
 		else
 		{
-			get_absolute_path(cmd->args);
-			if (cmd->args[0] == NULL)
-				printf("Command not found\n");
+			if (!get_absolute_path(cmd->args))
+				error_cmd_not_found(cmd->args[0]);
 			else
 				exec_cmd(cmd);
 		}
@@ -99,7 +98,8 @@ void		exec_cmd(t_cmd *cmd)
 	{
 		do_redir(cmd->redir_type, cmd->redir_fd);
 		if (execve(cmd->args[0], cmd->args, g_sh.env) == -1)
-			perror("minishell");
+			printf("yo\n");
+			//perror("minishello");
 		exit(EXIT_FAILURE);
 	}
 	if (cmd->redir_type != nope)

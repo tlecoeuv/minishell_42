@@ -6,13 +6,13 @@
 /*   By: tlecoeuv <tlecoeuv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 15:46:08 by tlecoeuv          #+#    #+#             */
-/*   Updated: 2020/10/09 15:55:09 by tlecoeuv         ###   ########.fr       */
+/*   Updated: 2020/10/21 11:19:18 by tlecoeuv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	get_absolute_path(char **cmd)
+int		get_absolute_path(char **cmd)
 {
 	char	*path;
 	char	**path_split;
@@ -21,7 +21,7 @@ void	get_absolute_path(char **cmd)
 
 	i = 0;
 	if (**cmd == '/' || ft_strncmp(*cmd, "./", 2) == 0)
-		return ;
+		return (1);
 	path = ft_strdup(ft_getenv("PATH"));
 	path_split = ft_split(path, ':');
 	free(path);
@@ -36,8 +36,11 @@ void	get_absolute_path(char **cmd)
 		i++;
 	}
 	free_array(path_split);
+	if (!bin)
+		return (0);
 	free(*cmd);
 	*cmd = bin;
+	return (1);
 }
 
 int		test_file(char *file_name)

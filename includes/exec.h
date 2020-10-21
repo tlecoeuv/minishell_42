@@ -6,7 +6,7 @@
 /*   By: tlecoeuv <tlecoeuv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 16:04:09 by tlecoeuv          #+#    #+#             */
-/*   Updated: 2020/10/19 14:22:48 by tlecoeuv         ###   ########.fr       */
+/*   Updated: 2020/10/21 11:29:47 by tlecoeuv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct		s_cmd
 }					t_cmd;
 
 int			test_file(char *file_name);
-void		get_absolute_path(char **cmd);
+int			get_absolute_path(char **cmd);
 void		handle_tokens(t_token *lst_token);
 t_cmd		*get_cmd_from_tok(t_token **lst_token);
 int			get_size_cmd(t_token *lst_token);

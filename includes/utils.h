@@ -6,7 +6,7 @@
 /*   By: tlecoeuv <tlecoeuv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 16:09:23 by tlecoeuv          #+#    #+#             */
-/*   Updated: 2020/10/15 12:51:52 by austin           ###   ########.fr       */
+/*   Updated: 2020/10/21 15:30:00 by tlecoeuv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void				*ft_memcpy(void *dst, const void *src, size_t n);
 int					ft_strchr(char *str, int c);
 int					get_len_valid_identifier(char *str);
 char				*ft_strtrim(char const *s1, char const *set);
+void				ft_putstr_fd(char *s, int fd);
 
 //temporaire
 int					ft_atoi(const char *str);
