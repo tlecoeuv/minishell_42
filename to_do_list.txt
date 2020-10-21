@@ -10,7 +10,7 @@
 	ps: cas plusieurs redirs:
 		--->il faut ouvrir les fichiers, puis tcheker si il y a d'autre redir,
 			fermer le fichiers et faire l'autre redir normalement.
--------------->>DONE, reste erreurs a gerer.
+-------------->>DONE, reste erreurs a gerer. DONE!
 
 -builtins.
 	-->fonction is_builtin. DONE!
@@ -25,7 +25,7 @@
 	*tout les cas où il y a erreur:
 		--->command not found. DONE!
 		--->./ ou / non executable.
-		--->redirection vers dir ou pas les droits.
+		--->redirection vers dir ou pas les droits. DONE!
 		--->erreur dans les builtins.
 
 -gerer $?

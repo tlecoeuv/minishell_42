@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 00:18:26 by tanguy            #+#    #+#             */
-/*   Updated: 2020/10/21 23:09:46 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/10/22 00:30:29 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,18 @@ void		handle_tokens(t_token *lst_token)
 
 	while (lst_token)
 	{
-		printf("what: %s\n",lst_token->str);
 		cmd = get_cmd_from_tok(&lst_token);
-		if (is_builtin(cmd->args[0]))
-			exec_builtin(cmd);
-		else
+		if (cmd->redir_fd != -1)
 		{
-			if (!get_absolute_path(cmd->args))
-				error_cmd_not_found(cmd->args[0]);
+			if (is_builtin(cmd->args[0]))
+				exec_builtin(cmd);
 			else
-				exec_cmd(cmd);
+			{
+				if (!get_absolute_path(cmd->args))
+					error_cmd_not_found(cmd->args[0]);
+				else
+					exec_cmd(cmd);
+			}
 		}
 		free_array(cmd->args);
 		free(cmd);
