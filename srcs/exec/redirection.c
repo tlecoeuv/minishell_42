@@ -6,7 +6,7 @@
 /*   By: tlecoeuv <tlecoeuv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/13 23:31:02 by tlecoeuv          #+#    #+#             */
-/*   Updated: 2020/10/22 00:20:14 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/10/22 11:23:31 by tlecoeuv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void 			get_redir_and_fd(t_token **lst_token, t_cmd *cmd)
 				*lst_token = (*lst_token)->next;
 		}
 	}
+	if (cmd->redir_fd == -1)
+		skip_redir(lst_token);
 }
 
 void			get_redir_fd(char *file, t_cmd *cmd)
