@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 00:18:26 by tanguy            #+#    #+#             */
-/*   Updated: 2020/10/22 11:56:04 by tlecoeuv         ###   ########.fr       */
+/*   Updated: 2020/10/22 15:34:58 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_cmd		*get_cmd_from_tok(t_token **lst_token)
 
 	if (!(cmd = malloc(sizeof(t_cmd))))
 		return(NULL);
-//	interpret_v_env(lst_token);
+	interpret_v_env(*lst_token);
 	size = get_size_cmd(*lst_token);
 	cmd->args = create_cmd_args(lst_token, size);
 	get_redir_and_fd(lst_token, cmd);
@@ -66,17 +66,28 @@ int			get_size_cmd(t_token *lst_token)
 	return (size);
 }
 
-/*void		interpret_v_env(t_token *lst_token)
+void		interpret_v_env(t_token *lst_token)
 {
-	while (lst_token && lst_token->type != end && lst_token->type != pipe)
+	char	*env_value;
+	t_token	*tmp;
+
+	tmp = lst_token;
+	while (tmp && tmp->type != end && tmp->type != pip)
 	{
-		if (lst_token->type == v_env)
+		if (tmp->type == v_env)
 		{
-
+			env_value = ft_getenv(tmp->str);
+			free(tmp->str);
+			if (env_value)
+				tmp->str = ft_strdup(env_value);
+			else
+				tmp->str = ft_strdup("");
+			tmp->type = word;
 		}
+		tmp = tmp->next;
 	}
-
-}*/
+	tok_join_words(&lst_token);
+}
 
 char		**create_cmd_args(t_token **lst_token, int size)
 {

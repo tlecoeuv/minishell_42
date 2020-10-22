@@ -6,7 +6,7 @@
 /*   By: tlecoeuv <tlecoeuv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 16:04:09 by tlecoeuv          #+#    #+#             */
-/*   Updated: 2020/10/22 11:24:17 by tlecoeuv         ###   ########.fr       */
+/*   Updated: 2020/10/22 15:10:01 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ t_cmd		*get_cmd_from_tok(t_token **lst_token);
 int			get_size_cmd(t_token *lst_token);
 char		**create_cmd_args(t_token **lst_token, int size);
 void		exec_cmd(t_cmd *cmd);
+void		interpret_v_env(t_token *lst_token);
 
 //redir
 void 		get_redir_and_fd(t_token **lst_token, t_cmd *cmd);
