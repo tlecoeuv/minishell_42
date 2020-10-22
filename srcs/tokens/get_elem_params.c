@@ -18,9 +18,8 @@ t_elem_name				get_elem_name(char *input, t_elem *elem)
 
 	name = -1;
 	while (elem->str[++name])
-		if (!ft_strcmp(elem->str[name], input))
-			if (!(name == d_sup && *(input + 1) != '>'))
-				return (name);
+		if (!ft_strncmp(elem->str[name], input, ft_strlen(elem->str[name])))
+			return (name);
 	return (name);
 }
 

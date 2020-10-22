@@ -33,7 +33,7 @@ int					create_tokens_list(char *input, t_token **tokens)
 {
 	t_elem			elem;
 	const char		*str_elem[] = {CLN, INF, D_SUP, SUP, D_QUOTE, QUOTE, SPC,
-												TAB, BS, SM_CL, DOLL, ""};
+												TAB, BS, SM_CL, DOLL, NULL};
 	const t_type	elem_to_type[] = {pip, in, append_out, out, word, word,
 										space, space, word, end, v_env, word};
 	int				(*get_tk[12])(char *, t_elem *, const t_type *, t_token **);
@@ -78,5 +78,4 @@ int					main(void)
 		tok_lstclear(&tokens);
 		//exit(0);
 	}
-}
-*/
+}*/
