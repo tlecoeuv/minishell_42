@@ -19,6 +19,9 @@ int		main(int argc, char **argv, char **envp)
 	t_token	*tokens;
 	char	*input;
 
+
+	(void)argv;
+	(void)argc;
 	init_shell(envp);
 	set_env_var("PWD", g_sh.cwd);
 	while (g_sh.running)

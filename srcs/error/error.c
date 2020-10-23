@@ -24,11 +24,15 @@ void	error(char *cmd, char *arg)
 {
 	ft_putstr_fd("minishell: ", STDERR_FILENO);
 	if (cmd)
+	{
 		ft_putstr_fd(cmd, STDERR_FILENO);
 		write(STDERR_FILENO, ": ", 2);
+	}
 	if (arg)
+	{
 		ft_putstr_fd(arg, STDERR_FILENO);
 		write(STDERR_FILENO, ": ", 2);
+	}
 	ft_putstr_fd(strerror(errno), STDERR_FILENO);
 	write(STDERR_FILENO, "\n", 1);
 }
