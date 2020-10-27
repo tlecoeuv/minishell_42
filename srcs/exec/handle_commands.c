@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 14:33:56 by tanguy            #+#    #+#             */
-/*   Updated: 2020/10/27 08:23:44 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/10/27 08:34:24 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,7 @@ void		handle_one_command(t_cmd *cmd)
 					exit(EXIT_FAILURE);
 			}
 		}
+		if (cmd->redir_type != nope)
+			close(cmd->redir_fd);
 	}
 }

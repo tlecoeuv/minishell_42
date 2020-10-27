@@ -39,6 +39,7 @@ ______________________________________________________________________________
 		--->./ ou / non executable. (voir permission error julio).
 		--->redirection vers dir ou pas les droits. DONE!
 		--->erreur dans les builtins. (faut y reflechir)
+			--->retour int, et g_sh.status = exec_builtin().
 
 ______________________________________________________________________________
 
@@ -51,11 +52,18 @@ ______________________________________________________________________________
 
 https://stackoverflow.com/questions/8082932/connecting-n-commands-with-pipes-in-a-shell
 -gerer les pipes
-	--->faire une liste pour cmd.
+	--->faire une liste pour cmd. j'ai fait un tableau au final.
 	--->quand pipe les builtins sont éxécutés dans un fork.
 		---> faire un if(cmd->pipe=1), fork and exit.
+		--->j'ai géré avec et sans pipe dans des fct° différentes au final.
 		(fork alloue juste la memoire qui a été modifiée, donc il faut juste
 		free ce qui a été modifiée si il y en a).
+			--->faudra tchéker les leaks peut être mais je crois pas sur ça.
+			  /
+		\	 /
+		 \	/
+		  \/
+
 
 
 ______________________________________________________________________________
