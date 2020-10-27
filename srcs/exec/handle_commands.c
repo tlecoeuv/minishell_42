@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 14:33:56 by tanguy            #+#    #+#             */
-/*   Updated: 2020/10/27 08:34:24 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/10/27 09:02:42 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,10 @@ void		handle_commands_pipe(t_cmd **cmds, int nb_cmds)
 	if (pid < 0)
 		perror("fork");
 	else if (pid > 0)
+	{
 		while(wait(NULL) != -1 && errno != ECHILD);
+		close(in);
+	}
 	else
 	{
 		if (in != 0)
