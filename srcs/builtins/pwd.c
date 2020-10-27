@@ -15,6 +15,6 @@
 void		ft_pwd(char **args)
 {
 	(void) args;
-	ft_putstr_fd(g_sh.cwd, 1);
-	write(1, "\n", 1);
+	ft_putstr_fd(ft_getenv("PWD"), 0);
+	ft_putstr_fd("\n", 0);
 }
