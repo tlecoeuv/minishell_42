@@ -96,7 +96,7 @@ void		ft_cd(char **args)
 		new_pwd = get_new_pwd(args[size]);
 	else
 		new_pwd = ft_strdup(ft_getenv("HOME"));
-	printf("pwd %s\n", new_pwd);
+	//printf("pwd %s\n", new_pwd);
 	if (chdir(new_pwd) == -1)
 		ft_putstr_fd("chdir fail, errno non rempli\n", 0);
 	else
