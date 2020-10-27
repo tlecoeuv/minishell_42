@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 00:18:26 by tanguy            #+#    #+#             */
-/*   Updated: 2020/10/22 15:34:58 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/10/26 21:29:10 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,102 +14,42 @@
 
 void		handle_tokens(t_token *lst_token)
 {
-	t_cmd	*cmd;
-
-	while (lst_token)
-	{
-		cmd = get_cmd_from_tok(&lst_token);
-		if (cmd->redir_fd != -1)
-		{
-			if (is_builtin(cmd->args[0]))
-				exec_builtin(cmd);
-			else
-			{
-				if (!get_absolute_path(cmd->args))
-					error_cmd_not_found(cmd->args[0]);
-				else
-					exec_cmd(cmd);
-			}
-		}
-		free_array(cmd->args);
-		free(cmd);
-	}
-}
-
-t_cmd		*get_cmd_from_tok(t_token **lst_token)
-{
-	int		size;
-	t_cmd	*cmd;
-
-	if (!(cmd = malloc(sizeof(t_cmd))))
-		return(NULL);
-	interpret_v_env(*lst_token);
-	size = get_size_cmd(*lst_token);
-	cmd->args = create_cmd_args(lst_token, size);
-	get_redir_and_fd(lst_token, cmd);
-	if ((*lst_token) && (*lst_token)->type == end)
-		*lst_token = (*lst_token)->next;
-	return (cmd);
-}
-
-int			get_size_cmd(t_token *lst_token)
-{
-	int		size;
-
-	size = 0;
-	while (lst_token && lst_token->type != end && lst_token->type > 3)
-	{
-		if (lst_token->type == word)
-			size++;
-		lst_token = lst_token->next;
-	}
-	return (size);
-}
-
-void		interpret_v_env(t_token *lst_token)
-{
-	char	*env_value;
-	t_token	*tmp;
-
-	tmp = lst_token;
-	while (tmp && tmp->type != end && tmp->type != pip)
-	{
-		if (tmp->type == v_env)
-		{
-			env_value = ft_getenv(tmp->str);
-			free(tmp->str);
-			if (env_value)
-				tmp->str = ft_strdup(env_value);
-			else
-				tmp->str = ft_strdup("");
-			tmp->type = word;
-		}
-		tmp = tmp->next;
-	}
-	tok_join_words(&lst_token);
-}
-
-char		**create_cmd_args(t_token **lst_token, int size)
-{
-	char	**cmd;
+	t_cmd	**cmds;
 	int		i;
+	int		nb_cmds;
 
 	i = 0;
-	if (!(cmd = malloc(sizeof(char *) * (size + 1))))
-		return (NULL);
-	while (i < size)
+	while (lst_token)
 	{
-		if ((*lst_token)->type == word)
+		cmds = get_commands(&lst_token, &nb_cmds);
+		if (nb_cmds == 1)
+			handle_command_no_pipe(cmds[0]);
+		else
+			handle_commands_pipe(cmds, nb_cmds);
+		while(cmds[i])
 		{
-			cmd[i] = ft_strdup((*lst_token)->str);
+			free_array(cmds[i]->args);
+			free(cmds[i]);
 			i++;
 		}
-		*lst_token = (*lst_token)->next;
+		free(cmds);
 	}
-	if((*lst_token) && (*lst_token)->type == space)
-		*lst_token = (*lst_token)->next;
-	cmd[i] = NULL;
-	return (cmd);
+}
+
+void		handle_command_no_pipe(t_cmd *cmd)
+{
+	if (cmd->redir_fd != -1)
+	{
+		if (is_builtin(cmd->args[0]))
+			exec_builtin(cmd);
+		else
+		{
+			if (!get_absolute_path(cmd->args))
+				error_cmd_not_found(cmd->args[0]);
+			else
+				exec_cmd(cmd);
+		}
+	}
 }
 
 void		exec_cmd(t_cmd *cmd)

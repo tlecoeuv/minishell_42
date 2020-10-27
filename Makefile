@@ -15,6 +15,9 @@ SRCS = 	srcs/main.c \
 		srcs/env/init_env.c \
 		srcs/error/error.c \
 		srcs/exec/exec_command.c \
+		srcs/exec/get_commands.c \
+		srcs/exec/command_utils.c \
+		srcs/exec/handle_commands.c \
 		srcs/exec/path.c \
 		srcs/exec/redirection.c \
 		srcs/exec/redirection_utils.c \

@@ -6,7 +6,7 @@
 /*   By: tlecoeuv <tlecoeuv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/13 23:31:02 by tlecoeuv          #+#    #+#             */
-/*   Updated: 2020/10/22 11:23:31 by tlecoeuv         ###   ########.fr       */
+/*   Updated: 2020/10/26 11:56:53 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void 			get_redir_and_fd(t_token **lst_token, t_cmd *cmd)
 		cmd->redir_type = nope;
 	else
 	{
-		while(*lst_token && (*lst_token)->type <= 3 && cmd->redir_fd != -1)
+		while(*lst_token && (*lst_token)->type <= 3
+							&& (*lst_token)->type != pip && cmd->redir_fd != -1)
 		{
 			cmd->redir_type = (*lst_token)->type;
 			*lst_token = (*lst_token)->next;
