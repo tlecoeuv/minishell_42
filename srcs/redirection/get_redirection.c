@@ -6,13 +6,13 @@
 /*   By: tlecoeuv <tlecoeuv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/13 23:31:02 by tlecoeuv          #+#    #+#             */
-/*   Updated: 2020/10/30 15:24:55 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/10/30 17:42:30 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void 			get_redir_and_fd(t_token **lst_token, t_cmd *cmd)
+void 			get_redir(t_token **lst_token, t_cmd *cmd)
 {
 	t_type		redir_type;
 

@@ -6,30 +6,29 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 14:33:56 by tanguy            #+#    #+#             */
-/*   Updated: 2020/10/30 13:28:17 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/10/31 00:14:04 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void		spawn_process(int in, int out, int to_close,t_cmd *cmd)
+void		spawn_process(int in, int out, t_cmd **cmd, int i)
 {
 	pid_t pid;
 
  	if ((pid = fork ()) == 0)
     {
-		close(to_close);
 		if (in != 0)
         {
  			dup2 (in, STDIN_FILENO);
 			close (in);
         }
-		if (out != 1)
+		if (cmd[i + 1])
 		{
 			dup2 (out, STDOUT_FILENO);
 			close (out);
         }
-		handle_one_command(cmd);
+		handle_one_command(cmd[i]);
 	}
 }
 
@@ -37,33 +36,22 @@ void		handle_commands_pipe(t_cmd **cmds, int nb_cmds)
 {
 	int		i;
  	int		in;
-	pid_t	pid;
+	int		status;
   	int		pipefd[2];
 
 	in = 0;
 	i = 0;
-	while (i < nb_cmds - 1)
+	while (i < nb_cmds)
 	{
 		pipe(pipefd);
-		spawn_process(in, pipefd[WRITE_END], pipefd[READ_END], cmds[i]);
+		spawn_process(in, pipefd[WRITE_END], cmds, i);
 		close(pipefd[WRITE_END]);
+		if (in != 0)
+			close(in);
 		in = pipefd[READ_END];
 		i++;
 	}
-	pid = fork();
-	if (pid < 0)
-		perror("fork");
-	else if (pid > 0)
-	{
-		while(wait(NULL) != -1 && errno != ECHILD);
-		close(in);
-	}
-	else
-	{
-		if (in != 0)
-			dup2 (in, STDIN_FILENO);
-		handle_one_command(cmds[i]);
-	}
+	while (wait(&status) > 0);
 }
 
 void		handle_one_command(t_cmd *cmd)

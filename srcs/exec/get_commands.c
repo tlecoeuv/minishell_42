@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 11:02:50 by tanguy            #+#    #+#             */
-/*   Updated: 2020/10/26 14:43:32 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/10/30 22:17:23 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_cmd		**get_commands(t_token **lst_token, int *nb_cmds)
 		if (!(cmds[i] = malloc(sizeof(t_cmd))))
 			return(NULL);
 		cmds[i]->args = create_cmd_args(lst_token);
-		get_redir_and_fd(lst_token, cmds[i]);
+		get_redir(lst_token, cmds[i]);
 		if (*lst_token && (*lst_token)->type == pip)
 			*lst_token = (*lst_token)->next;
 		i++;

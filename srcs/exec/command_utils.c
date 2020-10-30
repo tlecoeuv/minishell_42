@@ -6,23 +6,11 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 09:43:49 by tanguy            #+#    #+#             */
-/*   Updated: 2020/10/26 12:02:52 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/10/30 22:17:04 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-void		free_commands(t_cmd **cmds)
-{
-	int		i;
-
-	i = 0;
-	while(cmds[i])
-	{
-		free_array(cmds[i]->args);
-	}
-	free(cmds);
-}
 
 void		interpret_v_env(t_token *lst_token)
 {
@@ -73,4 +61,16 @@ int		get_nb_commands(t_token *lst_token)
 		lst_token = lst_token->next;
 	}
 	return(size);
+}
+
+void		free_commands(t_cmd **cmds)
+{
+	int		i;
+
+	i = 0;
+	while(cmds[i])
+	{
+		free_array(cmds[i]->args);
+	}
+	free(cmds);
 }
