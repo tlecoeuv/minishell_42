@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bultins.h                                          :+:      :+:    :+:   */
+/*   do_redirection.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlecoeuv <tlecoeuv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/19 14:21:51 by tlecoeuv          #+#    #+#             */
-/*   Updated: 2020/10/30 13:14:26 by tanguy           ###   ########.fr       */
+/*   Created: 2020/10/30 11:01:01 by tanguy            #+#    #+#             */
+/*   Updated: 2020/10/30 15:23:35 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILTINS_H
-# define BUILTINS_H
+#include "../../includes/minishell.h"
 
-#include "minishell.h"
-
-void		ft_cd(char **args);
-void		ft_exit(char **args);
-void		ft_pwd(char **args);
-int			is_builtin(char	*str);
-void 		exec_builtin(t_cmd *cmd);
-
-#endif
+void			do_redir(int in_fd, int out_fd)
+{
+	if (out_fd > 0)
+	{
+		dup2(out_fd, STDOUT_FILENO);
+		close(out_fd);
+	}
+	if (in_fd > 0)
+	{
+		dup2(in_fd, STDIN_FILENO);
+		close(in_fd);
+	}
+}

@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 14:33:56 by tanguy            #+#    #+#             */
-/*   Updated: 2020/10/28 17:00:04 by tlecoeuv         ###   ########.fr       */
+/*   Updated: 2020/10/30 13:28:17 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void		handle_commands_pipe(t_cmd **cmds, int nb_cmds)
 
 void		handle_one_command(t_cmd *cmd)
 {
-	if (cmd->redir_fd != -1)
+	if (cmd->out_fd != -1 && cmd->in_fd != -1)
 	{
 		if (is_builtin(cmd->args[0]))
 		{
@@ -81,12 +81,14 @@ void		handle_one_command(t_cmd *cmd)
 				error_cmd_not_found(cmd->args[0]);
 			else
 			{
-				do_redir(cmd->redir_type, cmd->redir_fd);
+				do_redir(cmd->in_fd, cmd->out_fd);
 				if (execve(cmd->args[0], cmd->args, g_sh.env) == -1)
 					exit(EXIT_FAILURE);
 			}
 		}
-		if (cmd->redir_type != nope)
-			close(cmd->redir_fd);
+		if (cmd->out_fd > 0)
+			close(cmd->out_fd);
+		if (cmd->in_fd > 0)
+			close(cmd->in_fd);
 	}
 }

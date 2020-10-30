@@ -6,7 +6,7 @@
 /*   By: tlecoeuv <tlecoeuv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 11:24:07 by tlecoeuv          #+#    #+#             */
-/*   Updated: 2020/10/28 17:12:23 by tlecoeuv         ###   ########.fr       */
+/*   Updated: 2020/10/30 14:56:25 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,20 @@ int		is_builtin(char	*str)
 	return (0);
 }
 
-void exec_builtin(t_cmd *cmd)
+void	exec_builtin(t_cmd *cmd)
 {
 	int			i;
 	const char	*builtin_str[] = {"cd", "exit", "pwd"};
 	void		(*builtin_func[3])(char **);
-	int			savefd;
+	int			save_stdin;
+	int			save_stdout;
 
 	i = 0;
 	builtin_func[0] = &ft_cd;
 	builtin_func[1] = &ft_exit;
 	builtin_func[2] = &ft_pwd;
 
-	do_builtin_redir(cmd->redir_type, cmd->redir_fd, &savefd);
+	builtin_redir(cmd->in_fd, cmd->out_fd, &save_stdin, &save_stdout);
 	while (i < 3)
 	{
 		if (ft_strcmp(builtin_str[i], cmd->args[0]) == 0)
@@ -49,37 +50,5 @@ void exec_builtin(t_cmd *cmd)
 		}
 		i++;
 	}
-	restore_savefd(cmd->redir_type, cmd->redir_fd, savefd);
-}
-
-void			do_builtin_redir(t_type redir_type, int fd, int *savefd)
-{
-	if (redir_type == out || redir_type == append_out)
-	{
-		*savefd = dup(STDOUT_FILENO);
-		dup2(fd, STDOUT_FILENO);
-		close(fd);
-	}
-	else if (redir_type == in)
-	{
-		*savefd = dup(STDIN_FILENO);
-		dup2(fd, STDIN_FILENO);
-		close(fd);
-	}
-}
-
-void			restore_savefd(t_type redir_type, int redir_fd, int savefd)
-{
-	if (redir_type == out || redir_type == append_out)
-	{
-		close(redir_fd);
-		dup2(savefd, STDOUT_FILENO);
-		close(savefd);
-	}
-	else if (redir_type == in)
-	{
-		close(redir_fd);
-		dup2(savefd, STDIN_FILENO);
-		close(savefd);
-	}
+	restore_savefd(cmd->in_fd, cmd->out_fd, save_stdin, save_stdout);
 }

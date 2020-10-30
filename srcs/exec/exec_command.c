@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 00:18:26 by tanguy            #+#    #+#             */
-/*   Updated: 2020/10/26 21:29:10 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/10/30 13:27:56 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void		handle_tokens(t_token *lst_token)
 
 void		handle_command_no_pipe(t_cmd *cmd)
 {
-	if (cmd->redir_fd != -1)
+	if (cmd->out_fd != -1 && cmd->in_fd != -1)
 	{
 		if (is_builtin(cmd->args[0]))
 			exec_builtin(cmd);
@@ -63,10 +63,12 @@ void		exec_cmd(t_cmd *cmd)
 		while(wait(NULL) != -1 && errno != ECHILD);
 	else
 	{
-		do_redir(cmd->redir_type, cmd->redir_fd);
+		do_redir(cmd->in_fd, cmd->out_fd);
 		if (execve(cmd->args[0], cmd->args, g_sh.env) == -1)
 			exit(EXIT_FAILURE);
 	}
-	if (cmd->redir_type != nope)
-		close(cmd->redir_fd);
+	if (cmd->out_fd > 0)
+		close(cmd->out_fd);
+	if (cmd->in_fd > 0)
+		close(cmd->in_fd);
 }

@@ -19,8 +19,10 @@ SRCS = 	srcs/main.c \
 		srcs/exec/command_utils.c \
 		srcs/exec/handle_commands.c \
 		srcs/exec/path.c \
-		srcs/exec/redirection.c \
-		srcs/exec/redirection_utils.c \
+		srcs/redirection/do_redirection.c \
+		srcs/redirection/get_redirection.c \
+		srcs/redirection/redirection_builtins.c \
+		srcs/redirection/redirection_utils.c \
 		srcs/get_next_line/get_next_line.c \
 		srcs/get_next_line/get_next_line_utils.c \
 		srcs/syntax/check_append_out.c \
