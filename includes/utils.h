@@ -33,6 +33,7 @@ int					ft_strchr(char *str, int c);
 int					get_len_valid_identifier(char *str);
 char				*ft_strtrim(char const *s1, char const *set);
 void				ft_putstr_fd(char *s, int fd);
+void				manage_env_path();
 
 //temporaire
 int					ft_atoi(const char *str);

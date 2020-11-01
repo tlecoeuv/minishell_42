@@ -12,72 +12,108 @@
 
 #include "../../includes/minishell.h"
 
-void		manage_env_path(char *pwd)
+void		replace_dots(char **cd_array)
 {
-	char	*oldpwd;
+	int		i;
+	int		j;
 
-	if (!(oldpwd = ft_strdup(ft_getenv("PWD"))))
-		return ;
-	set_env_var("OLDPWD", oldpwd);
-	set_env_var("PWD", pwd);
+	i = -1;
+	while (cd_array[++i])
+		if (*cd_array[i] == '.')
+		{
+			j = i;
+			if (!ft_strncmp(cd_array[i], "..", 2))
+			{
+				while (--j)
+				{
+					if (ft_strlen(cd_array[j]))
+					{
+						if (cd_array[j])
+							free(cd_array[j]);
+						cd_array[j] = ft_strdup("");
+						j = 1;
+					}
+				}
+			}
+			if (cd_array[i])
+				free(cd_array[i]);
+			cd_array[i] = ft_strdup("");
+		}
 }
 
-
-
-char		*relativ_to_absolute(char *pwd)
+char		*merge_cd_array(char **cd_array)
 {
-	char	*current;
-	char	*str;
 	char	*temp;
-
-	if (*pwd == '~' || *pwd == '/')
-		return (pwd);
-	current = ft_getenv("PWD");
-	temp = ft_strjoin(current, "/");
-	str = ft_strjoin(temp, pwd);
-	return (str);
-}
-
-/*
-char		*get_parent_directory(char *pwd)
-{
-	char	*parent;
-	int		len;
-
-	len = 0;
-	if (!pwd)
-		return (NULL);
-	while (pwd[len])
-		len++;
-	len--;
-	while (pwd[len] != '/' && pwd[len] && len > 1)
-		len--;
-	parent = ft_substr(pwd, 0, len);
-	return (parent);
-}
-
-char		*replace_dots(char *str)
-{
-	char	**temp;
+	char	*merged;
 	int		i;
 
-	temp = ft_split(str, '/');
 	i = 0;
-	while (temp[i])
-		printf("%s\n", temp[i]);
+	if (!(merged = ft_strdup("")))
+		return (NULL);
+	while (cd_array[i])
+	{
+		temp = merged;
+		if (ft_strlen(cd_array[i]))
+		{
+			merged = ft_strjoin_sep(merged, cd_array[i], '/');
+			free(temp);
+		}
+		if (!merged)
+			return (NULL);
+		i++;
+	}
+	return (merged);
 }
-*/
+
+char		*transform_pwd(char *prefix, char *arg)
+{
+	char	*new_pwd;
+	char	**cd_array;
+	int		size_before;
+	int		size_after;
+
+	if (!(new_pwd = ft_strjoin_sep(prefix, arg, '/')))
+		return (NULL);
+	cd_array = ft_split(new_pwd, '/');
+	free(new_pwd);
+	if (!cd_array)
+		return (NULL);
+	size_before = get_array_size(cd_array);
+	replace_dots(cd_array);
+	if ((size_after = get_array_size(cd_array)) != size_before)
+	{
+		while (size_before--)
+			if (cd_array[size_before])
+				free(cd_array[size_before]);
+		free(cd_array);
+		return (NULL);
+	}
+	new_pwd = merge_cd_array(cd_array);
+	free_array(cd_array);
+	return (new_pwd);
+}
+
 char		*get_new_pwd(char *arg)
 {
 	char	*new_pwd;
-	char	*pwd;
+	char	*prefix;
 
-	pwd = ft_getenv("PWD");
-	new_pwd = NULL;
-	if (!ft_strcmp("-", arg))
-		new_pwd = ft_strdup(ft_getenv("OLDPWD"));
+	if (*arg == '/')
+		prefix = "";
+	else if (*arg == '~')
+	{
+		prefix = ft_getenv("HOME");
+		arg++;
+	}
 	else
-		new_pwd = relativ_to_absolute(arg);
+		prefix = ft_getenv("PWD");
+	if (!(new_pwd = transform_pwd(prefix, arg)))
+		return (NULL);
+	if (!*new_pwd)
+	{
+		free(new_pwd);
+		new_pwd = ft_strdup("/");
+	}
 	return (new_pwd);
 }
 
@@ -89,18 +125,23 @@ void		ft_cd(char **args)
 	size = get_array_size(args) - 1;
 	if (size > 1)
 	{
-		ft_putstr_fd("bash: cd: too many arguments\n", 0);
+		ft_putstr_fd("minishell: cd: too many arguments\n", STDERR_FILENO);
 		return ;
 	}
-	if (size && ft_strcmp("~", args[size]))
+	if (size)
 		new_pwd = get_new_pwd(args[size]);
 	else
 		new_pwd = ft_strdup(ft_getenv("HOME"));
-	//printf("pwd %s\n", new_pwd);
+	if (!new_pwd)
+		return ;
 	if (chdir(new_pwd) == -1)
-		ft_putstr_fd("chdir fail, errno non rempli\n", 0);
+	{
+		g_sh.status = 1;
+		error("cd", args[size]);
+	}
 	else
-		manage_env_path(new_pwd);
-	//printf ("CD       : %s\nPWD    : %s\nOLDPWD : %s\n",
-	//					new_pwd, ft_getenv("PWD"), ft_getenv("OLDPWD"));
+	{
+		g_sh.status = 0;
+		manage_env_path();
+	}
 }
