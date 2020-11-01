@@ -105,6 +105,12 @@ char		*get_new_pwd(char *arg)
 		prefix = ft_getenv("HOME");
 		arg++;
 	}
+	else if (!ft_strcmp(arg, "-"))
+	{
+		ft_putstr_fd(ft_getenv("OLDPWD"), STDOUT_FILENO);
+		ft_putstr_fd("\n", STDOUT_FILENO);
+		return (ft_strdup(ft_getenv("OLDPWD")));
+	}
 	else
 		prefix = ft_getenv("PWD");
 	if (!(new_pwd = transform_pwd(prefix, arg)))
@@ -144,4 +150,5 @@ void		ft_cd(char **args)
 		g_sh.status = 0;
 		manage_env_path();
 	}
+	free(new_pwd);
 }
