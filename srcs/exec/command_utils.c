@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 09:43:49 by tanguy            #+#    #+#             */
-/*   Updated: 2020/10/30 22:17:04 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/11/02 17:58:52 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,33 @@ void		interpret_v_env(t_token *lst_token)
 		tmp = tmp->next;
 	}
 	tok_join_words(&lst_token);
+}
+
+void		delete_cmd_spaces(t_token *lst_token)
+{
+	t_token		*previous;
+	t_token		*tmp;
+
+	previous = lst_token;
+	if (lst_token)
+		lst_token = lst_token->next;
+	else
+		return ;
+	while (lst_token && lst_token->type != end)
+	{
+		if (lst_token->type == space)
+		{
+			tmp = lst_token;
+			lst_token = lst_token->next;
+			previous->next = lst_token;
+			tok_lstdelone(tmp);
+		}
+		else
+		{
+			previous = lst_token;
+			lst_token = lst_token->next;
+		}
+	}
 }
 
 int			get_size_args(t_token *lst_token)

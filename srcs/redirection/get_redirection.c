@@ -6,13 +6,13 @@
 /*   By: tlecoeuv <tlecoeuv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/13 23:31:02 by tlecoeuv          #+#    #+#             */
-/*   Updated: 2020/10/30 17:42:30 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/11/02 17:54:39 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void 			get_redir(t_token **lst_token, t_cmd *cmd)
+/*void 			get_redir(t_token **lst_token, t_cmd *cmd)
 {
 	t_type		redir_type;
 
@@ -32,6 +32,51 @@ void 			get_redir(t_token **lst_token, t_cmd *cmd)
 	}
 	if (cmd->out_fd == -1 || cmd->in_fd == -1)
 		skip_redir(lst_token);
+}*/
+
+//si début commande on passe juste on supprime pas!
+
+void 			get_redir(t_token **lst_token, t_cmd *cmd)
+{
+	t_token		*tmp;
+
+	cmd->in_fd = 0;
+	cmd->out_fd = 0;
+	tmp = *lst_token;
+	int		check;
+
+	check = 0;
+	while(tmp && tmp->type != pip && tmp->type != end)
+	{
+		if (tmp->type <= 3)
+			get_and_delete(&tmp, lst_token, cmd, check);
+		else
+			tmp = tmp->next;
+		check = 1;
+	}
+}
+
+void			get_and_delete(t_token **tmp, t_token **lst_token, t_cmd *cmd, int check)
+{
+	t_token		*start;
+	t_token		*end;
+	t_type		redir_type;
+
+	start = *tmp;
+	redir_type = (*tmp)->type;
+	*tmp = (*tmp)->next;
+	if ((*tmp)->type == space)
+		*tmp = (*tmp)->next;
+	get_redir_fd((*tmp)->str, cmd, redir_type);
+	if ((*tmp)->type == space)
+		*tmp = (*tmp)->next;
+	end = *tmp;
+	*tmp = (*tmp)->next;
+	if (check != 0)
+		del_start_to_end(lst_token, start, end);
+	else
+		while (*lst_token != *tmp)
+			*lst_token = (*lst_token)->next;
 }
 
 void			get_redir_fd(char *file, t_cmd *cmd, t_type redir_type)
@@ -47,7 +92,7 @@ void			get_redir_fd(char *file, t_cmd *cmd, t_type redir_type)
 		fd = open(file, O_RDONLY);
 	if (fd == -1)
 	{
-		error(cmd->args[0], file);
+		error(NULL, file);
 		g_sh.status = 1;
 	}
 	if (redir_type == in)
