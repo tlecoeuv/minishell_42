@@ -72,8 +72,7 @@ SRCS = 	srcs/main.c \
 		srcs/utils/ft_strtrim.c \
 		srcs/utils/ft_substr.c \
 		srcs/utils/get_array_size.c \
-		srcs/utils/len_valid_identifier.c \
-		srcs/utils/manage_env_path.c
+		srcs/utils/len_valid_identifier.c 
 
 OBJ = $(SRCS:%.c=%.o)
 
