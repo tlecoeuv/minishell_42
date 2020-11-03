@@ -14,6 +14,14 @@
 
 void		ft_env(char **args)
 {
+	int		i;
+
 	(void)args;
-	printf("WIP\n");
+	i = 0;
+	while (g_sh.env[i])
+	{
+		ft_putstr_fd(g_sh.env[i], STDOUT_FILENO);
+		ft_putstr_fd("\n", STDOUT_FILENO);
+		i++;
+	}
 }
