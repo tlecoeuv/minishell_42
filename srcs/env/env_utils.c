@@ -30,6 +30,7 @@ char	*ft_getenv(char *var)
 	return (NULL);
 }
 
+/*
 char	*ft_getfullenv(char *var)
 {
 	int		var_size;
@@ -47,7 +48,9 @@ char	*ft_getfullenv(char *var)
 	}
 	return (NULL);
 }
+*/
 
+/*
 void	remove_env_var(char *var_name)
 {
 	char	**new_env;
@@ -76,7 +79,7 @@ void	remove_env_var(char *var_name)
 	free(g_sh.env);
 	g_sh.env = new_env;
 }
-
+*/
 void	add_env_var(char *var)
 {
 	char	**new_env;

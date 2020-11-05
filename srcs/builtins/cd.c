@@ -69,12 +69,12 @@ void		change_directory(char *new_pwd, char *arg)
 
 	if (chdir(new_pwd) == -1)
 	{
-		g_sh.status = 1;
+		g_sh.status = STATUS_FAILURE_BUILTIN;
 		error("cd", arg);
 	}
 	else
 	{
-		g_sh.status = 0;
+		g_sh.status = STATUS_SUCCESS;
 		if (!(oldpwd = ft_strdup(ft_getenv("PWD"))))
 			return ;
 		if (!(pwd = getcwd(NULL, 0)))

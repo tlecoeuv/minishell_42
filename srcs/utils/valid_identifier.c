@@ -40,6 +40,7 @@ int			error_identifier(char *name)
 		ft_putstr_fd("minishell: export: `", STDOUT_FILENO);
 		write(STDERR_FILENO, name, len_name);
 		ft_putstr_fd("' not a valid identifier\n", STDOUT_FILENO);
+		g_sh.status = STATUS_FAILURE_BUILTIN;
 		return (0);
 	}
 	return (1);

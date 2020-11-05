@@ -12,17 +12,64 @@
 
 #include "../../includes/minishell.h"
 
+void		is_env(char *var, int *index)
+{
+	int		i;
+
+	i = -1;
+	while (g_sh.env[++i])
+		if (!(ft_strncmp(var, g_sh.env[i], ft_strlen(var))))
+		{
+			*index = i;
+			return ;
+		}
+	*index = -1;
+}
+
+void		*remove_index_of_env(int index)
+{
+	int		size;
+	char	**new_env;
+	int		i;
+	int		j;
+
+	size = get_array_size(g_sh.env);
+	if (!(new_env = malloc(sizeof(char *) * size)))
+		return (NULL);
+	i = -1;
+	j = 0;
+	while (g_sh.env[++i])
+	{
+		if (i != index)
+			new_env[j++] = g_sh.env[i];
+		else
+		{
+			free(g_sh.env[i]);
+			g_sh.env[i] = NULL;
+		}
+	}
+	new_env[j] = NULL;
+	free(g_sh.env);
+	g_sh.env = new_env;
+	return (new_env);
+}
+
 void		ft_unset(char **args)
 {
 	int		size;
 	int		i;
+	int		index;
 
+	index = -1;
+	g_sh.status = STATUS_SUCCESS;
 	size = get_array_size(args);
 	i = 0;
 	while (++i < size)
-	{
-		if (!error_identifier(args[i]))
-			return ;
-		remove_env_var(args[i]);
-	}
+		if (error_identifier(args[i]))
+		{
+			is_env(args[i], &index);
+			if ((index != -1))
+				if (!remove_index_of_env(index))
+					return ;
+		}
 }

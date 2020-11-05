@@ -78,11 +78,35 @@ void		print_export_env(void)
 	free(order);
 }
 
+void		manage_var(char *var)
+{
+	int		i;
+	int		len;
+	char	*new;
+
+	i = -1;
+	len = get_len_name(var);
+	while (g_sh.env[++i])
+		if (!ft_strncmp(var, g_sh.env[i], len))
+		{
+			if (g_sh.env[i][len] != '=' || var[len] == '=')
+			{
+				if (!(new = ft_strdup(var)))
+					return ;
+				free(g_sh.env[i]);
+				g_sh.env[i] = new;
+			}
+			return ;
+		}
+	add_env_var(var);
+}
+
 void		ft_export(char **args)
 {
 	int		size;
 	int		i;
 
+	g_sh.status = STATUS_SUCCESS;
 	size = get_array_size(args);
 	if (size == 1)
 		print_export_env();
@@ -90,10 +114,7 @@ void		ft_export(char **args)
 	{
 		i = 0;
 		while (++i < size)
-		{
-			if (!error_identifier(args[i]))
-				return ;
-			add_env_var(args[i]);
-		}
+			if (error_identifier(args[i]))
+				manage_var(args[i]);
 	}
 }
