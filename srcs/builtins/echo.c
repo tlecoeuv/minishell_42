@@ -1,30 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bultins.h                                          :+:      :+:    :+:   */
+/*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlecoeuv <tlecoeuv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/19 14:21:51 by tlecoeuv          #+#    #+#             */
-/*   Updated: 2020/10/30 13:14:26 by tanguy           ###   ########.fr       */
+/*   Created: 2020/10/19 14:12:41 by tlecoeuv          #+#    #+#             */
+/*   Updated: 2020/10/21 17:40:23 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILTINS_H
-# define BUILTINS_H
+#include "../../includes/minishell.h"
 
-#include "minishell.h"
+void		ft_echo(char **args)
+{
+	int		i;
+	int		new_line;
+	int		size;
 
-void		ft_cd(char **args);
-void		ft_exit(char **args);
-void		ft_pwd(char **args);
-void		ft_env(char **args);
-void		ft_export(char **args);
-void		ft_unset(char **args);
-void		ft_echo(char **args);
-int			is_builtin(char	*str);
-void 		exec_builtin(t_cmd *cmd);
-int			get_len_name(char *env_var);
-int			error_identifier(char *name);
-
-#endif
+	i = -1;
+	new_line = 1;
+	args++;
+	if (!ft_strcmp(*args, "-n"))
+	{
+		new_line = 0;
+		args++;
+	}
+	size = get_array_size(args);
+	while (++i < size)
+	{
+		ft_putstr_fd(args[i], STDOUT_FILENO);
+		if (i != size - 1)
+			ft_putstr_fd(" ", STDOUT_FILENO);
+	}
+	if (new_line)
+		ft_putstr_fd("\n", STDOUT_FILENO);
+}

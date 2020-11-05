@@ -76,7 +76,8 @@ SRCS = 	srcs/main.c \
 		srcs/utils/valid_identifier.c \
 		srcs/builtins/env.c \
 		srcs/builtins/unset.c \
-		srcs/builtins/export.c
+		srcs/builtins/export.c \
+		srcs/builtins/echo.c
 
 OBJ = $(SRCS:%.c=%.o)
 
