@@ -45,7 +45,7 @@ int						get_len_input_quotes(char *input, t_elem *elem)
 	while (n_quotes != 2 && input[l])
 	{
 		quotes = get_elem_name(&input[l], elem);
-		if (quotes == quote || quotes == d_quote)
+		if (quotes == elem->name)
 			n_quotes++;
 		else if (quotes == bs && elem->name == d_quote)
 			l++;

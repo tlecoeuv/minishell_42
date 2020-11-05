@@ -53,7 +53,6 @@ int					create_tokens_list(char *input, t_token **tokens)
 		return (ERROR);
 	return (SUCCESS);
 }
-
 /*
 int					main(void)
 {
