@@ -12,7 +12,6 @@
 
 #include "../../includes/minishell.h"
 
-
 int			get_len_name(char *env_var)
 {
 	int		len;
@@ -40,7 +39,8 @@ void		get_ascii_order(int size, int *order)
 		len_b = get_len_name(g_sh.env[order[i + 1]]);
 		if (len_a > len_b)
 			len_a = len_b;
-		if (ft_strncmp(g_sh.env[order[i]], g_sh.env[order[i + 1]], len_a) > 0)
+		if (ft_strncmp(g_sh.env[order[i]], g_sh.env[order[i + 1]], len_a + 1)
+																			> 0)
 		{
 			temp = order[i];
 			order[i] = order[i + 1];
@@ -50,7 +50,7 @@ void		get_ascii_order(int size, int *order)
 	}
 }
 
-void		print_export_env()
+void		print_export_env(void)
 {
 	int			i;
 	int			len;
@@ -62,7 +62,7 @@ void		print_export_env()
 		return ;
 	get_ascii_order(size, order);
 	i = -1;
-	while (++i + 1 < size)
+	while (++i < size)
 	{
 		len = get_len_name(g_sh.env[order[i]]);
 		ft_putstr_fd("export ", STDOUT_FILENO);
@@ -75,14 +75,25 @@ void		print_export_env()
 		}
 		ft_putstr_fd("\n", STDOUT_FILENO);
 	}
+	free(order);
 }
 
 void		ft_export(char **args)
 {
 	int		size;
+	int		i;
 
-	(void)args;
-	size = get_array_size(args) - 1;
-	if (!size)
+	size = get_array_size(args);
+	if (size == 1)
 		print_export_env();
+	else
+	{
+		i = 0;
+		while (++i < size)
+		{
+			if (!error_identifier(args[i]))
+				return ;
+			add_env_var(args[i]);
+		}
+	}
 }

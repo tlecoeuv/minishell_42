@@ -29,3 +29,18 @@ int			get_len_valid_identifier(char *str)
 			len++;
 	return (len);
 }
+
+int			error_identifier(char *name)
+{
+	int		len_name;
+
+	len_name = get_len_name(name);
+	if (len_name != get_len_valid_identifier(name))
+	{
+		ft_putstr_fd("minishell: export: `", STDOUT_FILENO);
+		write(STDERR_FILENO, name, len_name);
+		ft_putstr_fd("' not a valid identifier\n", STDOUT_FILENO);
+		return (0);
+	}
+	return (1);
+}

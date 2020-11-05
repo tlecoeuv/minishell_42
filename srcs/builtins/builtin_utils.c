@@ -15,10 +15,11 @@
 int		is_builtin(char	*str)
 {
 	int			i;
-	const char	*builtin_str[] = {"cd", "exit", "pwd", "env", "export"};
+	const char	*builtin_str[] = {"cd", "exit", "pwd", "env", "export",
+															"unset"};
 
 	i = 0;
-	while (i < 5)
+	while (i < 6)
 	{
 		if (ft_strcmp(builtin_str[i], str) == 0)
 			return (1);
@@ -30,8 +31,9 @@ int		is_builtin(char	*str)
 void	exec_builtin(t_cmd *cmd)
 {
 	int			i;
-	const char	*builtin_str[] = {"cd", "exit", "pwd", "env", "export"};
-	void		(*builtin_func[5])(char **);
+	const char	*builtin_str[] = {"cd", "exit", "pwd", "env", "export",
+																"unset"};
+	void		(*builtin_func[6])(char **);
 	int			save_stdin;
 	int			save_stdout;
 
@@ -41,9 +43,10 @@ void	exec_builtin(t_cmd *cmd)
 	builtin_func[2] = &ft_pwd;
 	builtin_func[3] = &ft_env;
 	builtin_func[4] = &ft_export;
+	builtin_func[5] = &ft_unset;
 
 	builtin_redir(cmd->in_fd, cmd->out_fd, &save_stdin, &save_stdout);
-	while (i < 5)
+	while (i < 6)
 	{
 		if (ft_strcmp(builtin_str[i], cmd->args[0]) == 0)
 		{

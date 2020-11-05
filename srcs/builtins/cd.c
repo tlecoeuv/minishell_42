@@ -81,6 +81,8 @@ void		change_directory(char *new_pwd, char *arg)
 			return ;
 		set_env_var("OLDPWD", oldpwd);
 		set_env_var("PWD", pwd);
+		free(oldpwd);
+		free(pwd);
 	}
 }
 

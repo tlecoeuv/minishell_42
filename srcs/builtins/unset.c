@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlecoeuv <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tlecoeuv <tlecoeuv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/08 17:33:13 by tlecoeuv          #+#    #+#             */
-/*   Updated: 2020/10/05 21:32:17 by tlecoeuv         ###   ########.fr       */
+/*   Created: 2020/10/19 14:12:41 by tlecoeuv          #+#    #+#             */
+/*   Updated: 2020/10/21 17:40:23 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	*ft_calloc(size_t count, size_t size)
+void		ft_unset(char **args)
 {
-	unsigned int	i;
-	int				*pt;
+	int		size;
+	int		i;
 
+	size = get_array_size(args);
 	i = 0;
-	if (!(pt = malloc(size * count)))
-		return (NULL);
-	while (i < count)
+	while (++i < size)
 	{
-		pt[i] = 0;
-		i++;
+		if (!error_identifier(args[i]))
+			return ;
+		remove_env_var(args[i]);
 	}
-	return (pt);
 }
