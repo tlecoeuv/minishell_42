@@ -20,18 +20,21 @@ void		ft_echo(char **args)
 
 	i = -1;
 	new_line = 1;
-	args++;
-	if (!ft_strcmp(*args, "-n"))
-	{
-		new_line = 0;
-		args++;
-	}
 	size = get_array_size(args);
-	while (++i < size)
+	if (size > 1)
 	{
-		ft_putstr_fd(args[i], STDOUT_FILENO);
-		if (i != size - 1)
-			ft_putstr_fd(" ", STDOUT_FILENO);
+		i++;
+		while (++i < size)
+		{
+			if (!ft_strcmp(args[i], "-n"))
+				new_line = 0;
+			else
+			{
+				ft_putstr_fd(args[i], STDOUT_FILENO);
+				if (i != size - 1)
+					ft_putstr_fd(" ", STDOUT_FILENO);
+			}
+		}
 	}
 	if (new_line)
 		ft_putstr_fd("\n", STDOUT_FILENO);
