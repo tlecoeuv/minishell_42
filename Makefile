@@ -14,11 +14,12 @@ SRCS = 	srcs/main.c \
 		srcs/env/env_utils.c \
 		srcs/env/init_env.c \
 		srcs/error/error.c \
-		srcs/exec/exec_command.c \
-		srcs/exec/get_commands.c \
-		srcs/exec/command_utils.c \
-		srcs/exec/handle_commands.c \
-		srcs/exec/path.c \
+		srcs/command/handle_tokens.c \
+		srcs/command/get_commands.c \
+		srcs/command/command_utils.c \
+		srcs/command/handle_commands.c \
+		srcs/command/handle_command_no_pipe.c \
+		srcs/command/path.c \
 		srcs/redirection/do_redirection.c \
 		srcs/redirection/get_redirection.c \
 		srcs/redirection/redirection_builtins.c \

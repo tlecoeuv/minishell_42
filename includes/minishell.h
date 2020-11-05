@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 16:20:59 by avieira           #+#    #+#             */
-/*   Updated: 2020/10/30 13:29:22 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/11/05 10:08:19 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # include "token.h"
 # include "syntax.h"
 # include "get_next_line.h"
-# include "exec.h"
+# include "command.h"
 # include "utils.h"
 # include "env.h"
 # include "bultins.h"

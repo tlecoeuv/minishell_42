@@ -1,0 +1,17 @@
+| | -gérer Ctrl-C.
+
+| | -gérer Ctrl-D.
+
+| | -gérer Ctrl-\, déjà faut comprendre c'est quoi.
+
+| | -gérer les retours d'erreurs Builtins.
+
+| | -gérer les retours d'erreurs excve avec status.
+
+| | -gérer les non éxécutables.
+
+| | -coder un exit propre.
+
+| | -gérer $?.
+
+| | -renommer certains fichier pour plus de logique.
