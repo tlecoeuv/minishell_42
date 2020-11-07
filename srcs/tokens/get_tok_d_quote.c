@@ -31,6 +31,8 @@ int				get_tok_d_quote(char *input, t_elem *elem,
 			ret = get_tok_doll(&input[len], &current, elem_to_type, tokens);
 		else
 		{
+			if (current.size >= (elem->size - len))
+				current.size = elem->size - len - 1;
 			current.name = none;
 			ret = get_tok_word(&input[len], &current, elem_to_type, tokens);
 		}

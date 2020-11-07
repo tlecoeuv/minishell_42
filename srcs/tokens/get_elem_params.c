@@ -60,7 +60,6 @@ int						get_len_input_word(char *input, t_elem *elem)
 	int					len;
 
 	len = 0;
-	//Valid identifier ?
 	while (input[len] && get_elem_name(&input[len], elem) == none)
 		len++;
 	return (len);

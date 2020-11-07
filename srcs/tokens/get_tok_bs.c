@@ -20,7 +20,7 @@ char				*get_str_bs(char *input, t_elem *elem)
 	escaped = get_elem_name(input + 1, elem);
 	if (elem->name == d_quote)
 	{
-		if (escaped == d_quote || escaped == doll)
+		if (escaped == d_quote || escaped == doll || escaped == bs)
 		{
 			if (!(str = ft_substr(input + 1, 0, 1)))
 				return (NULL);
