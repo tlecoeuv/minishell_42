@@ -6,7 +6,7 @@
 /*   By: tlecoeuv <tlecoeuv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 11:03:36 by tlecoeuv          #+#    #+#             */
-/*   Updated: 2020/10/21 23:02:11 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/11/09 18:30:11 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define STATUS_CTRL_C				130
 # define STATUS_CTRL_BACKSLASH		131
 
-void	error_cmd_not_found(char *cmd);
+int		error_cmd_not_found(char *cmd);
 void	error(char *cmd, char *arg);
 
 #endif

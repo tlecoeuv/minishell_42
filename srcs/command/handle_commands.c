@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 14:33:56 by tanguy            #+#    #+#             */
-/*   Updated: 2020/10/31 00:14:04 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/11/09 18:31:19 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void		spawn_process(int in, int out, t_cmd **cmd, int i)
 
  	if ((pid = fork ()) == 0)
     {
+//		signal(SIGINT, SIG_DFL);
 		if (in != 0)
         {
  			dup2 (in, STDIN_FILENO);
@@ -65,14 +66,10 @@ void		handle_one_command(t_cmd *cmd)
 		}
 		else
 		{
-			if (!get_absolute_path(cmd->args))
-				error_cmd_not_found(cmd->args[0]);
-			else
-			{
+			if (get_exec_path(cmd->args))
 				do_redir(cmd->in_fd, cmd->out_fd);
 				if (execve(cmd->args[0], cmd->args, g_sh.env) == -1)
 					exit(EXIT_FAILURE);
-			}
 		}
 		if (cmd->out_fd > 0)
 			close(cmd->out_fd);

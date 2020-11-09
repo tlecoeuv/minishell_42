@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 16:20:59 by avieira           #+#    #+#             */
-/*   Updated: 2020/11/05 10:08:19 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/11/07 00:30:49 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <string.h>
 # include <errno.h>
 # include <fcntl.h>
+# include <signals.h>
 
 //LIBRAIRIES A SUPPRIMER
 # include <stdio.h>
@@ -43,6 +44,7 @@ typedef struct	s_shell
 	char	*cwd;
 	int		status;
 	int		running;
+	int		ctrl;
 }				t_shell;
 
 extern t_shell	g_sh;

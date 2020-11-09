@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlecoeuv <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tlecoeuv <tlecoeuv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 11:58:33 by tlecoeuv          #+#    #+#             */
-/*   Updated: 2020/10/05 16:30:50 by tlecoeuv         ###   ########.fr       */
+/*   Updated: 2020/11/09 18:42:56 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ char		**ft_split(char const *s, char c)
 	char	**dst;
 	int		j;
 
+	if (s == NULL)
+		return (NULL);
 	j = 0;
 	size = nb_word(s, c);
 	if (!(dst = malloc(sizeof(char *) * (size + 1))))

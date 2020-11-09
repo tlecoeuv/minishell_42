@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec.h                                             :+:      :+:    :+:   */
+/*   command.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlecoeuv <tlecoeuv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 16:04:09 by tlecoeuv          #+#    #+#             */
-/*   Updated: 2020/11/02 17:52:41 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/11/09 18:35:36 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ typedef struct		s_cmd
 }					t_cmd;
 
 int			test_file(char *file_name);
-int			get_absolute_path(char **cmd);
+char		**get_path_split();
+int			get_exec_path(char **args);
+int			is_executable(char *file);
 void		handle_tokens(t_token *lst_token);
 t_cmd		**get_commands(t_token **lst_token, int *nb_cmds);
 int			get_nb_commands(t_token *lst_token);
