@@ -6,7 +6,7 @@
 /*   By: tlecoeuv <tlecoeuv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 16:09:23 by tlecoeuv          #+#    #+#             */
-/*   Updated: 2020/10/21 15:30:00 by tlecoeuv         ###   ########.fr       */
+/*   Updated: 2020/11/10 13:32:03 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int					get_len_valid_identifier(char *str);
 char				*ft_strtrim(char const *s1, char const *set);
 void				ft_putstr_fd(char *s, int fd);
 void				manage_env_path();
+char				*ft_itoa(int n);
 
 //temporaire
 int					ft_atoi(const char *str);

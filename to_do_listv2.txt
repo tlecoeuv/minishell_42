@@ -15,13 +15,13 @@
 
 | | -gérer les retours d'erreurs Builtins.
 
-| | -gérer les retours d'erreurs excve avec status.
+|V| -gérer les retours d'erreurs excve avec status. WEXITSTATUS(status)
 
-| | -gérer les non éxécutables.
+|V| -gérer les non éxécutables.
 	--->en même temps normer get_absolute_path.
 
 | | -coder un exit propre.
 
-| | -gérer $?.
+|V| -gérer $?.
 
 |V| -renommer certains fichier pour plus de logique.

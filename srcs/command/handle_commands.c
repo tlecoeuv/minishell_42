@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 14:33:56 by tanguy            #+#    #+#             */
-/*   Updated: 2020/11/09 18:31:19 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/11/10 12:29:21 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void		handle_commands_pipe(t_cmd **cmds, int nb_cmds)
 		i++;
 	}
 	while (wait(&status) > 0);
+	g_sh.status = WEXITSTATUS(status);
 }
 
 void		handle_one_command(t_cmd *cmd)

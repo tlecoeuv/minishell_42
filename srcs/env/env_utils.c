@@ -6,7 +6,7 @@
 /*   By: tlecoeuv <tlecoeuv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 15:54:02 by tlecoeuv          #+#    #+#             */
-/*   Updated: 2020/10/20 17:04:26 by tlecoeuv         ###   ########.fr       */
+/*   Updated: 2020/11/10 13:29:39 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ char	*ft_getenv(char *var)
 
 	i = 0;
 	var_size = ft_strlen(var);
+	if (var_size == 1 && var[0] == '?')
+		return(ft_itoa(g_sh.status));
 	while (g_sh.env[i])
 	{
 		if (ft_strlen(g_sh.env[i]) > var_size

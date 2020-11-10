@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 10:35:12 by tanguy            #+#    #+#             */
-/*   Updated: 2020/11/09 18:31:30 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/11/10 12:29:26 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,17 @@ void		handle_command_no_pipe(t_cmd *cmd)
 void		exec_cmd(t_cmd *cmd)
 {
 	pid_t	pid;
+	int		status;
 
 	pid = fork();
 	if (pid < 0)
 		perror("fork");
 	else if (pid > 0)
-		while(wait(NULL) != -1 && errno != ECHILD);
+	{
+//		while(wait() != -1 && errno != ECHILD);
+		while (wait(&status) > 0);
+		g_sh.status = WEXITSTATUS(status);
+	}
 	else
 	{
 //		signal(SIGINT, SIG_DFL);

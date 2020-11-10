@@ -61,6 +61,7 @@ SRCS = 	srcs/main.c \
 		srcs/utils/ft_atoi.c \
 		srcs/utils/ft_calloc.c \
 		srcs/utils/ft_isalnum.c \
+		srcs/utils/ft_itoa.c \
 		srcs/utils/ft_putstr_fd.c \
 		srcs/utils/ft_split.c \
 		srcs/utils/ft_strcat.c \
