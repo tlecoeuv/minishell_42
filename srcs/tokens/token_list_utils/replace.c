@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   append_token.c                                     :+:      :+:    :+:   */
+/*   del_start_to_end.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: austin <avieira@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/10 12:33:27 by austin            #+#    #+#             */
-/*   Updated: 2020/10/19 14:21:00 by austin           ###   ########.fr       */
+/*   Created: 2020/10/15 14:01:39 by austin            #+#    #+#             */
+/*   Updated: 2020/10/20 01:58:08 by austin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
-int				append_token(t_token **tokens, char *str, t_type type)
+void		replace(t_token **tokens, t_token *before, t_token *after)
 {
-	t_token		*new;
+	t_token	*old_left;
+	t_token	*new_right;
 
-	if (!(new = tok_lstnew(str)))
+	old_left = *tokens;
+	new_right = tok_lstlast(after);
+	if (*tokens == before)
+		*tokens = after;
+	else
 	{
-		if (str)
-			free(str);
-		return (ERROR);
+		while (old_left->next != before)
+			old_left = old_left->next;
+		old_left->next = after;
 	}
-	new->type = type;
-	if (type == v_env)
-		new->retokenise = 1;
-	tok_lstadd_back(tokens, new);
-	return (SUCCESS);
+	new_right->next = before->next;
+	tok_lstdelone(before);
 }

@@ -57,6 +57,7 @@ SRCS = 	srcs/main.c \
 		srcs/tokens/token_list_utils/tok_lstmap.c \
 		srcs/tokens/token_list_utils/tok_lstnew.c \
 		srcs/tokens/token_list_utils/tok_lstsize.c \
+		srcs/tokens/token_list_utils/replace.c \
 		srcs/utils/free_array.c \
 		srcs/utils/ft_atoi.c \
 		srcs/utils/ft_calloc.c \

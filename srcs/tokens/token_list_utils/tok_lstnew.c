@@ -19,6 +19,7 @@ t_token			*tok_lstnew(void *content)
 	if (!(new = malloc(sizeof(t_token))))
 		return (NULL);
 	new->str = content;
+	new->retokenise = 0;
 	new->next = NULL;
 	return (new);
 }

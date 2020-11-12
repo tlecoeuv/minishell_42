@@ -12,6 +12,21 @@
 
 #include "../../includes/minishell.h"
 
+
+int				doll_in_d_quote(char *input, t_elem *current,
+								const t_type *elem_to_type, t_token **tokens)
+{
+	int		ret;
+	t_token	*last;
+
+
+	ret = get_tok_doll(input, current, elem_to_type, tokens);
+	last = tok_lstlast(*tokens);
+	last->retokenise = 0;
+	return (ret);
+}
+
+
 int				get_tok_d_quote(char *input, t_elem *elem,
 								const t_type *elem_to_type, t_token **tokens)
 {
@@ -28,7 +43,7 @@ int				get_tok_d_quote(char *input, t_elem *elem,
 		if (current.name == bs)
 			ret = get_tok_bs(&input[len], elem, elem_to_type, tokens);
 		else if (current.name == doll)
-			ret = get_tok_doll(&input[len], &current, elem_to_type, tokens);
+			ret = doll_in_d_quote(&input[len], &current, elem_to_type, tokens);
 		else
 		{
 			if (current.size >= (elem->size - len))

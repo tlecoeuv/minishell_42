@@ -67,10 +67,12 @@ typedef struct		s_token
 {
 	char			*str;
 	t_type			type;
+	char			retokenise;
 	struct s_token	*next;
 }					t_token;
 
 int					create_tokens_list(char *input, t_token **tokens);
+int					retokenise(t_token **tokens);
 
 int					get_elem_size(char *input, t_elem *elem);
 t_elem_name			get_elem_name(char *input, t_elem *elem);
@@ -96,11 +98,13 @@ int					tok_join_words(t_token **tokens);
 
 void				del_start_to_end(t_token **tokens, t_token *start,
 																t_token *end);
+void				replace(t_token **tokens, t_token *before, t_token *after);
 int					append_token(t_token **tokens, char *str, t_type type);
 
 t_token				*tok_lstnew(void *content);
 void				tok_lstadd_back(t_token **alst, t_token *nw);
 void				tok_lstdelone(t_token *lst);
 void				tok_lstclear(t_token **lst);
+t_token				*tok_lstlast(t_token *lst);
 
 #endif
