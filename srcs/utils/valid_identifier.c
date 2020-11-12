@@ -29,16 +29,18 @@ int			get_len_valid_identifier(char *str)
 	return (len);
 }
 
-int			error_identifier(char *name)
+int			error_identifier(char *builtin, char *name)
 {
 	int		len_name;
 
 	len_name = get_len_name(name);
 	if (len_name != get_len_valid_identifier(name))
 	{
-		ft_putstr_fd("minishell: export: `", STDOUT_FILENO);
-		ft_putstr_fd(name, STDOUT_FILENO);
-		ft_putstr_fd("': not a valid identifier\n", STDOUT_FILENO);
+		ft_putstr_fd("minishell: ", STDERR_FILENO);
+		ft_putstr_fd(builtin, STDERR_FILENO);
+		ft_putstr_fd(": `", STDERR_FILENO);
+		ft_putstr_fd(name, STDERR_FILENO);
+		ft_putstr_fd("': not a valid identifier\n", STDERR_FILENO);
 		g_sh.status = STATUS_FAILURE_BUILTIN;
 		return (0);
 	}

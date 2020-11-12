@@ -27,6 +27,6 @@ int			ft_echo(char **args);
 int			is_builtin(char	*str);
 void 		exec_builtin(t_cmd *cmd);
 int			get_len_name(char *env_var);
-int			error_identifier(char *name);
+int			error_identifier(char *builtin, char *name);
 
 #endif

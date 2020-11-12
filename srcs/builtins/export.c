@@ -114,7 +114,7 @@ int		ft_export(char **args)
 	{
 		i = 0;
 		while (++i < size)
-			if (error_identifier(args[i]))
+			if (error_identifier("export", args[i]))
 				manage_var(args[i]);
 			else
 				status += 1;

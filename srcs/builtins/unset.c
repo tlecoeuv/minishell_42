@@ -67,7 +67,7 @@ int		ft_unset(char **args)
 	i = 0;
 	while (++i < size)
 	{
-		if (error_identifier(args[i]))
+		if (error_identifier("unset", args[i]))
 		{
 			is_env(args[i], &index);
 			if ((index != -1))
