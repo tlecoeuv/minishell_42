@@ -6,7 +6,7 @@
 /*   By: tlecoeuv <tlecoeuv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 14:21:51 by tlecoeuv          #+#    #+#             */
-/*   Updated: 2020/10/30 13:14:26 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/11/12 11:10:08 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 
 void		ft_cd(char **args);
 void		ft_exit(char **args);
+int			is_valid_number(char *str);
+int			is_not_to_big(char *str);
 void		ft_pwd(char **args);
 void		ft_env(char **args);
 void		ft_export(char **args);

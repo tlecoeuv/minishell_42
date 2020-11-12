@@ -6,7 +6,7 @@
 /*   By: tlecoeuv <tlecoeuv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 16:09:23 by tlecoeuv          #+#    #+#             */
-/*   Updated: 2020/11/10 13:32:03 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/11/12 11:16:59 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <sys/types.h>
 
 int					ft_isalnum(int c);
+int					ft_isdigit(int c);
+int					ft_isspace(int c);
 int					ft_strcmp(const char *s1, const char *s2);
 int					ft_strlen(const char *s1);
 char				**ft_split(char const *s, char c);

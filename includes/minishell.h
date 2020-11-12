@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 16:20:59 by avieira           #+#    #+#             */
-/*   Updated: 2020/11/07 00:30:49 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/11/12 11:18:57 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <errno.h>
 # include <fcntl.h>
 # include <signals.h>
+# include <limits.h>
 
 //LIBRAIRIES A SUPPRIMER
 # include <stdio.h>
