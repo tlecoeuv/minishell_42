@@ -68,9 +68,11 @@ void		handle_one_command(t_cmd *cmd)
 		else
 		{
 			if (get_exec_path(cmd->args))
+			{
 				do_redir(cmd->in_fd, cmd->out_fd);
 				if (execve(cmd->args[0], cmd->args, g_sh.env) == -1)
 					exit(EXIT_FAILURE);
+			}
 		}
 		if (cmd->out_fd > 0)
 			close(cmd->out_fd);

@@ -24,5 +24,6 @@
 
 int		error_cmd_not_found(char *cmd);
 void	error(char *cmd, char *arg);
+int		error_from_builtin(char *cmd, char *msg, int error);
 
 #endif

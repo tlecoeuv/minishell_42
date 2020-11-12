@@ -54,22 +54,30 @@ void		*remove_index_of_env(int index)
 	return (new_env);
 }
 
-void		ft_unset(char **args)
+int		ft_unset(char **args)
 {
 	int		size;
 	int		i;
 	int		index;
+	int		status;
 
+	status = 0;
 	index = -1;
-	g_sh.status = STATUS_SUCCESS;
 	size = get_array_size(args);
 	i = 0;
 	while (++i < size)
+	{
 		if (error_identifier(args[i]))
 		{
 			is_env(args[i], &index);
 			if ((index != -1))
 				if (!remove_index_of_env(index))
-					return ;
+					return (STATUS_FAILURE_BUILTIN);
 		}
+		else
+			status += 1;
+	}
+	if (status)
+		return (STATUS_FAILURE_BUILTIN);
+	return (STATUS_SUCCESS);
 }

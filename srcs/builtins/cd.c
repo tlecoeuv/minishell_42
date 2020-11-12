@@ -62,35 +62,44 @@ char		*get_new_pwd(char *arg)
 	return (result);
 }
 
-void		change_directory(char *new_pwd, char *arg)
+int			change_directory(char *new_pwd, char *arg)
 {
 	char	*oldpwd;
 	char	*pwd;
+	int		status;
 
 	if (chdir(new_pwd) == -1)
 	{
-		g_sh.status = STATUS_FAILURE_BUILTIN;
-		error("cd", arg);
+		error_from_builtin("cd", "no such file or directory", 0);
+		ft_putstr_fd(arg, STDERR_FILENO);
+		ft_putstr_fd("\n", STDERR_FILENO);
+		return (STATUS_FAILURE_BUILTIN);
 	}
-	else
+	oldpwd = ft_strdup(ft_getenv("PWD"));
+	pwd = getcwd(NULL, 0);
+	status = STATUS_SUCCESS;
+	if (oldpwd && pwd)
 	{
-		g_sh.status = STATUS_SUCCESS;
-		if (!(oldpwd = ft_strdup(ft_getenv("PWD"))))
-			return ;
-		if (!(pwd = getcwd(NULL, 0)))
-			return ;
 		set_env_var("OLDPWD", oldpwd);
 		set_env_var("PWD", pwd);
-		free(oldpwd);
-		free(pwd);
 	}
+	else
+		status = STATUS_FAILURE_BUILTIN;
+	if (oldpwd)
+		free(oldpwd);
+	if (pwd)
+		free(pwd);
+	return (status);
 }
 
-void		manage_cd(char *arg, int size)
+int			manage_cd(char *arg, int size)
 {
 	char	*new_pwd;
+	int		status;
 
-	if (!ft_strcmp("-", arg))
+	if (!size)
+		new_pwd = get_path_from_env('~');
+	else if (!ft_strcmp("-", arg))
 	{
 		if ((new_pwd = get_path_from_env('-')))
 		{
@@ -98,26 +107,22 @@ void		manage_cd(char *arg, int size)
 			ft_putstr_fd("\n", STDOUT_FILENO);
 		}
 	}
-	else if (size)
-		new_pwd = get_new_pwd(arg);
 	else
-		new_pwd = get_path_from_env('~');
+		new_pwd = get_new_pwd(arg);
 	if (!new_pwd)
-		return ;
-	change_directory(new_pwd, arg);
+		return (STATUS_FAILURE_BUILTIN);
+	status = change_directory(new_pwd, arg);
 	free(new_pwd);
+	return (status);
 }
 
-void		ft_cd(char **args)
+int		ft_cd(char **args)
 {
 	int		size;
 
 	size = get_array_size(args) - 1;
 	if (size > 1)
-	{
-		g_sh.status = STATUS_FAILURE_BUILTIN;
-		ft_putstr_fd("minishell: cd: too many arguments\n", STDERR_FILENO);
-	}
-	else
-		manage_cd(args[size], size);
+		return (error_from_builtin("cd:", " too many arguments\n",
+													STATUS_FAILURE_BUILTIN));
+	return (manage_cd(args[size], size));
 }

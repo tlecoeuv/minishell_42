@@ -21,6 +21,14 @@ int		error_cmd_not_found(char *cmd)
 	return (0);
 }
 
+int		error_from_builtin(char *cmd, char *msg, int error)
+{
+	ft_putstr_fd("minishell: ", STDERR_FILENO);
+	ft_putstr_fd(cmd, STDERR_FILENO);
+	ft_putstr_fd(msg, STDERR_FILENO);
+	return (error);
+}
+
 void	error(char *cmd, char *arg)
 {
 	ft_putstr_fd("minishell: ", STDERR_FILENO);

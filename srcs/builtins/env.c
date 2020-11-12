@@ -12,7 +12,7 @@
 
 #include "../../includes/minishell.h"
 
-void		ft_env(char **args)
+int		ft_env(char **args)
 {
 	int		i;
 	int		len;
@@ -29,4 +29,5 @@ void		ft_env(char **args)
 		}
 		i++;
 	}
+	return (STATUS_SUCCESS);
 }

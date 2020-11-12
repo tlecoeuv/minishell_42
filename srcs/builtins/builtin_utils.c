@@ -33,7 +33,7 @@ void	exec_builtin(t_cmd *cmd)
 	int			i;
 	const char	*builtin_str[] = {"cd", "exit", "pwd", "env", "export",
 															"unset", "echo"};
-	void		(*builtin_func[7])(char **);
+	int			(*builtin_func[7])(char **);
 	int			save_stdin;
 	int			save_stdout;
 
@@ -51,7 +51,7 @@ void	exec_builtin(t_cmd *cmd)
 	{
 		if (ft_strcmp(builtin_str[i], cmd->args[0]) == 0)
 		{
-			builtin_func[i](cmd->args);
+			g_sh.status = builtin_func[i](cmd->args);
 			break ;
 		}
 		i++;

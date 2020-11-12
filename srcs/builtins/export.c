@@ -96,17 +96,17 @@ void		manage_var(char *var)
 				free(g_sh.env[i]);
 				g_sh.env[i] = new;
 			}
-			return ;
 		}
 	add_env_var(var);
 }
 
-void		ft_export(char **args)
+int		ft_export(char **args)
 {
 	int		size;
 	int		i;
+	int		status;
 
-	g_sh.status = STATUS_SUCCESS;
+	status = 0;
 	size = get_array_size(args);
 	if (size == 1)
 		print_export_env();
@@ -116,5 +116,10 @@ void		ft_export(char **args)
 		while (++i < size)
 			if (error_identifier(args[i]))
 				manage_var(args[i]);
+			else
+				status += 1;
 	}
+	if (status)
+		return (STATUS_FAILURE_BUILTIN);
+	return (STATUS_SUCCESS);
 }

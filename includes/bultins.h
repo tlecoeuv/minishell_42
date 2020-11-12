@@ -15,15 +15,15 @@
 
 #include "minishell.h"
 
-void		ft_cd(char **args);
-void		ft_exit(char **args);
+int			ft_cd(char **args);
+int			ft_exit(char **args);
 int			is_valid_number(char *str);
 int			is_not_to_big(char *str);
-void		ft_pwd(char **args);
-void		ft_env(char **args);
-void		ft_export(char **args);
-void		ft_unset(char **args);
-void		ft_echo(char **args);
+int			ft_pwd(char **args);
+int			ft_env(char **args);
+int			ft_export(char **args);
+int			ft_unset(char **args);
+int			ft_echo(char **args);
 int			is_builtin(char	*str);
 void 		exec_builtin(t_cmd *cmd);
 int			get_len_name(char *env_var);

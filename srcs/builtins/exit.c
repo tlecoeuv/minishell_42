@@ -52,7 +52,7 @@ int			is_valid_number(char *str)
 	return (is_not_to_big(str));
 }
 
-void		ft_exit(char **args)
+int		ft_exit(char **args)
 {
 	g_sh.running = 0;
 	if (get_array_size(args) < 2)

@@ -12,9 +12,10 @@
 
 #include "../../includes/minishell.h"
 
-void		ft_pwd(char **args)
+int		ft_pwd(char **args)
 {
 	(void) args;
 	ft_putstr_fd(ft_getenv("PWD"), STDOUT_FILENO);
 	ft_putstr_fd("\n", STDOUT_FILENO);
+	return (STATUS_SUCCESS);
 }
