@@ -44,12 +44,25 @@ void				display_tokens(t_token **tokens)
 	printf("\nDone\n\n");
 }
 
-int					retokenise(t_token **tokens)
+t_token					*create_vars_tokens(char **split, t_token *pre_new,
+														t_token **new_tokens)
+{
+	int					i;
+
+	i = 0;
+	free(pre_new->str);
+	pre_new->str = split[i];
+	pre_new->retokenise = 0;
+	while (split[++i])
+		append_token(new_tokens, split[i], word);
+	return (insert_lst_token(pre_new, *new_tokens));
+}
+
+void					retokenise_vars(t_token **tokens)
 {
 	t_token			*new_tokens;
 	t_token			*temp;
 	char			**split;
-	char			**tmp_split;
 
 	temp = *tokens;
 	new_tokens = NULL;
@@ -58,19 +71,17 @@ int					retokenise(t_token **tokens)
 		if (temp->type == word && temp->retokenise)
 		{
 			if (!(split = ft_split(temp->str, ' ')))
-				return (ERROR);
-			tmp_split = split;
-			free(temp->str);
-			temp->str = *split;
-			temp->retokenise = 0;
-			while (*(++split))
-				append_token(&new_tokens, *split, word);
-			free(tmp_split);
-			insert_lst_token(temp, new_tokens);
+				return ;
+			if (get_array_size(split) > 1)
+			{
+				temp = create_vars_tokens(split, temp, &new_tokens);
+				free(split);
+			}
+			else
+				free_array(split);
 		}
 		temp = temp->next;
 	}
-	return(SUCCESS);
 }
 
 int					create_tokens_list(char *input, t_token **tokens)
@@ -95,5 +106,7 @@ int					create_tokens_list(char *input, t_token **tokens)
 	}
 	if (!tok_join_words(tokens))
 		return (ERROR);
+	//retokenise_vars(tokens);
+	//display_tokens(tokens);
 	return (SUCCESS);
 }

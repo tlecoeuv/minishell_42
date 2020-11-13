@@ -12,11 +12,12 @@
 
 #include "../../../includes/minishell.h"
 
-void		insert_lst_token(t_token *pre_token, t_token *new_tokens)
+t_token		*insert_lst_token(t_token *pre_token, t_token *new_tokens)
 {
 	t_token	*last_in_new;
 
-	last_in_new = tok_lstlast(pre_token);
+	last_in_new = tok_lstlast(new_tokens);
 	last_in_new->next = pre_token->next;
 	pre_token->next = new_tokens;
+	return (last_in_new);
 }
