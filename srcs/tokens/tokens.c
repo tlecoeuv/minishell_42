@@ -48,13 +48,24 @@ t_token					*create_vars_tokens(char **split, t_token *pre_new,
 														t_token **new_tokens)
 {
 	int					i;
+	int					size;
+	char				*str;
 
 	i = 0;
 	free(pre_new->str);
 	pre_new->str = split[i];
 	pre_new->retokenise = 0;
+	size = get_array_size(split);
 	while (split[++i])
+	{
+		if (!(str = ft_strdup(" ")))
+		{
+			tok_lstclear(new_tokens);
+			return (pre_new);
+		}
+		append_token(new_tokens, str, space);
 		append_token(new_tokens, split[i], word);
+	}
 	return (insert_lst_token(pre_new, *new_tokens));
 }
 
