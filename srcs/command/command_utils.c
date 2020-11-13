@@ -32,6 +32,7 @@ void		interpret_v_env(t_token *lst_token)
 		}
 		tmp = tmp->next;
 	}
+	retokenise_vars(&lst_token);
 	tok_join_words(&lst_token);
 }
 

@@ -17,6 +17,8 @@ int			get_len_valid_identifier(char *str)
 	int		len;
 
 	len = 0;
+	if (!ft_strlen(str))
+		return (-1);
 	if (str[len] == '?')
 		return (1);
 	if (str[len] >= '0' && str[len] <= '9')

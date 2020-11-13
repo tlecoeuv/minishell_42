@@ -26,8 +26,7 @@ int				doll_in_d_quote(char *input, t_elem *current,
 	return (ret);
 }
 
-
-int				get_tok_d_quote(char *input, t_elem *elem,
+int				d_quote_manage(char *input, t_elem *elem,
 								const t_type *elem_to_type, t_token **tokens)
 {
 	int			len;
@@ -55,5 +54,26 @@ int				get_tok_d_quote(char *input, t_elem *elem,
 			return (ERROR);
 		len += current.size;
 	}
+	return (SUCCESS);
+}
+
+int				get_tok_d_quote(char *input, t_elem *elem,
+								const t_type *elem_to_type, t_token **tokens)
+{
+	char		*str;
+
+	if (elem->size < 3)
+	{
+		if (!(str = ft_strdup("")))
+			return (ERROR);
+		if (!(append_token(tokens, str, word)))
+		{
+			free(str);
+			return (ERROR);
+		}
+	}
+	else
+		if (d_quote_manage(input, elem, elem_to_type, tokens) == ERROR)
+			return (ERROR);
 	return (SUCCESS);
 }
