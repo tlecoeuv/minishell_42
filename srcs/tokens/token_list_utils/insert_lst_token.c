@@ -12,21 +12,11 @@
 
 #include "../../../includes/minishell.h"
 
-void		replace(t_token **tokens, t_token *before, t_token *after)
+void		insert_lst_token(t_token *pre_token, t_token *new_tokens)
 {
-	t_token	*old_left;
-	t_token	*new_right;
+	t_token	*last_in_new;
 
-	old_left = *tokens;
-	new_right = tok_lstlast(after);
-	if (*tokens == before)
-		*tokens = after;
-	else
-	{
-		while (old_left->next != before)
-			old_left = old_left->next;
-		old_left->next = after;
-	}
-	new_right->next = before->next;
-	tok_lstdelone(before);
+	last_in_new = tok_lstlast(pre_token);
+	last_in_new->next = pre_token->next;
+	pre_token->next = new_tokens;
 }

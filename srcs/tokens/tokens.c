@@ -48,15 +48,27 @@ int					retokenise(t_token **tokens)
 {
 	t_token			*new_tokens;
 	t_token			*temp;
+	char			**split;
+
 
 	temp = *tokens;
 	while (temp)
 	{
 		if (temp->type == word && temp->retokenise)
 		{
-			if (create_tokens_list(temp->str, &new_tokens) == ERROR)
+			if (!(split = ft_split(temp->str, ' ')))
 				return (ERROR);
-			replace(tokens, temp, new_tokens);
+			free(temp->str);
+			temp->str = *split;
+			temp->retokenise = 0;
+			split++;
+			while (*split)
+			{
+				append_token(&new_tokens, *split, word);
+				split++;
+			}
+			free(split);
+			insert_lst_token(temp, new_tokens);
 		}
 		temp = temp->next;
 	}

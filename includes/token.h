@@ -98,7 +98,7 @@ int					tok_join_words(t_token **tokens);
 
 void				del_start_to_end(t_token **tokens, t_token *start,
 																t_token *end);
-void				replace(t_token **tokens, t_token *before, t_token *after);
+void				insert_lst_token(t_token *pre_token, t_token *new_tokens);
 int					append_token(t_token **tokens, char *str, t_type type);
 
 t_token				*tok_lstnew(void *content);
