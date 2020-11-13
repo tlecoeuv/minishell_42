@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   len_valid_identifier.c                             :+:      :+:    :+:   */
+/*   valid_identifier.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: austin <avieira@student.42.fr>             +#+  +:+       +#+        */
+/*   By: austin <austin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/10 04:33:28 by austin            #+#    #+#             */
-/*   Updated: 2020/10/20 13:06:46 by austin           ###   ########.fr       */
+/*   Updated: 2020/11/13 11:27:40 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ int			get_len_valid_identifier(char *str)
 		return (0);
 	while ((str[len] >= '0' && str[len] <= '9') ||
 			(str[len] >= 'A' && str[len] <= 'Z') ||
-			(str[len] >= 'a' && str[len] <= 'z') || 
+			(str[len] >= 'a' && str[len] <= 'z') ||
 			str[len] == '_')
-			len++;
+		len++;
 	return (len);
 }
 

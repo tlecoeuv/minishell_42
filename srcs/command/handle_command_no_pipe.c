@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 10:35:12 by tanguy            #+#    #+#             */
-/*   Updated: 2020/11/10 12:29:26 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/11/13 11:38:22 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ void		handle_command_no_pipe(t_cmd *cmd)
 		if (is_builtin(cmd->args[0]))
 			exec_builtin(cmd);
 		else
+		{
 			if (get_exec_path(cmd->args))
 				exec_cmd(cmd);
+		}
 	}
 }
 
@@ -34,13 +36,12 @@ void		exec_cmd(t_cmd *cmd)
 		perror("fork");
 	else if (pid > 0)
 	{
-//		while(wait() != -1 && errno != ECHILD);
-		while (wait(&status) > 0);
+		while (wait(&status) > 0)
+			;
 		g_sh.status = WEXITSTATUS(status);
 	}
 	else
 	{
-//		signal(SIGINT, SIG_DFL);
 		do_redir(cmd->in_fd, cmd->out_fd);
 		if (execve(cmd->args[0], cmd->args, g_sh.env) == -1)
 			exit(EXIT_FAILURE);

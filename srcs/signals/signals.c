@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 10:55:06 by tanguy            #+#    #+#             */
-/*   Updated: 2020/11/07 11:17:27 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/11/13 11:53:24 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 void		ctrl_c(int sig)
 {
-	(void) sig;
+	(void)sig;
 	g_sh.ctrl = 1;
 	g_sh.status = STATUS_CTRL_C;
 }

@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 14:33:56 by tanguy            #+#    #+#             */
-/*   Updated: 2020/11/10 12:29:21 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/11/13 11:34:26 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,18 @@ void		spawn_process(int in, int out, t_cmd **cmd, int i)
 {
 	pid_t pid;
 
- 	if ((pid = fork ()) == 0)
-    {
-//		signal(SIGINT, SIG_DFL);
+	if ((pid = fork()) == 0)
+	{
 		if (in != 0)
-        {
- 			dup2 (in, STDIN_FILENO);
-			close (in);
-        }
+		{
+			dup2(in, STDIN_FILENO);
+			close(in);
+		}
 		if (cmd[i + 1])
 		{
-			dup2 (out, STDOUT_FILENO);
-			close (out);
-        }
+			dup2(out, STDOUT_FILENO);
+			close(out);
+		}
 		handle_one_command(cmd[i]);
 	}
 }
@@ -36,9 +35,9 @@ void		spawn_process(int in, int out, t_cmd **cmd, int i)
 void		handle_commands_pipe(t_cmd **cmds, int nb_cmds)
 {
 	int		i;
- 	int		in;
+	int		in;
 	int		status;
-  	int		pipefd[2];
+	int		pipefd[2];
 
 	in = 0;
 	i = 0;
@@ -52,7 +51,8 @@ void		handle_commands_pipe(t_cmd **cmds, int nb_cmds)
 		in = pipefd[READ_END];
 		i++;
 	}
-	while (wait(&status) > 0);
+	while (wait(&status) > 0)
+		;
 	g_sh.status = WEXITSTATUS(status);
 }
 

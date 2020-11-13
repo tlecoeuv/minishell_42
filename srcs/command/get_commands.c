@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 11:02:50 by tanguy            #+#    #+#             */
-/*   Updated: 2020/11/02 17:59:30 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/11/13 11:35:15 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_cmd		**get_commands(t_token **lst_token, int *nb_cmds)
 	while (i < *nb_cmds)
 	{
 		if (!(cmds[i] = malloc(sizeof(t_cmd))))
-			return(NULL);
+			return (NULL);
 		get_redir(lst_token, cmds[i]);
 		cmds[i]->args = create_cmd_args(lst_token);
 		if (*lst_token && (*lst_token)->type == pip)
@@ -67,7 +67,7 @@ char		**create_cmd_args(t_token **lst_token)
 		}
 		*lst_token = (*lst_token)->next;
 	}
-	if((*lst_token) && (*lst_token)->type == space)
+	if ((*lst_token) && (*lst_token)->type == space)
 		*lst_token = (*lst_token)->next;
 	args[i] = NULL;
 	return (args);

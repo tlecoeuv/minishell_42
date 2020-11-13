@@ -6,7 +6,7 @@
 /*   By: tlecoeuv <tlecoeuv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 15:54:02 by tlecoeuv          #+#    #+#             */
-/*   Updated: 2020/11/10 13:29:39 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/11/13 11:40:53 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_getenv(char *var)
 	i = 0;
 	var_size = ft_strlen(var);
 	if (var_size == 1 && var[0] == '?')
-		return(ft_itoa(g_sh.status));
+		return (ft_itoa(g_sh.status));
 	while (g_sh.env[i])
 	{
 		if (ft_strlen(g_sh.env[i]) > var_size
@@ -82,6 +82,7 @@ void	remove_env_var(char *var_name)
 	g_sh.env = new_env;
 }
 */
+
 void	add_env_var(char *var)
 {
 	char	**new_env;
@@ -119,8 +120,8 @@ void	set_env_var(char *var_name, char *value)
 		while (g_sh.env[i])
 		{
 			if (ft_strlen(g_sh.env[i]) > var_size
-								&& ft_strncmp(var_name, g_sh.env[i], var_size) == 0
-								&& g_sh.env[i][var_size] == '=')
+							&& ft_strncmp(var_name, g_sh.env[i], var_size) == 0
+							&& g_sh.env[i][var_size] == '=')
 			{
 				free(g_sh.env[i]);
 				g_sh.env[i] = to_add;

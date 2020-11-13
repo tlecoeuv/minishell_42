@@ -6,15 +6,15 @@
 /*   By: tlecoeuv <tlecoeuv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 11:22:16 by tlecoeuv          #+#    #+#             */
-/*   Updated: 2020/10/30 11:26:47 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/11/13 11:42:30 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void 	skip_redir(t_token **lst_token)
+void	skip_redir(t_token **lst_token)
 {
-	while (*lst_token && (*lst_token)->type <= 3  && (*lst_token)->type != pip)
+	while (*lst_token && (*lst_token)->type <= 3 && (*lst_token)->type != pip)
 	{
 		*lst_token = (*lst_token)->next;
 		if ((*lst_token)->type == space)

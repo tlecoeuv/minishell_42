@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 09:43:49 by tanguy            #+#    #+#             */
-/*   Updated: 2020/11/02 17:58:52 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/11/13 11:35:50 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int			get_size_args(t_token *lst_token)
 	return (size);
 }
 
-int		get_nb_commands(t_token *lst_token)
+int			get_nb_commands(t_token *lst_token)
 {
 	int		size;
 
@@ -87,7 +87,7 @@ int		get_nb_commands(t_token *lst_token)
 			size++;
 		lst_token = lst_token->next;
 	}
-	return(size);
+	return (size);
 }
 
 void		free_commands(t_cmd **cmds)
@@ -95,7 +95,7 @@ void		free_commands(t_cmd **cmds)
 	int		i;
 
 	i = 0;
-	while(cmds[i])
+	while (cmds[i])
 	{
 		free_array(cmds[i]->args);
 	}

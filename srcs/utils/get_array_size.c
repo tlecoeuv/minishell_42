@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 21:57:34 by tanguy            #+#    #+#             */
-/*   Updated: 2020/10/07 22:10:46 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/11/13 11:28:13 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		get_array_size(char **array)
 	int		i;
 
 	i = 0;
-	while(array[i])
+	while (array[i])
 		i++;
-	return(i);
+	return (i);
 }

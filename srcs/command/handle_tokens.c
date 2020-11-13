@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 00:18:26 by tanguy            #+#    #+#             */
-/*   Updated: 2020/11/04 10:35:48 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/11/13 11:38:47 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void		handle_tokens(t_token *lst_token)
 			handle_command_no_pipe(cmds[0]);
 		else
 			handle_commands_pipe(cmds, nb_cmds);
-		while(cmds[i])
+		while (cmds[i])
 		{
 			free_array(cmds[i]->args);
 			free(cmds[i]);
