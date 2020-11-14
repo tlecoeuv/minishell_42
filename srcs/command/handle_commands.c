@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 14:33:56 by tanguy            #+#    #+#             */
-/*   Updated: 2020/11/13 11:34:26 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/11/14 19:59:20 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,22 @@ void		spawn_process(int in, int out, t_cmd **cmd, int i)
 {
 	pid_t pid;
 
-	if ((pid = fork()) == 0)
+	if (is_builtin(cmd[i]->args[0]) || get_exec_path(cmd[i]->args))
 	{
-		if (in != 0)
+		if ((pid = fork()) == 0)
 		{
-			dup2(in, STDIN_FILENO);
-			close(in);
+			if (in != 0)
+			{
+				dup2(in, STDIN_FILENO);
+				close(in);
+			}
+			if (cmd[i + 1])
+			{
+				dup2(out, STDOUT_FILENO);
+				close(out);
+			}
+			handle_one_command(cmd[i]);
 		}
-		if (cmd[i + 1])
-		{
-			dup2(out, STDOUT_FILENO);
-			close(out);
-		}
-		handle_one_command(cmd[i]);
 	}
 }
 
@@ -67,7 +70,7 @@ void		handle_one_command(t_cmd *cmd)
 		}
 		else
 		{
-			if (get_exec_path(cmd->args))
+			if (cmd->args[0])
 			{
 				do_redir(cmd->in_fd, cmd->out_fd);
 				if (execve(cmd->args[0], cmd->args, g_sh.env) == -1)
