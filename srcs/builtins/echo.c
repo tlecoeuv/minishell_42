@@ -26,7 +26,7 @@ int		ft_echo(char **args)
 		i++;
 		while (++i < size)
 		{
-			if (!ft_strcmp(args[i], "-n"))
+			if (!ft_strcmp(args[i], "-n") && i == 1)
 				new_line = 0;
 			else
 			{
