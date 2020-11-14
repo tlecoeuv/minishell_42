@@ -17,9 +17,7 @@ int			check_end(t_token *tokens, t_token *go)
 	t_token	*previous;
 
 	previous = get_previous_skip_space(tokens, go);
-
-	if (previous->type == pip || previous->type == end || previous->type == in
-		|| previous->type == out || previous->type == append_out)
-		return (syntax_error(go->str));
-	return (SUCCESS);
+	if ((previous->type == v_env || previous->type == word))
+		return (SUCCESS);
+	return (syntax_error(";"));
 }

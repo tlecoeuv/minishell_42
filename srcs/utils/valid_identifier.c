@@ -19,9 +19,11 @@ int			get_len_valid_identifier(char *str)
 	len = 0;
 	if (!ft_strlen(str))
 		return (-1);
+	if (str[len] == '=')
+		return (-1);
 	if (str[len] == '?')
 		return (1);
-	if (str[len] >= '0' && str[len] <= '9')
+	if ((str[len] >= '0' && str[len] <= '9'))
 		return (0);
 	while ((str[len] >= '0' && str[len] <= '9') ||
 			(str[len] >= 'A' && str[len] <= 'Z') ||

@@ -66,7 +66,10 @@ int				check_syntax(t_token *tokens)
 	while (go)
 	{
 		if (check_type[go->type](tokens, go) == ERROR)
+		{
+			g_sh.status = STATUS_FAILURE;
 			return (ERROR);
+		}
 		go = go->next;
 	}
 	return (SUCCESS);

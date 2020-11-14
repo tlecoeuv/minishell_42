@@ -65,7 +65,7 @@ void		print_export_env(void)
 	while (++i < size)
 	{
 		len = get_len_name(g_sh.env[order[i]]);
-		ft_putstr_fd("export ", STDOUT_FILENO);
+		ft_putstr_fd("declare -x ", STDOUT_FILENO);
 		write(STDOUT_FILENO, g_sh.env[order[i]], len + 1);
 		if (g_sh.env[order[i]][len] == '=')
 		{

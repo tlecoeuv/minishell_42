@@ -70,9 +70,9 @@ int			change_directory(char *new_pwd, char *arg)
 
 	if (chdir(new_pwd) == -1)
 	{
-		error_from_builtin("cd", "no such file or directory", 0);
+		ft_putstr_fd("cd: ", STDERR_FILENO);
 		ft_putstr_fd(arg, STDERR_FILENO);
-		ft_putstr_fd("\n", STDERR_FILENO);
+		ft_putstr_fd(": No such file or directory\n", STDERR_FILENO);
 		return (STATUS_FAILURE_BUILTIN);
 	}
 	oldpwd = ft_strdup(ft_getenv("PWD"));
