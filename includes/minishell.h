@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 16:20:59 by avieira           #+#    #+#             */
-/*   Updated: 2020/11/12 11:18:57 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/11/15 10:15:21 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ typedef struct	s_shell
 	char	*cwd;
 	int		status;
 	int		running;
-	int		ctrl;
 }				t_shell;
 
 extern t_shell	g_sh;
+extern t_sig	g_sig;
 
 #endif

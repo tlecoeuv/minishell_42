@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 16:42:56 by tanguy            #+#    #+#             */
-/*   Updated: 2020/11/13 11:40:20 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/11/15 10:22:00 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ void	init_shell(char **envp)
 	g_sh.cwd = getcwd(NULL, 0);
 	g_sh.status = 0;
 	g_sh.running = 1;
+	signal(SIGINT, &handle_sigint);
+	signal(SIGQUIT, &handle_sigquit);
+	g_sig.pid = 0;
+	g_sig.sigint = 0;
+	g_sig.sigquit = 0;
 }
 
 void	init_env(char **envp)

@@ -6,22 +6,43 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 10:55:06 by tanguy            #+#    #+#             */
-/*   Updated: 2020/11/13 11:53:24 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/11/15 12:43:28 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-/*restaurer le comportement de SIGINT avec signal(SIGINT, DFL),
-		quand on est dans un child.*/
-/*comment passer la boucle qui prends en compte la commande quand on
-	est dans le père?
-	---> if (ctrl_c != 1) ? c'est nul mais pk pas*/
-/*si on est dans des pipes à la suite comment faire?*/
-
-void		ctrl_c(int sig)
+void		handle_sigint(int code)
 {
-	(void)sig;
-	g_sh.ctrl = 1;
+	(void)code;
+	if (g_sig.pid == 0)
+	{
+		ft_putstr_fd("\b\b  ", STDERR_FILENO);
+		ft_putstr_fd("\n", STDERR_FILENO);
+		ft_putstr_fd("minishell: >", STDERR_FILENO);
+		g_sh.status = STATUS_CTRL_C;
+	}
+	else
+		ft_putstr_fd("\n", STDERR_FILENO);
 	g_sh.status = STATUS_CTRL_C;
+	g_sig.sigint = 1;
+}
+
+void		handle_sigquit(int code)
+{
+	(void)code;
+	if (g_sig.pid != 0)
+	{
+		ft_putstr_fd("Quit: (core dumped)\n", STDERR_FILENO);
+		g_sig.sigquit = 1;
+		g_sh.status = STATUS_CTRL_BACKSLASH;
+	}
+	else
+		ft_putstr_fd("\b\b  \b\b", STDERR_FILENO);
+}
+
+void	reset_sig(void)
+{
+	g_sig.sigint = 0;
+	g_sig.sigquit = 0;
 }

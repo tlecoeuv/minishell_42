@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 14:33:56 by tanguy            #+#    #+#             */
-/*   Updated: 2020/11/14 19:59:20 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/11/15 12:52:06 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 
 void		spawn_process(int in, int out, t_cmd **cmd, int i)
 {
-	pid_t pid;
-
 	if (is_builtin(cmd[i]->args[0]) || get_exec_path(cmd[i]->args))
 	{
-		if ((pid = fork()) == 0)
+		if ((g_sig.pid = fork()) == 0)
 		{
 			if (in != 0)
 			{
@@ -56,7 +54,9 @@ void		handle_commands_pipe(t_cmd **cmds, int nb_cmds)
 	}
 	while (wait(&status) > 0)
 		;
-	g_sh.status = WEXITSTATUS(status);
+	if (g_sig.sigint == 0 && g_sig.sigquit == 0)
+		g_sh.status = WEXITSTATUS(status);
+	g_sig.pid = 0;
 }
 
 void		handle_one_command(t_cmd *cmd)

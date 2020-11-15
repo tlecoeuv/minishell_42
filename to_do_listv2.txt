@@ -1,26 +1,19 @@
-| | -gérer Ctrl-C. SIGINT -->sigint_handler.
-	--->avec signal créer associer Ctrl-C à handle_sigint().
-	--->créer un pid g_pid.
-	--->dans handle_sigint: -si g_pid != 0 kill le ce pid.
-							-sinon clean input et remettre un prompt
-								--->comment?
-									---> g_status == ctrl-C et tester ça avant
-											de prendre l'input etc peut être.
+|V| -gérer Ctrl-C. SIGINT
 
-| | -gérer Ctrl-D. SIGQUIT -->sigquit_handler.
-	--->pareil que Ctrl-C avec siquit,
-		et si g_pid == 0 on exit.
+|V| -gérer Ctrl-D. EOF
+		---> if (ret == 0)
+				g_sh.running = 0;
 
-| | -gérer Ctrl-\,  ==signal EOF, ça clean la ligne sans en remttre une nouvelle.
+|V| -gérer Ctrl-\. SIGQUIT
 
-| | -gérer les retours d'erreurs Builtins.
+|V| -gérer les retours d'erreurs Builtins.
 
 |V| -gérer les retours d'erreurs excve avec status. WEXITSTATUS(status)
 
 |V| -gérer les non éxécutables.
 	--->en même temps normer get_absolute_path.
 
-| | -coder un exit propre.
+|V| -coder un exit propre.
 
 |V| -gérer $?.
 
