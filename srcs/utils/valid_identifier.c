@@ -38,7 +38,8 @@ int			error_identifier(char *builtin, char *name)
 	int		len_name;
 
 	len_name = get_len_name(name);
-	if (len_name != get_len_valid_identifier(name))
+	if (len_name != get_len_valid_identifier(name) ||
+				(!ft_strcmp(builtin, "unset") && len_name != ft_strlen(name)))
 	{
 		ft_putstr_fd("minishell: ", STDERR_FILENO);
 		ft_putstr_fd(builtin, STDERR_FILENO);
