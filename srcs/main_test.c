@@ -13,6 +13,7 @@
 #include "../includes/minishell.h"
 
 t_shell	g_sh;
+t_sig	g_sig;
 
 int		main(int argc, char **argv, char **envp)
 {

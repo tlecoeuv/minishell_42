@@ -6,7 +6,7 @@ MKD = mkdir
 
 RM = rm -rf
 
-SRCS = 	srcs/main.c \
+SRCS = 	srcs/main_test.c \
 		srcs/builtins/builtin_utils.c \
 		srcs/builtins/cd.c \
 		srcs/builtins/exit.c \
@@ -82,7 +82,8 @@ SRCS = 	srcs/main.c \
 		srcs/builtins/env.c \
 		srcs/builtins/unset.c \
 		srcs/builtins/export.c \
-		srcs/builtins/echo.c
+		srcs/builtins/echo.c \
+		srcs/tokens/retokenise_vars.c
 
 OBJ = $(SRCS:%.c=%.o)
 
