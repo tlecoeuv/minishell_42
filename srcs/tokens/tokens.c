@@ -44,52 +44,57 @@ void				display_tokens(t_token **tokens)
 	printf("\nDone\n\n");
 }
 
-t_token					*create_vars_tokens(char **split, t_token *pre_new,
+t_token					*create_vars_tokens(t_token *pre_new,
 														t_token **new_tokens)
 {
-	int					i;
-	int					size;
 	char				*str;
+	char				*str_space;
+	int					i;
 
-	i = 0;
-	free(pre_new->str);
-	pre_new->str = split[i];
-	pre_new->retokenise = 0;
-	size = get_array_size(split);
-	while (split[++i])
+	str = pre_new->str;
+	while (*str)
 	{
-		if (!(str = ft_strdup(" ")))
+		if (*str == ' ')
 		{
-			tok_lstclear(new_tokens);
-			return (pre_new);
+			if (!(str_space = ft_strdup(" ")))
+				return (NULL);
+			append_token(new_tokens, str_space, space);
+			while (*str == ' ')
+				str++;
 		}
-		append_token(new_tokens, str, space);
-		append_token(new_tokens, split[i], word);
+		else
+		{
+			i = 0;
+			while (str[i] != ' ' && str[i])
+				i++;
+			append_token(new_tokens, ft_substr(str, 0, i), word);
+			str += i;
+		}
 	}
-	return (insert_lst_token(pre_new, *new_tokens));
+	if (*new_tokens)
+	{
+		free(pre_new->str);
+		pre_new->str = (*new_tokens)->str;
+		pre_new->type = (*new_tokens)->type;
+		if ((*new_tokens)->next)
+			return (insert_lst_token(pre_new, (*new_tokens)->next));
+	}
+	return (pre_new);
 }
 
 void					retokenise_vars(t_token **tokens)
 {
+	(void)tokens;
 	t_token			*new_tokens;
 	t_token			*temp;
-	char			**split;
 
 	temp = *tokens;
-	new_tokens = NULL;
 	while (temp)
 	{
+		new_tokens = NULL;
 		if (temp->type == word && temp->retokenise)
 		{
-			if (!(split = ft_split(temp->str, ' ')))
-				return ;
-			if (get_array_size(split) > 1)
-			{
-				temp = create_vars_tokens(split, temp, &new_tokens);
-				free(split);
-			}
-			else
-				free_array(split);
+			temp = create_vars_tokens(temp, &new_tokens);
 		}
 		temp = temp->next;
 	}
@@ -117,7 +122,6 @@ int					create_tokens_list(char *input, t_token **tokens)
 	}
 	if (!tok_join_words(tokens))
 		return (ERROR);
-	//retokenise_vars(tokens);
 	//display_tokens(tokens);
 	return (SUCCESS);
 }

@@ -16,11 +16,16 @@ int			get_tok_doll(char *input, t_elem *elem,
 								const t_type *elem_to_type, t_token **tokens)
 {
 	char	*str;
-
 	if (elem->size == 1)
 	{
-		if (!(str = ft_strdup("$")))
-			return (ERROR);
+		if (input[1] == '\"' || input [1] == '\'')
+		{
+			if (!(str = ft_strdup("")))
+				return (ERROR);
+		}
+		else
+			if (!(str = ft_strdup("$")))
+				return (ERROR);
 		elem->name = none;
 	}
 	else

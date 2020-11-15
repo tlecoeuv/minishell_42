@@ -31,6 +31,8 @@ int						get_len_input_doll(char *input, t_elem *elem)
 	(void)elem;
 	len = 1;
 	len_valid = get_len_valid_identifier(&input[len]);
+	if (len_valid == -1)
+		return (len);
 	return (len + len_valid);
 }
 
