@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 17:50:24 by tanguy            #+#    #+#             */
-/*   Updated: 2020/11/15 11:59:52 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/11/15 12:57:44 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int		main(int argc, char **argv, char **envp)
 		tok_lstclear(&tokens);
 		if (ret == 0)
 			g_sh.running = 0;
-//		reset_sig();
+		reset_sig();
 		free(input);
 	}
 	write(1, "exit\n", 5);
