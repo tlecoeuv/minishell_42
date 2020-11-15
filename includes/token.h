@@ -107,4 +107,8 @@ void				tok_lstdelone(t_token *lst);
 void				tok_lstclear(t_token **lst);
 t_token				*tok_lstlast(t_token *lst);
 
+
+//A ENLEVER
+void				display_tokens(t_token **tokens);
+
 #endif

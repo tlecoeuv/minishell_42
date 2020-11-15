@@ -12,48 +12,35 @@
 
 #include "../../includes/minishell.h"
 
-t_token					*create_vars_tokens(t_token *pre_new,
-														t_token **new_tokens)
+char					*create_vars_tokens(char *str, t_token **new_tokens)
 {
-	char				*str;
 	char				*str_space;
 	int					i;
 
-	str = pre_new->str;
-	while (*str)
+	if (*str == ' ')
 	{
-		if (*str == ' ')
-		{
-			if (!(str_space = ft_strdup(" ")))
-				return (NULL);
-			append_token(new_tokens, str_space, space);
-			while (*str == ' ')
-				str++;
-		}
-		else
-		{
-			i = 0;
-			while (str[i] != ' ' && str[i])
-				i++;
-			append_token(new_tokens, ft_substr(str, 0, i), word);
-			str += i;
-		}
+		if (!(str_space = ft_strdup(" ")))
+			return (NULL);
+		append_token(new_tokens, str_space, space);
+		while (*str == ' ')
+			str++;
 	}
-	if (*new_tokens)
+	else
 	{
-		free(pre_new->str);
-		pre_new->str = (*new_tokens)->str;
-		pre_new->type = (*new_tokens)->type;
-		if ((*new_tokens)->next)
-			return (insert_lst_token(pre_new, (*new_tokens)->next));
+		i = 0;
+		while (str[i] != ' ' && str[i])
+			i++;
+		append_token(new_tokens, ft_substr(str, 0, i), word);
+		str += i;
 	}
-	return (pre_new);
+	return (str);
 }
 
 void					retokenise_vars(t_token **tokens)
 {
 	t_token			*new_tokens;
 	t_token			*temp;
+	char			*str;
 
 	temp = *tokens;
 	while (temp)
@@ -61,7 +48,18 @@ void					retokenise_vars(t_token **tokens)
 		new_tokens = NULL;
 		if (temp->type == word && temp->retokenise)
 		{
-			temp = create_vars_tokens(temp, &new_tokens);
+			str = temp->str;
+			while (*str)
+				str = create_vars_tokens(str, &new_tokens);
+			if (new_tokens)
+			{
+				free(temp->str);
+				temp->str = new_tokens->str;
+				temp->type = new_tokens->type;
+				if (new_tokens->next)
+					temp = insert_lst_token(temp, new_tokens->next);
+				free(new_tokens);
+			}
 		}
 		temp = temp->next;
 	}
