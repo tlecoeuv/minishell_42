@@ -70,9 +70,7 @@ int			change_directory(char *new_pwd, char *arg)
 
 	if (chdir(new_pwd) == -1)
 	{
-		ft_putstr_fd("minishell: cd: ", STDERR_FILENO);
-		ft_putstr_fd(arg, STDERR_FILENO);
-		ft_putstr_fd(": No such file or directory\n", STDERR_FILENO);
+		error("cd", arg);
 		return (STATUS_FAILURE_BUILTIN);
 	}
 	oldpwd = ft_strdup(ft_getenv("PWD"));
@@ -124,5 +122,8 @@ int		ft_cd(char **args)
 	if (size > 1)
 		return (error_from_builtin("cd:", " too many arguments\n",
 													STATUS_FAILURE_BUILTIN));
+	else if (size == 2)
+		if (!ft_strlen(args[1]))
+			return (STATUS_SUCCESS);
 	return (manage_cd(args[size], size));
 }
