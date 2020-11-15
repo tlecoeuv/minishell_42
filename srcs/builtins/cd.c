@@ -122,8 +122,5 @@ int		ft_cd(char **args)
 	if (size > 1)
 		return (error_from_builtin("cd:", " too many arguments\n",
 													STATUS_FAILURE_BUILTIN));
-	else if (size == 2)
-		if (!ft_strlen(args[1]))
-			return (STATUS_SUCCESS);
 	return (manage_cd(args[size], size));
 }
