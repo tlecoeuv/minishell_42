@@ -6,7 +6,7 @@ MKD = mkdir
 
 RM = rm -rf
 
-SRCS = 	srcs/main_test.c \
+SRCS = 	srcs/main.c \
 		srcs/builtins/builtin_utils.c \
 		srcs/builtins/cd.c \
 		srcs/builtins/exit.c \
