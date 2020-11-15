@@ -70,7 +70,7 @@ int			change_directory(char *new_pwd, char *arg)
 
 	if (chdir(new_pwd) == -1)
 	{
-		ft_putstr_fd("cd: ", STDERR_FILENO);
+		ft_putstr_fd("minishell: cd: ", STDERR_FILENO);
 		ft_putstr_fd(arg, STDERR_FILENO);
 		ft_putstr_fd(": No such file or directory\n", STDERR_FILENO);
 		return (STATUS_FAILURE_BUILTIN);
