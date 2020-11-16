@@ -16,6 +16,7 @@ SRCS = 	srcs/main.c \
 		srcs/error/error.c \
 		srcs/command/handle_tokens.c \
 		srcs/command/get_commands.c \
+		srcs/command/interpret_v_env.c \
 		srcs/command/command_utils.c \
 		srcs/command/handle_commands.c \
 		srcs/command/handle_command_no_pipe.c \

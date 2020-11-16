@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 11:02:50 by tanguy            #+#    #+#             */
-/*   Updated: 2020/11/13 11:35:15 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/11/16 16:57:08 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ t_cmd		**get_commands(t_token **lst_token, int *nb_cmds)
 	i = 0;
 	interpret_v_env(*lst_token);
 	delete_cmd_spaces(*lst_token);
+	while (*lst_token && (*lst_token)->type == space)
+		*lst_token = (*lst_token)->next;
 	*nb_cmds = get_nb_commands(*lst_token);
 	if (!(cmds = malloc(sizeof(t_cmd *) * (*nb_cmds + 1))))
 		return (NULL);

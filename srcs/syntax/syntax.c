@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: austin <avieira@student.42.fr>             +#+  +:+       +#+        */
+/*   By: austin <austin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 02:10:06 by austin            #+#    #+#             */
-/*   Updated: 2020/10/20 17:55:21 by austin           ###   ########.fr       */
+/*   Updated: 2020/11/16 16:55:27 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ int				check_syntax(t_token *tokens)
 	check_type[6] = &check_v_env;
 	check_type[7] = &check_end;
 	check_type[8] = &check_nope;
-
 	go = tokens;
 	while (go)
 	{

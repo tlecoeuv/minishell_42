@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 10:55:06 by tanguy            #+#    #+#             */
-/*   Updated: 2020/11/15 12:43:28 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/11/16 16:55:09 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void		handle_sigquit(int code)
 		ft_putstr_fd("\b\b  \b\b", STDERR_FILENO);
 }
 
-void	reset_sig(void)
+void		reset_sig(void)
 {
 	g_sig.sigint = 0;
 	g_sig.sigquit = 0;
