@@ -28,5 +28,7 @@ int			is_builtin(char	*str);
 void 		exec_builtin(t_cmd *cmd);
 int			get_len_name(char *env_var);
 int			error_identifier(char *builtin, char *name);
+void		set_path_in_env(char *new_pwd, char **oldpwd, char **pwd);
+char		*get_path_from_env(char car_path);
 
 #endif

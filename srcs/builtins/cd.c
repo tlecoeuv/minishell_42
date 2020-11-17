@@ -12,29 +12,6 @@
 
 #include "../../includes/minishell.h"
 
-char		*get_path_from_env(char car_path)
-{
-	char	*path_from_env;
-	char	*path_name;
-
-	if (car_path == '-')
-		path_name = "OLDPWD";
-	else if (car_path == '~')
-		path_name = "HOME";
-	else
-		return (NULL);
-	if (!(path_from_env = ft_getenv(path_name)))
-	{
-		ft_putstr_fd("minishell: cd: ", STDERR_FILENO);
-		ft_putstr_fd(path_name, STDERR_FILENO);
-		ft_putstr_fd(" not set\n", STDERR_FILENO);
-		return (NULL);
-	}
-	if (!(path_from_env = ft_strdup(path_from_env)))
-		return (NULL);
-	return (path_from_env);
-}
-
 char		*get_new_pwd(char *arg)
 {
 	char	*from_home;
@@ -73,8 +50,7 @@ int			change_directory(char *new_pwd, char *arg)
 		error("cd", arg);
 		return (STATUS_FAILURE_BUILTIN);
 	}
-	oldpwd = ft_strdup(ft_getenv("PWD"));
-	pwd = getcwd(NULL, 0);
+	set_path_in_env(new_pwd, &oldpwd, &pwd);
 	status = STATUS_SUCCESS;
 	if (oldpwd && pwd)
 	{
@@ -122,7 +98,7 @@ int		ft_cd(char **args)
 	if (size > 1)
 		return (error_from_builtin("cd:", " too many arguments\n",
 													STATUS_FAILURE_BUILTIN));
-	else if (size)
+	if (size)
 		if (!ft_strlen(args[1]))
 			return (STATUS_SUCCESS);
 	return (manage_cd(args[size], size));

@@ -9,6 +9,7 @@ RM = rm -rf
 SRCS = 	srcs/main.c \
 		srcs/builtins/builtin_utils.c \
 		srcs/builtins/cd.c \
+		srcs/builtins/cd_vars.c \
 		srcs/builtins/exit.c \
 		srcs/builtins/pwd.c \
 		srcs/env/env_utils.c \
