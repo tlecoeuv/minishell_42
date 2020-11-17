@@ -1,10 +1,10 @@
 printf "\e[32m"
 make
 while true; do
-    printf "\e[32mTest ?(Yy/Nn)"
-	read -p "" yn
-    case $yn in
-        [Yy]* ) 
+    printf "\e[32mValgrind minishell (Vv), Cat full report (Cc), Exit (Ee)"
+	read -p "" choice
+    case $choice in
+        [Vv]* ) 
 			printf "\e[94m"
 			valgrind --leak-check=full \
 			 --show-leak-kinds=all \
@@ -18,7 +18,8 @@ while true; do
 			error=`grep "ERROR SUMMARY" valgrind-out.txt | grep -Po '.{10}\K.*'`
 			printf "\e[91m$error"
 			printf "\n\n";;
-        [Nn]* ) exit;;
+        [Cc]* ) printf "\e[37m" && cat valgrind-out.txt;;
+        [Ee]* ) exit;;
         * ) printf "\e[32mpakompri" && printf "\n";;
     esac
 done
