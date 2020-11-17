@@ -38,6 +38,8 @@ int		main(int argc, char **argv, char **envp)
 		reset_sig();
 		free(input);
 	}
+	free_array(g_sh.env);
+	free(g_sh.cwd);
 	write(1, "exit\n", 5);
 	return (g_sh.status);
 }
