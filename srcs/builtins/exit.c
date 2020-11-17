@@ -12,7 +12,7 @@
 
 #include "../../includes/minishell.h"
 
-int			is_not_to_big(char *str)
+int						is_not_to_big(char *str)
 {
 	int					i;
 	int					sign;
@@ -27,7 +27,7 @@ int			is_not_to_big(char *str)
 		sign = -1;
 	if (str[i] == '-' || str[i] == '+')
 		i++;
-	while(str[i])
+	while (str[i])
 		res = res * 10 + str[i++] - '0';
 	if (sign == 1 && res > (unsigned long int)LONG_MAX)
 		return (0);
@@ -36,14 +36,14 @@ int			is_not_to_big(char *str)
 	return (1);
 }
 
-int			is_valid_number(char *str)
+int						is_valid_number(char *str)
 {
-	int		i;
+	int					i;
 
 	i = 0;
 	while (ft_isspace(str[i]))
 		i++;
-	if (str[i] == '+' || str[i] =='-')
+	if (str[i] == '+' || str[i] == '-')
 		i++;
 	while (ft_isdigit(str[i]))
 		i++;
@@ -52,11 +52,11 @@ int			is_valid_number(char *str)
 	return (is_not_to_big(str));
 }
 
-int		ft_exit(char **args)
+int						ft_exit(char **args)
 {
 	g_sh.running = 0;
 	if (get_array_size(args) < 2)
-		return(g_sh.status);
+		return (g_sh.status);
 	if (!is_valid_number(args[1]))
 	{
 		ft_putstr_fd("minishell: exit: numeric argument required\n",
@@ -68,5 +68,5 @@ int		ft_exit(char **args)
 		g_sh.running = 1;
 		ft_putstr_fd("minishell: exit: too many arguments\n", STDERR_FILENO);
 	}
-	return(ft_atoi(args[1]));
+	return (ft_atoi(args[1]));
 }

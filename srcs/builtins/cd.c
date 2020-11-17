@@ -90,14 +90,18 @@ int			manage_cd(char *arg, int size)
 	return (status);
 }
 
-int		ft_cd(char **args)
+int			ft_cd(char **args)
 {
 	int		size;
+	int		status;
 
 	size = get_array_size(args) - 1;
 	if (size > 1)
-		return (error_from_builtin("cd:", " too many arguments\n",
-													STATUS_FAILURE_BUILTIN));
+	{
+		status = error_from_builtin("cd:", " too many arguments\n",
+													STATUS_FAILURE_BUILTIN);
+		return (status);
+	}
 	if (size)
 		if (!ft_strlen(args[1]))
 			return (STATUS_SUCCESS);

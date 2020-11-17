@@ -52,10 +52,10 @@ void		get_ascii_order(int size, int *order)
 
 void		print_export_env(void)
 {
-	int			i;
-	int			len;
-	int			size;
-	int			*order;
+	int		i;
+	int		len;
+	int		size;
+	int		*order;
 
 	size = get_array_size(g_sh.env);
 	if (!(order = ft_calloc(sizeof(int), size)))
@@ -100,7 +100,7 @@ void		manage_var(char *var)
 	add_env_var(var);
 }
 
-int		ft_export(char **args)
+int			ft_export(char **args)
 {
 	int		size;
 	int		i;

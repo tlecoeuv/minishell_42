@@ -54,7 +54,7 @@ void		*remove_index_of_env(int index)
 	return (new_env);
 }
 
-int		ft_unset(char **args)
+int			ft_unset(char **args)
 {
 	int		size;
 	int		i;
