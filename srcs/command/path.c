@@ -23,7 +23,8 @@ int			get_exec_path(char **args)
 		return (is_executable(*args));
 	if ((path_split = get_path_split()) == NULL)
 		return (error_cmd_not_found(*args));
-	while (path_split[i] && !test_file(bin))
+	bin = NULL;
+	while (path_split[i] && !bin)
 	{
 		bin = ft_strjoin_sep(path_split[i], *args, '/');
 		if (!test_file(bin))
