@@ -12,13 +12,11 @@
 
 #include "../../includes/minishell.h"
 
-
 int				doll_in_d_quote(char *input, t_elem *current,
 								const t_type *elem_to_type, t_token **tokens)
 {
 	int		ret;
 	t_token	*last;
-
 
 	ret = get_tok_doll(input, current, elem_to_type, tokens);
 	last = tok_lstlast(*tokens);
@@ -73,7 +71,9 @@ int				get_tok_d_quote(char *input, t_elem *elem,
 		}
 	}
 	else
+	{
 		if (d_quote_manage(input, elem, elem_to_type, tokens) == ERROR)
 			return (ERROR);
+	}
 	return (SUCCESS);
 }

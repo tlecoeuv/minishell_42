@@ -66,6 +66,5 @@ int					create_tokens_list(char *input, t_token **tokens)
 	}
 	if (!tok_join_words(tokens))
 		return (ERROR);
-	//display_tokens(tokens);
 	return (SUCCESS);
 }
