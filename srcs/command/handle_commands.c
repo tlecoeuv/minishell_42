@@ -6,15 +6,15 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 14:33:56 by tanguy            #+#    #+#             */
-/*   Updated: 2020/11/15 12:52:06 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/11/17 10:43:04 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void		spawn_process(int in, int out, t_cmd **cmd, int i)
+void		spawn_process(int in, int out, t_cmd **cmds, int i)
 {
-	if (is_builtin(cmd[i]->args[0]) || get_exec_path(cmd[i]->args))
+	if (is_builtin(cmds[i]->args[0]) || get_exec_path(&(cmds[i]->bin_path)))
 	{
 		if ((g_sig.pid = fork()) == 0)
 		{
@@ -23,12 +23,12 @@ void		spawn_process(int in, int out, t_cmd **cmd, int i)
 				dup2(in, STDIN_FILENO);
 				close(in);
 			}
-			if (cmd[i + 1])
+			if (cmds[i + 1])
 			{
 				dup2(out, STDOUT_FILENO);
 				close(out);
 			}
-			handle_one_command(cmd[i]);
+			handle_one_command(cmds[i]);
 		}
 	}
 }
@@ -70,10 +70,10 @@ void		handle_one_command(t_cmd *cmd)
 		}
 		else
 		{
-			if (cmd->args[0])
+			if (cmd->bin_path)
 			{
 				do_redir(cmd->in_fd, cmd->out_fd);
-				if (execve(cmd->args[0], cmd->args, g_sh.env) == -1)
+				if (execve(cmd->bin_path, cmd->args, g_sh.env) == -1)
 					exit(EXIT_FAILURE);
 			}
 		}

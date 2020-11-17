@@ -6,7 +6,7 @@
 /*   By: tlecoeuv <tlecoeuv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 16:04:09 by tlecoeuv          #+#    #+#             */
-/*   Updated: 2020/11/16 17:02:45 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/11/17 10:37:45 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 typedef struct		s_cmd
 {
+	char			*bin_path;
 	char			**args;
 	int				out_fd;
 	int				in_fd;

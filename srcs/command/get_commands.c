@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 11:02:50 by tanguy            #+#    #+#             */
-/*   Updated: 2020/11/16 16:57:08 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/11/17 10:43:32 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ t_cmd		**get_commands(t_token **lst_token, int *nb_cmds)
 			return (NULL);
 		get_redir(lst_token, cmds[i]);
 		cmds[i]->args = create_cmd_args(lst_token);
+		cmds[i]->bin_path = ft_strdup(cmds[i]->args[0]);
 		if (*lst_token && (*lst_token)->type == pip)
 			*lst_token = (*lst_token)->next;
 		i++;

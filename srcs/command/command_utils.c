@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 09:43:49 by tanguy            #+#    #+#             */
-/*   Updated: 2020/11/16 16:57:23 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/11/17 10:38:05 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void		free_commands(t_cmd **cmds)
 	while (cmds[i])
 	{
 		free_array(cmds[i]->args);
+		free(cmds[i]->bin_path);
 		free(cmds[i]);
 		i++;
 	}
