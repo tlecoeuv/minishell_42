@@ -1,7 +1,7 @@
 printf "\e[32m"
 make
 while true; do
-    printf "\e[32mValgrind minishell (Vv), Cat full report (Cc), Exit (Ee)"
+    printf "\e[32mValgrind minishell (Vv), Cat full report (Cc), Make re (Mm), Exit (Ee)"
 	read -p "" choice
     case $choice in
         [Vv]* ) 
@@ -19,6 +19,7 @@ while true; do
 			printf "\e[91m$error"
 			printf "\n\n";;
         [Cc]* ) printf "\e[37m" && cat valgrind-out.txt;;
+        [Mm]* ) printf "\e[32m" && make re;;
         [Ee]* ) exit;;
         * ) printf "\e[32mpakompri" && printf "\n";;
     esac
