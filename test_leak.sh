@@ -14,7 +14,7 @@ while true; do
 			printf "\e[91m\n\n\n------------VALGRIND OUTPUT\n"
 			leak=`grep -A 5 "LEAK SUMMARY" valgrind-out.txt | grep -Po '^.{10}\K.*'`
 			printf "\e[91m$leak"
-			no_leak=`grep -A 5 "All heap blocks were freed -- no leaks are possible" valgrind-out.txt | grep -Po '^.{8}\K.*'`
+			no_leak=`grep "All heap blocks were freed -- no leaks are possible" valgrind-out.txt | grep -Po '^.{8}\K.*'`
 			printf "\e[91m$no_leak"
 			printf "\n"
 			error=`grep "ERROR SUMMARY" valgrind-out.txt | grep -Po '.{8}\K.*'`
