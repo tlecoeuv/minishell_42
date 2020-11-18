@@ -19,8 +19,9 @@ int			check_pip(t_token *tokens, t_token *go)
 
 	previous = get_previous_skip_space(tokens, go);
 	next = get_next_skip_space(go);
-	if ((previous->type == v_env || previous->type == word) &&
-				(next->type == v_env || next->type == word))
-		return (SUCCESS);
+	if (next)
+		if ((previous->type == v_env || previous->type == word) &&
+					(next->type == v_env || next->type == word))
+			return (SUCCESS);
 	return (syntax_error("|"));
 }
