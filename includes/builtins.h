@@ -13,8 +13,6 @@
 #ifndef BUILTINS_H
 # define BUILTINS_H
 
-#include "minishell.h"
-
 int			ft_cd(char **args);
 int			ft_exit(char **args);
 int			is_valid_number(char *str);
