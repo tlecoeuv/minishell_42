@@ -43,7 +43,7 @@ void		set_path_in_env(char *new_pwd, char **oldpwd, char **pwd)
 	*pwd = getcwd(NULL, 0);
 	if (!*oldpwd || !*pwd)
 		return ;
-	if (!ft_strncmp("//", new_pwd, 2))
+	if (!ft_strncmp("//", new_pwd, 2) && ft_strncmp("///", new_pwd, 3))
 	{
 		temp = *pwd;
 		*pwd = ft_strjoin("/", temp);
