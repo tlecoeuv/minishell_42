@@ -22,7 +22,7 @@
 # include <string.h>
 # include <errno.h>
 # include <fcntl.h>
-# include <signals.h>
+//# include <signal.h>
 # include <limits.h>
 
 //LIBRAIRIES A SUPPRIMER
@@ -35,9 +35,10 @@
 # include "command.h"
 # include "utils.h"
 # include "env.h"
-# include "bultins.h"
+# include "builtins.h"
 # include "error.h"
 # include "redirection.h"
+# include "signals.h"
 
 typedef struct	s_shell
 {
