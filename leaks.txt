@@ -1,6 +1,6 @@
 echo $?
-sleep 1 | exit ; exit
 
+|sleep 1 | exit ; exit
 |exit 0 | exit 1
 |exit 1 | exit 0
 ->Leaks ressemblent a un minishell qui n'a pas ete free (tokens + env)
