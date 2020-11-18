@@ -21,29 +21,6 @@ size_t					ft_strl_spec(const char *s, char spec)
 		l++;
 	return (l);
 }
-/*
-char					*ft_strjoin(char *s1, char *s2)
-{
-	char				*s;
-	int					i;
-	int					j;
-
-	if (!s1 || !s2)
-		return (NULL);
-	if (!(s = malloc(sizeof(char) * (ft_strl_spec(s1, 0)
-		+ ft_strl_spec(s2, 0) + 1))))
-		return (NULL);
-	i = 0;
-	j = 0;
-	while (s1[i])
-		s[j++] = s1[i++];
-	i = 0;
-	while (s2[i])
-		s[j++] = s2[i++];
-	s[j] = 0;
-	return (s);
-}
-*/
 
 void					*ft_memcpy(void *dst, const void *src, size_t n)
 {
@@ -58,28 +35,3 @@ void					*ft_memcpy(void *dst, const void *src, size_t n)
 		*t_dst++ = *t_src++;
 	return (dst);
 }
-/*
-char					*ft_substr(char const *s, unsigned int start, size_t l)
-{
-	int					i;
-	char				*substr;
-	unsigned int		len_s;
-
-	len_s = 0;
-	if (!s)
-		return (NULL);
-	while (s[len_s])
-		len_s++;
-	l = (l > len_s - start) ? len_s - start : l;
-	l = (start > len_s) ? 0 : l;
-	if (!(substr = malloc(sizeof(char) * (l + 1))))
-		return (NULL);
-	i = 0;
-	while (l-- && s[start + i])
-	{
-		substr[i] = s[start + i];
-		i++;
-	}
-	substr[i] = 0;
-	return (substr);
-}*/

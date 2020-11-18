@@ -20,8 +20,8 @@ typedef struct	s_sig
 	pid_t		pid;
 }				t_sig;
 
-void		handle_sigint(int code);
-void		handle_sigquit(int code);
-void		reset_sig(void);
+void			handle_sigint(int code);
+void			handle_sigquit(int code);
+void			reset_sig(void);
 
 #endif
