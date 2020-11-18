@@ -6,7 +6,7 @@
 /*   By: tlecoeuv <tlecoeuv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 14:12:41 by tlecoeuv          #+#    #+#             */
-/*   Updated: 2020/11/12 11:19:07 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/11/18 15:28:02 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int						is_not_to_big(char *str)
 		sign = -1;
 	if (str[i] == '-' || str[i] == '+')
 		i++;
-	while (str[i])
+	while (ft_isdigit(str[i]))
 		res = res * 10 + str[i++] - '0';
 	if (sign == 1 && res > (unsigned long int)LONG_MAX)
 		return (0);
@@ -47,6 +47,8 @@ int						is_valid_number(char *str)
 		i++;
 	while (ft_isdigit(str[i]))
 		i++;
+	while (ft_isspace(str[i]) && str[i] != '\r')
+		i++;
 	if (str[i] != '\0')
 		return (0);
 	return (is_not_to_big(str));
@@ -59,14 +61,16 @@ int						ft_exit(char **args)
 		return (g_sh.status);
 	if (!is_valid_number(args[1]))
 	{
-		ft_putstr_fd("minishell: exit: numeric argument required\n",
-																STDERR_FILENO);
+		ft_putstr_fd("minishell: exit: ", STDERR_FILENO);
+		ft_putstr_fd(args[1], STDERR_FILENO);
+		ft_putstr_fd(": numeric argument required\n", STDERR_FILENO);
 		return (STATUS_FAILURE_BUILTIN);
 	}
 	if (get_array_size(args) > 2)
 	{
 		g_sh.running = 1;
 		ft_putstr_fd("minishell: exit: too many arguments\n", STDERR_FILENO);
+		return (STATUS_FAILURE);
 	}
 	return (ft_atoi(args[1]));
 }
