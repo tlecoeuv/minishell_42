@@ -72,12 +72,12 @@ int			ft_unset(char **args)
 			is_env(args[i], &index);
 			if ((index != -1))
 				if (!remove_index_of_env(index))
-					return (STATUS_FAILURE_BUILTIN);
+					return (STATUS_FAILURE);
 		}
 		else
 			status += 1;
 	}
 	if (status)
-		return (STATUS_FAILURE_BUILTIN);
+		return (STATUS_FAILURE);
 	return (STATUS_SUCCESS);
 }

@@ -120,6 +120,6 @@ int			ft_export(char **args)
 				status += 1;
 	}
 	if (status)
-		return (STATUS_FAILURE_BUILTIN);
+		return (STATUS_FAILURE);
 	return (STATUS_SUCCESS);
 }

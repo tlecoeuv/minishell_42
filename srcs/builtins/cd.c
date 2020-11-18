@@ -48,7 +48,7 @@ int			change_directory(char *new_pwd, char *arg)
 	if (chdir(new_pwd) == -1)
 	{
 		error("cd", arg);
-		return (STATUS_FAILURE_BUILTIN);
+		return (STATUS_FAILURE);
 	}
 	set_path_in_env(new_pwd, &oldpwd, &pwd);
 	status = STATUS_SUCCESS;
@@ -58,7 +58,7 @@ int			change_directory(char *new_pwd, char *arg)
 		set_env_var("PWD", pwd);
 	}
 	else
-		status = STATUS_FAILURE_BUILTIN;
+		status = STATUS_FAILURE;
 	if (oldpwd)
 		free(oldpwd);
 	if (pwd)
@@ -84,7 +84,7 @@ int			manage_cd(char *arg, int size)
 	else
 		new_pwd = get_new_pwd(arg);
 	if (!new_pwd)
-		return (STATUS_FAILURE_BUILTIN);
+		return (STATUS_FAILURE);
 	status = change_directory(new_pwd, arg);
 	free(new_pwd);
 	return (status);
@@ -99,7 +99,7 @@ int			ft_cd(char **args)
 	if (size > 1)
 	{
 		status = error_from_builtin("cd:", " too many arguments\n",
-													STATUS_FAILURE_BUILTIN);
+													STATUS_FAILURE);
 		return (status);
 	}
 	if (size)
