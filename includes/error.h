@@ -6,7 +6,7 @@
 /*   By: tlecoeuv <tlecoeuv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 11:03:36 by tlecoeuv          #+#    #+#             */
-/*   Updated: 2020/11/09 18:30:11 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/11/18 15:42:04 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # define STATUS_SUCCESS				0
 # define STATUS_FAILURE 			1
-# define STATUS_FAILURE_BUILTIN 	1
+# define STATUS_FAILURE_BUILTIN 	2
 # define STATUS_NOT_EXECUTABLE		126
 # define STATUS_CMD_NOT_FOUND		127
 # define STATUS_EXIT_INVALID_ARGS	128
