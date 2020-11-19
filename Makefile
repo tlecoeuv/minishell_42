@@ -22,6 +22,7 @@ SRCS = 	srcs/main.c \
 		srcs/command/handle_commands.c \
 		srcs/command/handle_command_no_pipe.c \
 		srcs/command/path.c \
+		srcs/command/path_utils.c \
 		srcs/signals/signals.c \
 		srcs/redirection/do_redirection.c \
 		srcs/redirection/get_redirection.c \

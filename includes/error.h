@@ -6,7 +6,7 @@
 /*   By: tlecoeuv <tlecoeuv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 11:03:36 by tlecoeuv          #+#    #+#             */
-/*   Updated: 2020/11/18 15:42:04 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/11/19 17:15:44 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@
 int		error_cmd_not_found(char *cmd);
 void	error(char *cmd, char *arg);
 int		error_from_builtin(char *cmd, char *msg, int error);
+void	error_not_executable(char *file, int option);
 
 #endif

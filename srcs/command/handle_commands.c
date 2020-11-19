@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 14:33:56 by tanguy            #+#    #+#             */
-/*   Updated: 2020/11/19 11:41:47 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/11/19 13:32:55 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,10 @@ void		spawn_process(int in, int out, t_cmd **cmds, int i)
 			handle_one_command(cmds[i]);
 		}
 	}
+	if (cmds[i]->out_fd > 0)
+		close(cmds[i]->out_fd);
+	if (cmds[i]->in_fd > 0)
+		close(cmds[i]->in_fd);
 }
 
 void		handle_commands_pipe(t_cmd **cmds, int nb_cmds)
@@ -78,9 +82,5 @@ void		handle_one_command(t_cmd *cmd)
 					exit(EXIT_FAILURE);
 			}
 		}
-		if (cmd->out_fd > 0)
-			close(cmd->out_fd);
-		if (cmd->in_fd > 0)
-			close(cmd->in_fd);
 	}
 }

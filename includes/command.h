@@ -6,7 +6,7 @@
 /*   By: tlecoeuv <tlecoeuv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 16:04:09 by tlecoeuv          #+#    #+#             */
-/*   Updated: 2020/11/17 10:37:45 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/11/19 17:53:26 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ typedef struct		s_cmd
 	int				in_fd;
 }					t_cmd;
 
-int					test_file(char *file_name);
+int					test_bin(char *bin);
+char				*test_all_path(char **paths, char *args);
 char				**get_path_split();
 int					get_exec_path(char **args);
 int					is_executable(char *file);
