@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 14:33:56 by tanguy            #+#    #+#             */
-/*   Updated: 2020/11/17 10:43:04 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/11/19 11:41:47 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void		spawn_process(int in, int out, t_cmd **cmds, int i)
 {
-	if (is_builtin(cmds[i]->args[0]) || get_exec_path(&(cmds[i]->bin_path)))
+	if (cmds[i]->args[0] &&
+		(is_builtin(cmds[i]->args[0]) || get_exec_path(&(cmds[i]->bin_path))))
 	{
 		if ((g_sig.pid = fork()) == 0)
 		{

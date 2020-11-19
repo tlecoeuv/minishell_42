@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 10:35:12 by tanguy            #+#    #+#             */
-/*   Updated: 2020/11/17 10:40:06 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/11/19 11:38:34 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,18 @@
 
 void		handle_command_no_pipe(t_cmd *cmd)
 {
-	if (cmd->out_fd != -1 && cmd->in_fd != -1)
+	if (cmd->out_fd != -1 && cmd->in_fd != -1 && cmd->args[0])
 	{
 		if (is_builtin(cmd->args[0]))
 			exec_builtin(cmd);
 		else
-		{
 			if (get_exec_path(&(cmd->bin_path)))
 				exec_cmd(cmd);
-		}
 	}
+	if (cmd->out_fd > 0)
+		close(cmd->out_fd);
+	if (cmd->in_fd > 0)
+		close(cmd->in_fd);
 }
 
 void		exec_cmd(t_cmd *cmd)
@@ -45,8 +47,4 @@ void		exec_cmd(t_cmd *cmd)
 		if (execve(cmd->bin_path, cmd->args, g_sh.env) == -1)
 			exit(EXIT_FAILURE);
 	}
-	if (cmd->out_fd > 0)
-		close(cmd->out_fd);
-	if (cmd->in_fd > 0)
-		close(cmd->in_fd);
 }

@@ -6,7 +6,7 @@
 /*   By: tlecoeuv <tlecoeuv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/13 23:31:02 by tlecoeuv          #+#    #+#             */
-/*   Updated: 2020/11/13 11:52:04 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/11/19 11:27:22 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,13 @@ void	get_and_delete(t_token **tmp, t_token **lst_tok, t_cmd *cmd, int check)
 	start = *tmp;
 	redir_type = (*tmp)->type;
 	*tmp = (*tmp)->next;
-	if ((*tmp)->type == space)
-		*tmp = (*tmp)->next;
 	get_redir_fd((*tmp)->str, cmd, redir_type);
-	if ((*tmp)->type == space)
-		*tmp = (*tmp)->next;
 	end = *tmp;
 	*tmp = (*tmp)->next;
 	if (check != 0)
 		del_start_to_end(lst_tok, start, end);
 	else
-		while (*lst_tok != *tmp)
+		while (*lst_tok && *lst_tok != *tmp)
 			*lst_tok = (*lst_tok)->next;
 }
 
