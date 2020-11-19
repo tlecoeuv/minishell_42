@@ -12,46 +12,58 @@
 
 #include "../../includes/minishell.h"
 
-int						is_not_to_big(char *str)
-{
-	int					i;
-	int					sign;
-	unsigned long int	res;
 
-	i = 0;
-	sign = 1;
+int						get_unity_index(int i, char *str)
+{
+	if (i < 0)
+		return (0);
+	return (str[i] - '0');
+}
+
+int						is_not_to_big(int sign, char *str)
+{
+	unsigned long int	diff_res;
+	unsigned long int	old_res;
+	unsigned long int	res;
+	int					i;
+
+	i = -1;
 	res = 0;
-	while (ft_isspace(str[i]))
-		i++;
-	if (str[i] == '-')
-		sign = -1;
-	if (str[i] == '-' || str[i] == '+')
-		i++;
-	while (ft_isdigit(str[i]))
-		res = res * 10 + str[i++] - '0';
-	if (sign == 1 && res > (unsigned long int)LONG_MAX)
-		return (0);
-	if (sign == -1 && res > (unsigned long int)LONG_MAX + 1)
-		return (0);
+	old_res = 0;
+	while (ft_isdigit(str[++i]))
+	{
+		diff_res = 10 * (res - old_res) +
+						get_unity_index(i, str) - get_unity_index(i - 1, str);
+		if (diff_res > (unsigned long int)LONG_MAX - res + sign)
+			return (0);
+		old_res = res;
+		res += diff_res;
+	}
 	return (1);
 }
 
 int						is_valid_number(char *str)
 {
 	int					i;
+	int					sign;
+	int					start;
 
 	i = 0;
+	sign = 0;
 	while (ft_isspace(str[i]))
 		i++;
+	if (str[i] == '-')
+		sign = 1;
 	if (str[i] == '+' || str[i] == '-')
 		i++;
+	start = i;
 	while (ft_isdigit(str[i]))
 		i++;
 	while (ft_isspace(str[i]) && str[i] != '\r')
 		i++;
 	if (str[i] != '\0')
 		return (0);
-	return (is_not_to_big(str));
+	return (is_not_to_big(sign, &str[start]));
 }
 
 int						ft_exit(char **args)
