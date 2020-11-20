@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 14:33:56 by tanguy            #+#    #+#             */
-/*   Updated: 2020/11/19 13:32:55 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/11/20 12:05:28 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ void		handle_one_command(t_cmd *cmd)
 				do_redir(cmd->in_fd, cmd->out_fd);
 				if (execve(cmd->bin_path, cmd->args, g_sh.env) == -1)
 					exit(EXIT_FAILURE);
+				exit(g_sh.status);
 			}
 		}
 	}

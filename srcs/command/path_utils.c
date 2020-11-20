@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 18:03:34 by tanguy            #+#    #+#             */
-/*   Updated: 2020/11/19 19:20:30 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/11/20 11:30:43 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int			is_executable(char *file)
 	}
 	else if (S_ISREG(stats.st_mode) == 0)
 		error_not_executable(file, 1);
-	else if ((stats.st_mode & S_IXUSR) == 0)
+	else if ((stats.st_mode & S_IXUSR) == 0 || (stats.st_mode & S_IRUSR) == 0)
 		error_not_executable(file, 2);
 	else
 		return (1);
