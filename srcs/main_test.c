@@ -35,6 +35,8 @@ int		main(int argc, char **argv, char **envp)
 			tok_lstclear(&tokens);
 			//free(input);
 	//}
+	free_array(g_sh.env);
+	free(g_sh.cwd);
 	return (g_sh.status);
 }
 
