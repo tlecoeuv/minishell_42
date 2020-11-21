@@ -47,7 +47,10 @@ int					get_tok_bs(char *input, t_elem *elem,
 	if (!(str = get_str_bs(input, elem)))
 		return (ERROR);
 	if (!*str)
+	{
+		free(str);
 		return (SUCCESS);
+	}
 	if (!(append_token(tokens, str, elem_to_type[elem->name])))
 		return (ERROR);
 	return (SUCCESS);
