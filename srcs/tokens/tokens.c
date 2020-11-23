@@ -29,21 +29,6 @@ void				ini_get_tok(int (*get_tok[12])(char *, t_elem *,
 	get_tok[none] = &get_tok_word;
 }
 
-void				display_tokens(t_token **tokens)
-{
-	t_token			*temp;
-	const char		*types[12] = {"pip", "in", "out", "append_out", "word",
-													"space", "v_env", "end"};
-
-	temp = *tokens;
-	while (temp)
-	{
-		printf("str : \"%s\"    type : %s   re :%d\n", temp->str, types[temp->type], (int)temp->retokenise);
-		temp = temp->next;
-	}
-	printf("\nDone\n\n");
-}
-
 int					create_tokens_list(char *input, t_token **tokens)
 {
 	t_elem			elem;
