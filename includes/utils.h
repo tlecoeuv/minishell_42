@@ -6,7 +6,7 @@
 /*   By: tlecoeuv <tlecoeuv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 16:09:23 by tlecoeuv          #+#    #+#             */
-/*   Updated: 2020/11/12 11:16:59 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/11/23 12:40:21 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ char				*ft_strtrim(char const *s1, char const *set);
 void				ft_putstr_fd(char *s, int fd);
 void				manage_env_path();
 char				*ft_itoa(int n);
-
-//temporaire
 int					ft_atoi(const char *str);
 
 #endif

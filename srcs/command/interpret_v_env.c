@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 12:35:20 by tanguy            #+#    #+#             */
-/*   Updated: 2020/11/16 17:00:54 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/11/23 13:18:20 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void		interpret_v_env(t_token *lst_token)
 	tok_join_words(&lst_token);
 }
 
-void		replace_first_v_env(t_token **lst_token, t_token **previous)
+void		replace_first_v_env(t_token **lst_token, t_token **previous, int t)
 {
 	char	*env_value;
 
@@ -27,7 +27,10 @@ void		replace_first_v_env(t_token **lst_token, t_token **previous)
 	if (env_value)
 	{
 		free((*lst_token)->str);
-		(*lst_token)->str = ft_strdup(env_value);
+		if (t == 0)
+			(*lst_token)->str = ft_strdup(env_value);
+		else
+			(*lst_token)->str = env_value;
 		(*lst_token)->type = word;
 		(*previous) = (*lst_token);
 		(*lst_token) = (*lst_token)->next;
@@ -42,7 +45,7 @@ void		replace_first_v_env(t_token **lst_token, t_token **previous)
 	}
 }
 
-void		replace_one_v_env(t_token **lst_token, t_token **previous)
+void		replace_one_v_env(t_token **lst_token, t_token **previous, int t)
 {
 	t_token	*tmp;
 	char	*env_value;
@@ -51,7 +54,10 @@ void		replace_one_v_env(t_token **lst_token, t_token **previous)
 	if (env_value)
 	{
 		free((*lst_token)->str);
-		(*lst_token)->str = ft_strdup(env_value);
+		if (t == 0)
+			(*lst_token)->str = ft_strdup(env_value);
+		else
+			(*lst_token)->str = env_value;
 		(*lst_token)->type = word;
 		(*previous) = (*lst_token);
 		(*lst_token) = (*lst_token)->next;
@@ -71,7 +77,7 @@ void		replace_v_env(t_token *lst_token)
 
 	previous = lst_token;
 	if (lst_token && lst_token->type == v_env)
-		replace_first_v_env(&lst_token, &previous);
+		replace_first_v_env(&lst_token, &previous, lst_token->str[0] == '?');
 	else if (lst_token)
 		lst_token = lst_token->next;
 	else
@@ -79,7 +85,7 @@ void		replace_v_env(t_token *lst_token)
 	while (lst_token && lst_token->type != end)
 	{
 		if (lst_token->type == v_env)
-			replace_one_v_env(&lst_token, &previous);
+			replace_one_v_env(&lst_token, &previous, lst_token->str[0] == '?');
 		else
 		{
 			previous = lst_token;

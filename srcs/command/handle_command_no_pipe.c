@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 10:35:12 by tanguy            #+#    #+#             */
-/*   Updated: 2020/11/20 12:04:58 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/11/23 12:07:30 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,8 @@ void		handle_command_no_pipe(t_cmd *cmd)
 	{
 		if (is_builtin(cmd->args[0]))
 			exec_builtin(cmd);
-		else
-			if (get_exec_path(&(cmd->bin_path)))
-				exec_cmd(cmd);
+		else if (get_exec_path(&(cmd->bin_path)))
+			exec_cmd(cmd);
 	}
 	if (cmd->out_fd > 0)
 		close(cmd->out_fd);

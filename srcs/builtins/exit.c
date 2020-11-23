@@ -6,12 +6,11 @@
 /*   By: tlecoeuv <tlecoeuv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 14:12:41 by tlecoeuv          #+#    #+#             */
-/*   Updated: 2020/11/18 15:28:02 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/11/23 12:31:39 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
 
 int						get_unity_index(int i, char *str)
 {

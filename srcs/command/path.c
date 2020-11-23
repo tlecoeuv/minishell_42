@@ -6,7 +6,7 @@
 /*   By: tlecoeuv <tlecoeuv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 15:46:08 by tlecoeuv          #+#    #+#             */
-/*   Updated: 2020/11/19 18:21:50 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/11/23 12:37:49 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,7 @@ char		*test_all_path(char **paths, char *cmd_name)
 	first_error = NULL;
 	while (paths[i] && result_test != 0)
 	{
-		bin = ft_strjoin_sep(paths[i], cmd_name, '/');
-		result_test = test_bin(bin);
-		if (result_test != 0)
-		{
-			if (result_test == 2 && first_error == NULL)
-				first_error = ft_strdup(bin);
-			free(bin);
-			bin = NULL;
-		}
+		bin = norme_all_path(paths[i], cmd_name, &first_error, &result_test);
 		i++;
 	}
 	if (first_error)
@@ -62,4 +54,20 @@ char		*test_all_path(char **paths, char *cmd_name)
 	else if (!bin)
 		error_cmd_not_found(cmd_name);
 	return (bin);
+}
+
+char		*norme_all_path(char *path, char *cmd, char **error, int *res)
+{
+	char	*ret_bin;
+
+	ret_bin = ft_strjoin_sep(path, cmd, '/');
+	*res = test_bin(ret_bin);
+	if (*res != 0)
+	{
+		if (*res == 2 && *error == NULL)
+			*error = ft_strdup(ret_bin);
+		free(ret_bin);
+		ret_bin = NULL;
+	}
+	return (ret_bin);
 }
