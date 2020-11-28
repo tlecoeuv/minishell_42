@@ -1,7 +1,0 @@
-"echo $?"
-"[cmd] | [cmd]" ->ressemble a un minishell qui n'a pas ete free (tokens + env)
-
-//diff avec bash trouve (osef/20) 
-Redirection dans une variable
-    minishell -> syntax error near unexpected token `variable'
-    bash      -> $variable: ambiguous redirect

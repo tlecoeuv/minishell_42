@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 12:35:20 by tanguy            #+#    #+#             */
-/*   Updated: 2020/11/23 13:18:20 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/11/28 11:02:57 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void		interpret_v_env(t_token *lst_token)
 	tok_join_words(&lst_token);
 }
 
-void		replace_first_v_env(t_token **lst_token, t_token **previous, int t)
+void		first_v_env(t_token **lst_token, t_token **previous, int t)
 {
 	char	*env_value;
 
@@ -45,7 +45,7 @@ void		replace_first_v_env(t_token **lst_token, t_token **previous, int t)
 	}
 }
 
-void		replace_one_v_env(t_token **lst_token, t_token **previous, int t)
+void		one_v_env(t_token **lst_token, t_token **previous, int t)
 {
 	t_token	*tmp;
 	char	*env_value;
@@ -77,7 +77,7 @@ void		replace_v_env(t_token *lst_token)
 
 	previous = lst_token;
 	if (lst_token && lst_token->type == v_env)
-		replace_first_v_env(&lst_token, &previous, lst_token->str[0] == '?');
+		first_v_env(&lst_token, &previous, lst_token->str[0] == '?');
 	else if (lst_token)
 		lst_token = lst_token->next;
 	else
@@ -85,7 +85,7 @@ void		replace_v_env(t_token *lst_token)
 	while (lst_token && lst_token->type != end)
 	{
 		if (lst_token->type == v_env)
-			replace_one_v_env(&lst_token, &previous, lst_token->str[0] == '?');
+			one_v_env(&lst_token, &previous, lst_token->str[0] == '?');
 		else
 		{
 			previous = lst_token;

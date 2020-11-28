@@ -6,7 +6,7 @@
 /*   By: tlecoeuv <tlecoeuv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 16:04:09 by tlecoeuv          #+#    #+#             */
-/*   Updated: 2020/11/23 13:14:33 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/11/28 11:01:20 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ char			**create_cmd_args(t_token **lst_token);
 void			exec_cmd(t_cmd *cmd);
 void			interpret_v_env(t_token *lst_token);
 void			replace_v_env(t_token *lst_token);
-void			replace_first_v_env(t_token **lst_token, t_token **previous, int t);
-void			replace_one_v_env(t_token **lst_token, t_token **previous, int t);
+void			first_v_env(t_token **lst_token, t_token **previous, int t);
+void			one_v_env(t_token **lst_token, t_token **previous, int t);
 void			delete_cmd_spaces(t_token *lst_token);
 void			free_commands(t_cmd **cmds);
 
