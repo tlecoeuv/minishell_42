@@ -8,6 +8,7 @@ while true; do
 			printf "\e[94m"
 			valgrind --leak-check=full \
 			 --show-leak-kinds=all \
+			--child-silent-after-fork=yes \
 			 --track-origins=yes \
 			 --verbose \
 			 --log-file=valgrind-out.txt ./minishell
@@ -25,7 +26,8 @@ while true; do
 				printf "\e[94m"
 				valgrind --leak-check=full \
 				 --show-leak-kinds=all \
-				 --track-origins=yes \
+				--child-silent-after-fork=yes \
+				--track-origins=yes \
 				 --verbose \
 				 --log-file=valgrind-out.txt ./minishell
 				printf "\e[91m------------VALGRIND OUTPUT\n"
