@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 17:50:24 by tanguy            #+#    #+#             */
-/*   Updated: 2020/11/30 18:52:22 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/11/30 20:53:47 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int		main(int argc, char **argv, char **envp)
 {
 	t_token	*tokens;
 	char	*input;
-	int		ret;
 
 	(void)argv;
 	(void)argc;
@@ -28,14 +27,13 @@ int		main(int argc, char **argv, char **envp)
 	while (g_sh.running)
 	{
 		write(1, "minishell: >", 12);
-		while ((ret = get_next_line(0, &input)) == 0 && ft_strlen(input) != 0)
-			;
-		create_tokens_list(input, &tokens);
-		if (check_syntax(tokens))
-			handle_tokens(tokens);
-		tok_lstclear(&tokens);
-		if (ret == 0 && (input == NULL || ft_strlen(input) == 0))
-			g_sh.running = 0;
+		if (get_input(&input))
+		{
+			create_tokens_list(input, &tokens);
+			if (check_syntax(tokens))
+				handle_tokens(tokens);
+			tok_lstclear(&tokens);
+		}
 		reset_sig();
 		free(input);
 	}

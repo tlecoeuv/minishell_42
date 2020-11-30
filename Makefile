@@ -82,6 +82,7 @@ SRCS = 	srcs/main.c \
 		srcs/utils/ft_substr.c \
 		srcs/utils/get_array_size.c \
 		srcs/utils/valid_identifier.c \
+		srcs/utils/get_input.c \
 		srcs/builtins/env.c \
 		srcs/builtins/unset.c \
 		srcs/builtins/export.c \
