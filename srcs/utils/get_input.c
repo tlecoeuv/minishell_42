@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 20:32:31 by tanguy            #+#    #+#             */
-/*   Updated: 2020/11/30 21:04:38 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/11/30 21:08:20 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,12 @@ int			get_input(char **input)
 			free(to_free);
 			free(tmp);
 		}
+		to_free = *input;
+		*input = ft_strjoin(*input, tmp);
+		free(to_free);
+		free(tmp);
 		return (1);
 	}
-	else
-	{
-		g_sh.running = 0;
-		return (0);
-	}
+	g_sh.running = 0;
+	return (0);
 }
