@@ -95,6 +95,7 @@ void		manage_var(char *var)
 					return ;
 				free(g_sh.env[i]);
 				g_sh.env[i] = new;
+				return ;
 			}
 		}
 	add_env_var(var);
