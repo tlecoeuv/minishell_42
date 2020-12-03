@@ -13,8 +13,8 @@
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# define MAX_FD 250
-# define BUFFER_SIZE 1024
+# define MAX_FD 1
+# define BUFFER_SIZE 252
 
 size_t			ft_strl_spec(const char *str, char spec);
 int				get_next_line(int fd, char **line);
