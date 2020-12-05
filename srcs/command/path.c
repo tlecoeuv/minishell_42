@@ -6,7 +6,7 @@
 /*   By: tlecoeuv <tlecoeuv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 15:46:08 by tlecoeuv          #+#    #+#             */
-/*   Updated: 2020/11/23 12:37:49 by tanguy           ###   ########.fr       */
+/*   Updated: 2020/12/05 10:55:12 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int			get_exec_path(char **cmd_name)
 	if (ft_strchr(*cmd_name, '/') != -1 || ft_strncmp(*cmd_name, "./", 2) == 0)
 		return (is_executable(*cmd_name));
 	if ((path_split = get_path_split()) == NULL)
-		return (error_cmd_not_found(*cmd_name));
+		return (is_executable(*cmd_name));
 	bin = test_all_path(path_split, *cmd_name);
 	free_array(path_split);
 	if (!bin)
